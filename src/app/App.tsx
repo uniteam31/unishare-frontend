@@ -1,6 +1,6 @@
+import { Widget } from '@uniteam31/uni-shared-ui';
 import React from 'react';
 import './styles/index.scss';
-import { Widget } from '../../../uni-shared-ui';
 
 const App = () => {
 	return (
