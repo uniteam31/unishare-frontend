@@ -1,9 +1,12 @@
 import React from 'react';
 import './styles/index.scss';
+import { Widget } from '../../../uni-shared-ui';
 
 const App = () => {
 	return (
-		<div className={'App'}></div>
+		<div className={'App'}>
+			<Widget title="RAR" />
+		</div>
 	);
 };
 
