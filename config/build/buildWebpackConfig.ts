@@ -24,6 +24,11 @@ export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration 
 		mode: mode,
 		plugins: BuildPlugins(options),
 		devServer: BuildDevServer(options),
+		ignoreWarnings: [
+			{
+				message: /Deprecation/,
+			},
+		],
 	};
 };
 
