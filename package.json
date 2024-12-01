@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack serve",
-    "start:dev": "concurrently \"npx webpack serve\" \"npm run start:dev:server\"",
+    "start": "webpack serve",
+    "start:dev": "concurrently \"webpack serve\" \"start:dev:server\"",
     "start:dev:server": "json-server --watch ./json-server/db.json --port 8080",
-    "build": "npx webpack build",
+    "build": "webpack build",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "lint:scss": "npx stylelint \"**/*.scss\"",
-    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "lint:scss": "stylelint \"**/*.scss\"",
+    "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
@@ -51,6 +51,7 @@
     "globals": "^15.11.0",
     "html-webpack-plugin": "^5.6.0",
     "json-server": "^1.0.0-beta.3",
+    "json-server-auth": "^2.1.0",
     "mini-css-extract-plugin": "^2.8.0",
     "sass": "^1.71.1",
     "sass-loader": "^14.1.1",
@@ -65,6 +66,7 @@
     "webpack-dev-server": "^5.0.2"
   },
   "dependencies": {
+    "@def1s/uni-sharedui": "^0.0.7",
     "dotenv-defaults": "^5.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

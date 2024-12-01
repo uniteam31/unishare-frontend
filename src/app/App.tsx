@@ -3,9 +3,7 @@ import './styles/index.scss';
 
 const App = () => {
 	return (
-		<div className={'App'}>
-			App
-		</div>
+		<div className={'App'}></div>
 	);
 };
 

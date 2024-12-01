@@ -1,3 +1,4 @@
+import { WebpackConfiguration } from 'webpack-cli';
 import { BuildDevServer } from './buildDevServer';
 import { BuildLoaders } from './buildLoaders';
 import { BuildPlugins } from './buildPlugins';
@@ -5,7 +6,7 @@ import { BuildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
 
-export const BuildWebpackConfig = (options: BuildOptions) => {
+export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration => {
 	const { mode, paths } = options;
 
 	return {
