@@ -1,13 +1,13 @@
 {
-  "notes": [
-    {
-      "author": "daniil",
-      "header": "note"
-    }
-  ],
-  "calendar": [
-    {
-      "event": "sdfgdsfg"
-    }
-  ]
+	"notes": [
+		{
+			"author": "daniil",
+			"header": "note"
+		}
+	],
+	"calendar": [
+		{
+			"event": "sdfgdsfg"
+		}
+	]
 }

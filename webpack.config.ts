@@ -10,7 +10,7 @@ export default () => {
 		entry: path.resolve(__dirname, 'src', 'index.tsx'),
 		build: path.resolve(__dirname, 'build'),
 		html: path.resolve(__dirname, 'public', 'index.html'),
-		src: path.resolve(__dirname, 'src')
+		src: path.resolve(__dirname, 'src'),
 	};
 
 	// env
@@ -24,7 +24,7 @@ export default () => {
 		paths,
 		port: PORT,
 		isDev: IS_DEV,
-		apiUrl: API_URL
+		apiUrl: API_URL,
 	});
 
 	return config;

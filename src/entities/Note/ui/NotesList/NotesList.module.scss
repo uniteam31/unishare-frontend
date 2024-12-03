@@ -1,0 +1,11 @@
+.NotesList {
+    width: 321px;
+    padding: 20px;
+
+    .item {
+        &:hover {
+            // TODO в переменную
+            background-color: #EAEAEC;
+        }
+    }
+}

@@ -15,10 +15,10 @@ const preview: Preview = {
 	decorators: [
 		(Story) => (
 			<MemoryRouter>
-				<Story/>
+				<Story />
 			</MemoryRouter>
-		)
-	]
+		),
+	],
 };
 
 export default preview;

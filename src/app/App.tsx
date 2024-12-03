@@ -1,11 +1,11 @@
-import { Widget } from '@uniteam31/uni-shared-ui';
 import React from 'react';
 import './styles/index.scss';
+import { NotesPage } from 'pages/NotesPage';
 
 const App = () => {
 	return (
 		<div className={'App'}>
-			<Widget title="RAR" />
+			<NotesPage />
 		</div>
 	);
 };

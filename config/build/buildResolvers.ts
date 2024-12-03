@@ -2,7 +2,6 @@ import { WebpackConfiguration } from 'webpack-cli';
 import { BuildOptions } from './types/config';
 
 export const BuildResolvers = (options: BuildOptions): WebpackConfiguration['resolve'] => {
-
 	return {
 		extensions: ['.tsx', '.ts', '.js'],
 		// настройки для работы абсолютных путей
