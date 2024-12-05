@@ -1,0 +1,23 @@
+.Widget {
+    padding: 20px;
+    background-color: #D2D2D2;
+    height: 321px;
+    border-radius: 12px;
+
+    .header {
+        font: var(--font-subheadline);
+        color: #fff;
+        border-radius: 6px;
+        padding: 10px 15px;
+        height: 60px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        background-color: #8F8F8F;
+        font-weight: 500;
+
+        .icon {
+            margin-right: 5px;
+        }
+    }
+}

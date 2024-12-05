@@ -1,4 +1,5 @@
-import { Navigate, RouteProps } from 'react-router-dom';
+import { RouteProps } from 'react-router-dom';
+import { HomePage } from 'pages/HomePage';
 import { NotesPage } from 'pages/NotesPage';
 
 /** Конфигурация путей всего приложения */
@@ -19,7 +20,7 @@ export const routerConfig: Record<Routes, RouteProps> = {
 	// должна быть главная страница, но сейчас просто редирект на заметки
 	[Routes.MAIN]: {
 		path: RoutesPaths.main,
-		element: <Navigate to={RoutesPaths.notes} />,
+		element: <HomePage />,
 	},
 	[Routes.NOTES]: {
 		path: RoutesPaths.notes,

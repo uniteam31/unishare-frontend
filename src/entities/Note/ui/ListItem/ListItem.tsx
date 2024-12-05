@@ -3,7 +3,7 @@ import React, { FC, memo, useCallback } from 'react';
 import { INote } from '../../model/note';
 import s from './ListItem.module.scss';
 
-interface IListItemProps extends INote {
+interface IListItemProps extends Partial<INote> {
 	onClick?: (id: INote['id']) => void;
 	//
 	className?: string;
@@ -16,6 +16,10 @@ export const ListItem: FC<IListItemProps> = memo((props) => {
 	const { id, onClick } = props;
 
 	const handleClick = useCallback(() => {
+		if (!id) {
+			return;
+		}
+
 		onClick?.(id);
 	}, [id, onClick]);
 

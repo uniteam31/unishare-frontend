@@ -11,7 +11,6 @@ interface ITitleInputProps extends HTMLInputProps {
 	className?: string;
 }
 
-// TODO кандидат на вынос в ui библиотеку
 export const TitleInput = memo((props: ITitleInputProps) => {
 	const { onChange, value, className, ...otherProps } = props;
 

@@ -11,7 +11,6 @@ interface ITextAreaProps extends HTMLTextAreaProps {
 	className?: string;
 }
 
-// TODO кандидат на вынос в ui библиотеку
 export const TextArea = (props: ITextAreaProps) => {
 	const { onChange, value, className, ...otherProps } = props;
 
