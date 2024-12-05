@@ -1,2 +1,8 @@
 /** Реэкспортируем компоненты из внешних ui библиотек */
-export { Note as NoteUI } from '@uniteam31/uni-shared-ui';
+// export {
+// 	/** Заметки */
+// 	Note as NoteUI,
+// 	INote as INoteUI,
+// 	TNodeData as TNodeDataUI,
+// 	TNoteFormFields as TNoteFormFieldsUI,
+// } from '@uniteam31/uni-shared-ui';

@@ -1,40 +1,11 @@
+import axios from 'axios';
 import classNames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
-import { INote, Note, NotesList, TNoteFormFields } from 'entities/Note';
+import useSWR from 'swr';
+import { INote, Note, TNoteFormFields } from 'entities/Note';
 import { Divider } from 'shared/ui/Divider/Divider';
 import s from './NoteWidget.module.scss';
-
-const mockedNotes: INote[] = [
-	{
-		id: 1,
-		date: '21.02.2023',
-		text: 'text',
-		title: 'Заметка номер 1',
-		author: 'author',
-	},
-	{
-		id: 2,
-		date: '21.02.2023',
-		text: 'text',
-		title: 'Заметка номер 2',
-		author: 'author',
-	},
-	{
-		id: 3,
-		date: '21.02.2023',
-		text: 'text',
-		title: 'Заметка номер 3',
-		author: 'author',
-	},
-	{
-		id: 4,
-		date: '21.02.2023',
-		text: 'text',
-		title: 'Заметка номер 4',
-		author: 'author',
-	},
-];
 
 interface INoteWidgetProps {
 	className?: string;
@@ -42,6 +13,12 @@ interface INoteWidgetProps {
 
 export const NoteWidget = (props: INoteWidgetProps) => {
 	const { className } = props;
+
+	// const [selectedNote, setSelectedNote] = useState(0);
+
+	const fetcher = () => axios<INote[]>({ method: 'GET', url: 'http://localhost:8080/notes' });
+	const { data, error, isValidating } = useSWR('api/notes', fetcher);
+	const notes = data?.data || [];
 
 	const { control } = useForm<TNoteFormFields>();
 
@@ -55,11 +32,11 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 
 	return (
 		<div className={classNames(s.NoteWidget, className)}>
-			<NotesList notes={mockedNotes} />
+			<Note.List notes={notes} />
 
 			<Divider />
 
-			<Note
+			<Note.Item
 				onChangeTitle={onChangeTitle}
 				onChangeText={onChangeText}
 				title={title}

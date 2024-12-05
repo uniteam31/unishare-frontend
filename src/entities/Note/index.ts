@@ -1,5 +1,15 @@
-export { Note } from './ui/Note/Note';
+import { Item } from './ui/Item/Item';
+import { List } from './ui/List/List';
 
-export { NotesList } from './ui/NotesList/NotesList';
+export type { INote, TNodeData, TNoteFormFields } from './model/note';
 
-export { INote, TNodeData, TNoteFormFields } from './model/note';
+type NoteComponents = {
+	List: typeof List;
+	Item: typeof Item;
+};
+
+/** Экспортируем обертку для компонентов, которые связаны логически */
+export const Note: NoteComponents = {
+	List,
+	Item,
+};

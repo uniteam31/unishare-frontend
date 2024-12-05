@@ -1,13 +1,46 @@
 {
 	"notes": [
 		{
+			"id": 1,
 			"author": "daniil",
-			"header": "note"
-		}
-	],
-	"calendar": [
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
+		},
 		{
-			"event": "sdfgdsfg"
+			"id": 2,
+			"author": "daniil",
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
+		},
+		{
+			"id": 3,
+			"author": "daniil",
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
+		},
+		{
+			"id": 4,
+			"author": "daniil",
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
+		},
+		{
+			"id": 5,
+			"author": "daniil",
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
+		},
+		{
+			"id": 6,
+			"author": "daniil",
+			"title": "note",
+			"text": "text",
+			"date": "2024-12-03T10:30:00Z"
 		}
 	]
 }

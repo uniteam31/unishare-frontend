@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
-import { NoteUI } from 'shared/ui';
 import { TNoteFormFields } from '../../model/note';
-import s from './Note.module.scss';
+import { TextArea } from '../TextArea/TextArea';
+import { TitleInput } from '../TitleInput/TitleInput';
+import s from './Item.module.scss';
 
 interface INoteProps extends TNoteFormFields {
 	className?: string;
@@ -12,20 +13,20 @@ interface INoteProps extends TNoteFormFields {
 }
 
 // TODO задействовать поле date
-export const Note = (props: INoteProps) => {
+export const Item = (props: INoteProps) => {
 	const { onChangeText, onChangeTitle } = props;
 	const { date, title, text, className } = props;
 
 	return (
-		<div className={classNames(s.NotesList, className)}>
-			<NoteUI.TitleInput
+		<div className={classNames(s.Item, className)}>
+			<TitleInput
 				value={title}
 				onChange={onChangeTitle}
 				placeholder={'Введите название...'}
 				className={s.title}
 			/>
 
-			<NoteUI.TextArea value={text} onChange={onChangeText} />
+			<TextArea value={text} onChange={onChangeText} />
 		</div>
 	);
 };
