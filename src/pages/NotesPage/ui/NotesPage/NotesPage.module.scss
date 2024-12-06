@@ -1,7 +1,22 @@
 .NotesPage {
-    display: flex;
-    width: 100%;
-    height: 100%;
     align-items: stretch;
+    display: flex;
+    height: 100%;
     overflow: hidden;
+    width: 100%;
+
+    .notification {
+        padding: 20px;
+    }
+
+    .createNoteButton {
+        display: block;
+        margin: 20px auto 0;
+        width: 281px;
+    }
+
+    .notesList {
+        height: 100%;
+        overflow-y: scroll;
+    }
 }

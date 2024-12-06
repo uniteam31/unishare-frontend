@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { INote } from '../../model/note';
+import { INote } from '../../model/types/note';
 import { ListItem } from '../ListItem/ListItem';
 import s from './List.module.scss';
 

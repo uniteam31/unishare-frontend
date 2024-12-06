@@ -1,9 +1,10 @@
 .TitleInput {
     all: unset;
-    width: 100%;
-    height: auto;
+    background-color: #fff;
+
     //
     font: var(--font-subheadline);
     font-weight: bold;
-    background-color: #fff;
+    height: auto;
+    width: 100%;
 }

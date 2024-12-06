@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { TNoteFormFields } from '../../model/note';
+import { TNoteFormFields } from '../../model/types/note';
 import { TextArea } from '../TextArea/TextArea';
 import { TitleInput } from '../TitleInput/TitleInput';
 import s from './Item.module.scss';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import useSWR from 'swr';
-import { INote } from '../model/note';
+import { INote } from '../model/types/note';
 
 export const useGetNotes = () => {
 	// TODO поменять путь на API_URL

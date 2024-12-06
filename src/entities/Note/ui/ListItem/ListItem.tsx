@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { FC, memo, useCallback } from 'react';
-import { INote } from '../../model/note';
+import { INote } from '../../model/types/note';
 import s from './ListItem.module.scss';
 
 interface IListItemProps extends Partial<INote> {
@@ -26,9 +26,9 @@ export const ListItem: FC<IListItemProps> = memo((props) => {
 	// TODO добавить валидатор длины полей и скрывать под хайд и ...
 	return (
 		<div className={classNames(s.ListItem, className)} onClick={handleClick}>
-			<div className={s.title}>{title ?? 'Нет названия'}</div>
-			<div className={s.text}>{text ?? 'Нет содержимого'}</div>
-			<div className={s.date}>{date ?? 'Без даты создания'}</div>
+			<div className={s.title}>{title?.length ? title : 'Нет названия'}</div>
+			<div className={s.text}>{text?.length ? text : 'Нет содержимого'}</div>
+			<div className={s.date}>{date?.length ? date : 'Без даты создания'}</div>
 		</div>
 	);
 });

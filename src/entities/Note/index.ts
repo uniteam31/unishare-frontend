@@ -2,7 +2,7 @@ import { Item } from './ui/Item/Item';
 import { List } from './ui/List/List';
 import { ListItem } from './ui/ListItem/ListItem';
 
-export type { INote, TNodeData, TNoteFormFields } from './model/note';
+export type { INote, TNodeData, TNoteFormFields } from './model/types/note';
 
 type NoteComponents = {
 	List: typeof List;
@@ -19,3 +19,5 @@ export const Note: NoteComponents = {
 
 export { useGetNotes } from './api/useGetNotes';
 export { putNote } from './api/putNote';
+export { postNote } from './api/postNote';
+export { useNoteStore } from './model/slice/useNoteStore';
