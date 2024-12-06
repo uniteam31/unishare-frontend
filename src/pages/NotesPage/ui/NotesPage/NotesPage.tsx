@@ -50,6 +50,7 @@ export const NotesPage = () => {
 					notes={notes}
 					onClickNote={handleNoteClick}
 					selectedNodeID={selectedNote?.id}
+					isLoading={isLoading}
 				/>
 			</div>
 
