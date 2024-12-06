@@ -46,7 +46,11 @@ export const NotesPage = () => {
 				<Button className={s.createNoteButton} onClick={handleNoteCreate}>
 					Создать заметку
 				</Button>
-				<Note.List notes={notes} onClickNote={handleNoteClick} />
+				<Note.List
+					notes={notes}
+					onClickNote={handleNoteClick}
+					selectedNodeID={selectedNote?.id}
+				/>
 			</div>
 
 			<Divider />

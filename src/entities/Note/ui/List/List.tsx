@@ -6,18 +6,25 @@ import s from './List.module.scss';
 
 interface IListProps {
 	notes: INote[];
+	selectedNodeID?: INote['id'];
 	onClickNote?: (id: INote['id']) => void;
+	//
 	className?: string;
 }
 
 export const List = (props: IListProps) => {
-	const { notes, onClickNote, className } = props;
+	const { notes, selectedNodeID, onClickNote, className } = props;
 
 	return (
 		<div className={classNames(s.List, className)}>
 			{notes.map((note) => {
 				return (
-					<ListItem key={note.id} {...note} className={s.item} onClick={onClickNote} />
+					<ListItem
+						key={note.id}
+						{...note}
+						className={classNames(s.item, note.id === selectedNodeID && s.selected)}
+						onClick={onClickNote}
+					/>
 				);
 			})}
 		</div>
