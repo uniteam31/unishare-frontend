@@ -1,9 +1,22 @@
 .NoteWidget {
     width: 497px;
 
+    .icon {
+        max-height: 35px;
+        max-width: 35px;
+    }
+
     .notesList {
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        .note {
+            border: solid 1px var(--mid-gray-bg-color);
+
+            &:hover {
+                background-color: var(--mid-gray-bg-color);
+            }
+        }
     }
 }

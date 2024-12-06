@@ -1,14 +1,14 @@
 .Widget {
-    background-color: #D2D2D2;
+    background-color: #fff;
     border-radius: 12px;
     height: 321px;
     padding: 20px;
+    transition: scale, 0.3s;
 
     .header {
         align-items: center;
-        background-color: #8F8F8F;
+        background-color: var(--light-blue-color);
         border-radius: 6px;
-        color: #fff;
         display: flex;
         font: var(--font-subheadline);
         font-weight: 500;
@@ -17,7 +17,11 @@
         padding: 10px 15px;
 
         .icon {
-            margin-right: 5px;
+            margin-right: 10px;
         }
+    }
+
+    &:hover {
+        scale: 1.02;
     }
 }

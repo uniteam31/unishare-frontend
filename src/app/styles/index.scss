@@ -1,6 +1,10 @@
 @import 'reset';
 
+
 .App {
+	background-image: url('shared/assets/bg.jpeg');
+	background-position: 50%;
+	background-size: cover;
 	font-family: var(--font-family-main), sans-serif;
 	height: 100vh; // растягивание контента в App на всю высоту
 	// TODO можно вынести в переменную

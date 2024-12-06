@@ -7,6 +7,7 @@ import s from './HomePage.module.scss';
 export const HomePage = () => {
 	const { setCurrentService } = useNavigationStore();
 
+	/** Для отрисовки хлебных крошек в навбаре при выборе сервиса */
 	useEffect(() => {
 		setCurrentService('main');
 	}, [setCurrentService]);

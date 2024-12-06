@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { INote, Note, putNote, TNoteFormFields, useGetNotes } from 'entities/Note';
+import { deleteNote, Note, putNote, useGetNotes, useNoteStore } from 'entities/Note';
+import type { INote, TNoteFormFields } from 'entities/Note';
 
-interface IFormProps {
-	selectedNote: INote;
-}
-
-export const Form = ({ selectedNote }: IFormProps) => {
+export const Form = () => {
 	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
 	const { notes, mutateNodes } = useGetNotes();
+	const { selectedNote, setSelectedNote } = useNoteStore();
 
 	useEffect(() => {
+		if (!selectedNote) {
+			return;
+		}
+
 		/** Устанавливаем новые значения в форму при изменении selectedNote */
 		setValue('title', selectedNote.title);
 		setValue('text', selectedNote.text);
@@ -19,6 +21,10 @@ export const Form = ({ selectedNote }: IFormProps) => {
 	// TODO закинуть обновление формы под debounce
 	useEffect(() => {
 		const subscription = watch((values) => {
+			if (!selectedNote) {
+				return;
+			}
+
 			/** Вызываем обновление заметки только после изменения данных формы */
 			putNote({ body: values, id: selectedNote.id }).then(() => {
 				const updatedNotes = notes.map((note) =>
@@ -30,14 +36,28 @@ export const Form = ({ selectedNote }: IFormProps) => {
 
 		/** Очистка подписки при размонтировании компонента */
 		return () => subscription.unsubscribe();
-	}, [mutateNodes, notes, selectedNote.id, watch]);
+	}, [mutateNodes, notes, selectedNote, selectedNote?.id, watch]);
+
+	/** Для удаления ноды */
+	const handleNoteDelete = useCallback(
+		(id: INote['id']) => {
+			deleteNote({ id }).then(() => {
+				setSelectedNote(null);
+
+				const updatedNotes = notes.filter((note) => id !== note.id);
+
+				mutateNodes(updatedNotes, false).finally();
+			});
+		},
+		[mutateNodes, notes, setSelectedNote],
+	);
 
 	const {
 		field: { value: title, onChange: onChangeTitle },
 	} = useController<TNoteFormFields>({
 		name: 'title',
 		control,
-		defaultValue: selectedNote.title,
+		defaultValue: selectedNote?.title,
 	});
 
 	const {
@@ -45,8 +65,13 @@ export const Form = ({ selectedNote }: IFormProps) => {
 	} = useController<TNoteFormFields>({
 		name: 'text',
 		control,
-		defaultValue: selectedNote.text,
+		defaultValue: selectedNote?.text,
 	});
+
+	/** В общем если не выбрана заметка, то ничего не возвращаем */
+	if (!selectedNote) {
+		return;
+	}
 
 	return (
 		<Note.Item
@@ -54,6 +79,8 @@ export const Form = ({ selectedNote }: IFormProps) => {
 			onChangeText={onChangeText}
 			title={title}
 			text={text}
+			id={selectedNote.id}
+			onDelete={handleNoteDelete}
 		/>
 	);
 };

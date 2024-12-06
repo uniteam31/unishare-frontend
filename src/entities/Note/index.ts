@@ -17,7 +17,9 @@ export const Note: NoteComponents = {
 	ListItem,
 };
 
+export { useNoteStore } from './model/slice/useNoteStore';
+
 export { useGetNotes } from './api/useGetNotes';
 export { putNote } from './api/putNote';
 export { postNote } from './api/postNote';
-export { useNoteStore } from './model/slice/useNoteStore';
+export { deleteNote } from './api/deleteNote';

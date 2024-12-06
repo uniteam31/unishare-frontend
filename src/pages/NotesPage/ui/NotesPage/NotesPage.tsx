@@ -1,16 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigationStore } from 'entities/Navigation';
 import { INote, Note, postNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
 import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
-import { Button, Text } from 'shared/ui';
+import { Button } from 'shared/ui';
 import { Divider } from 'shared/ui/Divider/Divider';
 import { Form } from '../Form/Form';
 import s from './NotesPage.module.scss';
 
 export const NotesPage = () => {
 	const { selectedNote, setSelectedNote } = useNoteStore();
-
 	const { setCurrentService } = useNavigationStore();
 
 	useEffect(() => {
@@ -39,7 +38,7 @@ export const NotesPage = () => {
 		setSelectedNote(createdNote);
 
 		mutateNodes([...notes, createdNote], false).finally();
-	}, [mutateNodes, notes]);
+	}, [mutateNodes, notes, setSelectedNote]);
 
 	return (
 		<div className={s.NotesPage}>
@@ -52,17 +51,9 @@ export const NotesPage = () => {
 
 			<Divider />
 
-			{!selectedNote && (
-				<Text
-					className={s.notification}
-					title={'Выберите заметку или создайте новую'}
-					text={'Для создания или выбора используйте панель слева'}
-				/>
-			)}
-
 			{selectedNote && (
 				<FormWrapper<TNoteFormFields> methods={methods}>
-					<Form selectedNote={selectedNote} />
+					<Form />
 				</FormWrapper>
 			)}
 		</div>

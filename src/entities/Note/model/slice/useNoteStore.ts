@@ -3,7 +3,7 @@ import { INote } from '../types/note';
 
 interface INoteStore {
 	selectedNote: INote | null;
-	setSelectedNote: (note: INote) => void;
+	setSelectedNote: (note: INote | null) => void;
 }
 
 export const useNoteStore = create<INoteStore>((set) => ({

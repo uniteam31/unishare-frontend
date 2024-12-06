@@ -31,11 +31,11 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 
 	return (
 		<div className={classNames(s.NoteWidget, className)}>
-			<Widget Icon={<NoteIcon />} title={'Заметки'} headerTo={'/notes'}>
+			<Widget Icon={<NoteIcon className={s.icon} />} title={'Заметки'} headerTo={'/notes'}>
 				<div className={s.notesList}>
 					{notes.slice(0, 2).map((note) => (
 						<Link to={'/notes'} key={note.id}>
-							<Note.ListItem {...note} onClick={handleNoteClick} />
+							<Note.ListItem className={s.note} {...note} onClick={handleNoteClick} />
 						</Link>
 					))}
 				</div>
