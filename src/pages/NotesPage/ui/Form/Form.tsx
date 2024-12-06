@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { deleteNote, Note, putNote, useGetNotes, useNoteStore } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
+import { useDebounce } from 'shared/hooks/useDebounce/useDebounce';
 
 export const Form = () => {
 	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
@@ -18,13 +19,9 @@ export const Form = () => {
 		setValue('text', selectedNote.text);
 	}, [selectedNote, setValue]);
 
-	// TODO закинуть обновление формы под debounce
-	useEffect(() => {
-		const subscription = watch((values) => {
-			if (!selectedNote) {
-				return;
-			}
-
+	/** Функция, посылающая новые данные заметки на сервер после ее изменения */
+	const handleSubmitForm = useCallback(
+		(selectedNote: INote, values: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
 			putNote({ body: values, id: selectedNote.id }).then(() => {
 				const updatedNotes = notes.map((note) =>
@@ -32,11 +29,24 @@ export const Form = () => {
 				);
 				mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
 			});
+		},
+		[mutateNodes, notes],
+	);
+
+	const debouncedHandleSubmitForm = useDebounce(handleSubmitForm, 500);
+
+	useEffect(() => {
+		const subscription = watch((values) => {
+			if (!selectedNote) {
+				return;
+			}
+
+			debouncedHandleSubmitForm(selectedNote, values);
 		});
 
 		/** Очистка подписки при размонтировании компонента */
 		return () => subscription.unsubscribe();
-	}, [mutateNodes, notes, selectedNote, selectedNote?.id, watch]);
+	}, [debouncedHandleSubmitForm, selectedNote, selectedNote?.id, watch]);
 
 	/** Для удаления ноды */
 	const handleNoteDelete = useCallback(

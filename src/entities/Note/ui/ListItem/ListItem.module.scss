@@ -5,6 +5,12 @@
     padding: 15px 20px;
     width: 100%;
 
+    .title, .text, .date {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     .title {
         font: var(--font-callout);
         font-weight: 500;
