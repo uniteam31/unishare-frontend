@@ -24,9 +24,14 @@ export const NotesPage = () => {
 	const handleNoteClick = useCallback(
 		(id: INote['id']) => {
 			const note = notes.find((note) => note.id === id);
+
+			if (!note) {
+				return;
+			}
+
 			setSelectedNote(note);
 		},
-		[notes],
+		[notes, setSelectedNote],
 	);
 
 	const handleNoteCreate = useCallback(async () => {

@@ -19,6 +19,11 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 	const handleNoteClick = useCallback(
 		(id: INote['id']) => {
 			const selectedNote = notes.find((note) => id === note.id);
+
+			if (!selectedNote) {
+				return;
+			}
+
 			setSelectedNote(selectedNote);
 		},
 		[notes, setSelectedNote],
