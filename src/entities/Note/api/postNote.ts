@@ -7,7 +7,11 @@ export const postNote = async () => {
 		text: '',
 	};
 
-	const result = await axios.post<INote>('http://localhost:8080/notes', body);
-
-	return result.data;
+	try {
+		const result = await axios.post<INote>('http://localhost:8080/notes', body);
+		return result.data;
+	} catch (e) {
+		console.error(e);
+		throw new Error('При создании заметки произошла ошибка');
+	}
 };

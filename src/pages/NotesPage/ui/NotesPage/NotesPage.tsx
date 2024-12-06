@@ -34,10 +34,15 @@ export const NotesPage = () => {
 	);
 
 	const handleNoteCreate = useCallback(async () => {
-		const createdNote = await postNote();
-		setSelectedNote(createdNote);
+		postNote()
+			.then((createdNote) => {
+				setSelectedNote(createdNote);
 
-		mutateNodes([...notes, createdNote], false).finally();
+				mutateNodes([...notes, createdNote], false).finally();
+			})
+			.catch(() => {
+				// TODO можно выводить уведомление об ошибке
+			});
 	}, [mutateNodes, notes, setSelectedNote]);
 
 	return (

@@ -8,7 +8,10 @@ interface IDeleteNoteProps {
 export const deleteNote = async (props: IDeleteNoteProps) => {
 	const { id } = props;
 
-	const result = await axios.delete(`http://localhost:8080/notes/${id}`);
-
-	return result.data;
+	try {
+		await axios.delete(`http://localhost:8080/notes/${id}`);
+	} catch (e) {
+		console.error(e);
+		throw new Error('При удалении заметки произошла ошибка');
+	}
 };

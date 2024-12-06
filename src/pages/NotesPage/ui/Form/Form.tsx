@@ -23,12 +23,17 @@ export const Form = () => {
 	const handleSubmitForm = useCallback(
 		(selectedNote: INote, values: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
-			putNote({ body: values, id: selectedNote.id }).then(() => {
-				const updatedNotes = notes.map((note) =>
-					note.id === selectedNote.id ? { ...note, ...values } : note,
-				);
-				mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
-			});
+			putNote({ body: values, id: selectedNote.id })
+				.then(() => {
+					const updatedNotes = notes.map((note) =>
+						note.id === selectedNote.id ? { ...note, ...values } : note,
+					);
+
+					mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
+				})
+				.catch((e) => {
+					// TODO можно выводить уведомление об ошибке
+				});
 		},
 		[mutateNodes, notes],
 	);
