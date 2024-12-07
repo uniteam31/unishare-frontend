@@ -6,6 +6,7 @@ declare module '*.scss' {
 }
 
 declare const __IS_DEV__: boolean;
+declare const __API_URL__: string;
 
 declare module '*.svg' {
 	const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;

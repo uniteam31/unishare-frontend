@@ -8,7 +8,7 @@ export const postNote = async () => {
 	};
 
 	try {
-		const result = await axios.post<INote>('http://localhost:8080/notes', body);
+		const result = await axios.post<INote>(`${__API_URL__}/notes`, body);
 		return result.data;
 	} catch (e) {
 		console.error(e);

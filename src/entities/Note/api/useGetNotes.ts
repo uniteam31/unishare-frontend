@@ -3,11 +3,8 @@ import useSWR from 'swr';
 import { INote } from '../model/types/note';
 
 export const useGetNotes = () => {
-	// TODO поменять путь на API_URL
 	const fetcher = () =>
-		axios<INote[]>({ method: 'GET', url: 'http://localhost:8080/notes' }).then(
-			(res) => res.data,
-		);
+		axios<INote[]>({ method: 'GET', url: `${__API_URL__}/notes` }).then((res) => res.data);
 
 	const { data, error, isValidating, mutate } = useSWR('api/notes', fetcher);
 

@@ -10,7 +10,7 @@ export const putNote = async (props: IPutNoteProps) => {
 	const { id, body } = props;
 
 	try {
-		await axios.put(`http://localhost:8080/notes/${id}`, body);
+		await axios.put(`${__API_URL__}/notes/${id}`, body);
 		// return result.data;
 	} catch (e) {
 		console.error(e);
