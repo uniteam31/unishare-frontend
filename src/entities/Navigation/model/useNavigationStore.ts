@@ -1,20 +1,15 @@
 import { create } from 'zustand';
-
-export type TServices = 'main' | 'notes';
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
+import { Path } from 'app/providers/AppRouter';
 
 interface INavigationStore {
-	currentService: TServices;
-	setCurrentService: (service: TServices) => void;
+	currentServiceEndPath: Path;
+	setCurrentService: (service: Path) => void;
 }
 
 export const useNavigationStore = create<INavigationStore>((set) => ({
-	currentService: 'main',
+	currentServiceEndPath: '/',
 	setCurrentService: (service) => {
-		set((state) => {
-			return {
-				...state,
-				currentService: service,
-			};
-		});
+		set({ currentServiceEndPath: service });
 	},
 }));

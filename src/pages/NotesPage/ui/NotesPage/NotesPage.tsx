@@ -8,12 +8,12 @@ import { Divider } from 'shared/ui/Divider/Divider';
 import { Form } from '../Form/Form';
 import s from './NotesPage.module.scss';
 
-export const NotesPage = () => {
+const NotesPage = () => {
 	const { selectedNote, setSelectedNote } = useNoteStore();
 	const { setCurrentService } = useNavigationStore();
 
 	useEffect(() => {
-		setCurrentService('notes');
+		setCurrentService('/notes');
 	}, [setCurrentService]);
 
 	// TODO задействовать isLoading и error
@@ -69,3 +69,5 @@ export const NotesPage = () => {
 		</div>
 	);
 };
+
+export default NotesPage;

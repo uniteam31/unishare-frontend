@@ -1,11 +1,11 @@
 import { Modal } from './ui/Modal/Modal';
 
 /** Общие компоненты */
-type TRegistrationComponents = {
+type TLoginComponents = {
 	Modal: typeof Modal;
 };
 
 /** Экспортируем общую обертку */
-export const Registration: TRegistrationComponents = {
+export const Login: TLoginComponents = {
 	Modal,
 };

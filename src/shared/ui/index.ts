@@ -17,4 +17,6 @@ export {
 	Modal as ModalUI,
 	//
 	Input,
+	//
+	LoadScreen,
 } from '@uniteam31/uni-shared-ui';

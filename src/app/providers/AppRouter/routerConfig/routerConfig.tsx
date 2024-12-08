@@ -14,7 +14,9 @@ export enum Routes {
 	WELCOME = 'welcome',
 }
 
-export const RoutesPaths: Record<Routes, string> = {
+export type Path = '/' | '/notes' | '/welcome';
+
+export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.MAIN]: '/',
 	[Routes.NOTES]: '/notes',
 	[Routes.WELCOME]: '/welcome',
