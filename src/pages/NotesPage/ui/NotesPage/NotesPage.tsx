@@ -38,7 +38,7 @@ const NotesPage = () => {
 			.then((createdNote) => {
 				setSelectedNote(createdNote);
 
-				mutateNodes([...notes, createdNote], false).finally();
+				mutateNodes([createdNote, ...notes], false).finally();
 			})
 			.catch(() => {
 				// TODO можно выводить уведомление об ошибке

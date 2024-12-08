@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { FC, memo, useCallback } from 'react';
+import { formatDate } from 'shared/lib/formatDate/formatDate';
 import { INote } from '../../model/types/note';
 import s from './ListItem.module.scss';
 
@@ -28,7 +29,9 @@ export const ListItem: FC<IListItemProps> = memo((props) => {
 		<div className={classNames(s.ListItem, className)} onClick={handleClick}>
 			<div className={s.title}>{title?.length ? title : 'Нет названия'}</div>
 			<div className={s.text}>{text?.length ? text : 'Нет содержимого'}</div>
-			<div className={s.date}>{date?.length ? date : 'Без даты создания'}</div>
+			<div className={s.date}>
+				{date?.length ? formatDate(new Date(date)) : 'Без даты создания'}
+			</div>
 		</div>
 	);
 });
