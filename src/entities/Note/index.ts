@@ -4,14 +4,14 @@ import { ListItem } from './ui/ListItem/ListItem';
 
 export type { INote, TNodeData, TNoteFormFields } from './model/types/note';
 
-type NoteComponents = {
+type TNoteComponents = {
 	List: typeof List;
 	ListItem: typeof ListItem;
 	Item: typeof Item;
 };
 
 /** Экспортируем обертку для компонентов, которые связаны логически */
-export const Note: NoteComponents = {
+export const Note: TNoteComponents = {
 	List,
 	Item,
 	ListItem,

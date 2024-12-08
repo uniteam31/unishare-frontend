@@ -1,0 +1,26 @@
+.WelcomePage {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+
+    .title {
+        font-size: 100px;
+        font-weight: 700;
+    }
+
+    .description {
+        font: var(--font-title);
+    }
+
+    .buttonsWrapper {
+        align-items: center;
+        display: flex;
+        font: var(--font-subheadline);
+        gap: 10px;
+    }
+}

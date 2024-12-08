@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from 'shared/api/axiosInstance';
 import { INote, TNoteFormFields } from '../model/types/note';
 
 export const postNote = async () => {
@@ -8,7 +8,7 @@ export const postNote = async () => {
 	};
 
 	try {
-		const result = await axios.post<INote>(`${__API_URL__}/notes`, body);
+		const result = await axiosInstance.post<INote>(`${__API_URL__}/notes`, body);
 		return result.data;
 	} catch (e) {
 		console.error(e);

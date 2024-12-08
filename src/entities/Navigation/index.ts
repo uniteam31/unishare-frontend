@@ -1,1 +1,1 @@
-export { useNavigationStore, TServices } from './model/useNavigationStore';
+export { useNavigationStore } from './model/useNavigationStore';

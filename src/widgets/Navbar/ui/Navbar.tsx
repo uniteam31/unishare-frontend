@@ -5,7 +5,7 @@ import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
 
 export const Navbar = () => {
-	const { currentService } = useNavigationStore();
+	const { currentServiceEndPath } = useNavigationStore();
 
 	return (
 		<div>
@@ -15,8 +15,10 @@ export const Navbar = () => {
 						<span className={s.mainName}>UNISHARE</span>
 					</Link>
 
-					{MODULES[currentService].name && (
-						<span className={s.serviceName}>/{MODULES[currentService].name}</span>
+					{MODULES[currentServiceEndPath].name && (
+						<span className={s.serviceName}>
+							/{MODULES[currentServiceEndPath].name}
+						</span>
 					)}
 				</div>
 			</div>

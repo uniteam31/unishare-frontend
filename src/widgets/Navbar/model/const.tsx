@@ -1,14 +1,26 @@
-import { TServices } from 'entities/Navigation';
+import { CSSProperties, ReactNode } from 'react';
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
+import { Path } from 'app/providers/AppRouter';
+import NoteIcon from 'shared/assets/icons/note.svg';
 
-type ModuleItem = {
+export type TModuleItem = {
 	name: string;
+	Icon?: ReactNode;
 };
 
-export const MODULES: Record<TServices, ModuleItem> = {
-	main: {
+const baseIconStyles: CSSProperties = {
+	maxHeight: '80px',
+};
+
+export const MODULES: Record<Path, TModuleItem> = {
+	['/']: {
 		name: '',
 	},
-	notes: {
+	['/notes']: {
 		name: 'Заметки',
+		Icon: <NoteIcon style={baseIconStyles} />,
+	},
+	['/welcome']: {
+		name: 'Добро пожаловать на UniShare!',
 	},
 };

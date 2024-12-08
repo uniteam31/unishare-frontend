@@ -1,1 +1,1 @@
-export { NotesPage } from './ui/NotesPage/NotesPage';
+export { NotesPageAsync as NotesPage } from './ui/NotesPage/NotesPage.async';

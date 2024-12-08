@@ -19,8 +19,8 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 	const { setSelectedNote } = useNoteStore();
 
 	const handleNoteClick = useCallback(
-		(id: INote['id']) => {
-			const selectedNote = notes.find((note) => id === note.id);
+		(id: INote['_id']) => {
+			const selectedNote = notes.find((note) => id === note._id);
 
 			if (!selectedNote) {
 				return;
@@ -43,7 +43,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 					{/** В данном виджете можно отобразить только 2 последние заметки */}
 					{!isLoading &&
 						notes.slice(0, 2).map((note) => (
-							<Link to={'/notes'} key={note.id}>
+							<Link to={'/notes'} key={note._id}>
 								<Note.ListItem
 									className={s.note}
 									{...note}
