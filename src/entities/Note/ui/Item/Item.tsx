@@ -12,8 +12,8 @@ interface INoteProps extends TNoteFormFields {
 	onChangeTitle: (title: string) => void;
 	onChangeText: (text: string) => void;
 	//
-	id: INote['id'];
-	onDelete?: (id: INote['id']) => void;
+	id: INote['_id'];
+	onDelete?: (id: INote['_id']) => void;
 }
 
 // TODO задействовать поле date

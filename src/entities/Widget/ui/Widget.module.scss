@@ -1,9 +1,15 @@
 .Widget {
     background-color: #fff;
     border-radius: 12px;
+    box-shadow:
+            0 10px 15px rgb(0 0 0 / 10%), /* Основная тень */
+            0 4px 6px rgb(0 0 0 / 5%); /* Дополнительная мягкая тень */
+
     height: 321px;
     padding: 20px;
-    transition: scale, 0.3s;
+
+    // transition: scale, 0.3s;
+    transition: all 0.3s ease, transform 0.3s ease; /* Анимация */
 
     .header {
         align-items: center;
@@ -22,6 +28,11 @@
     }
 
     &:hover {
+        box-shadow:
+                0 20px 25px rgb(0 0 0 / 15%),
+                0 10px 10px rgb(0 0 0 / 5%); /* Увеличиваем тень при наведении */
+
         scale: 1.02;
+        transform: translateY(-5px); /* Лёгкий "подъём" */
     }
 }

@@ -4,7 +4,7 @@ import { INote } from '../../model/types/note';
 import s from './ListItem.module.scss';
 
 interface IListItemProps extends Partial<INote> {
-	onClick?: (id: INote['id']) => void;
+	onClick?: (id: INote['_id']) => void;
 	//
 	className?: string;
 }
@@ -13,15 +13,15 @@ interface IListItemProps extends Partial<INote> {
 export const ListItem: FC<IListItemProps> = memo((props) => {
 	const { title, text, date, className } = props;
 	//
-	const { id, onClick } = props;
+	const { _id, onClick } = props;
 
 	const handleClick = useCallback(() => {
-		if (!id) {
+		if (!_id) {
 			return;
 		}
 
-		onClick?.(id);
-	}, [id, onClick]);
+		onClick?.(_id);
+	}, [_id, onClick]);
 
 	// TODO добавить валидатор длины полей и скрывать под хайд и ...
 	return (

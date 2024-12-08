@@ -1,16 +1,16 @@
+import { TMeta } from 'shared/types/meta';
+
 /** Поля у формы заметки */
 export type TNoteFormFields = {
-    date?: string;
-    title?: string;
-    text?: string;
+	date?: string;
+	title?: string;
+	text?: string;
 };
 
 /** Данные заметки */
 export type TNodeData = TNoteFormFields & {
-    author: string;
+	author: string;
 };
 
 /** Целый экземпляр */
-export interface INote extends TNodeData {
-    id: number;
-}
+export interface INote extends TNodeData, TMeta {}

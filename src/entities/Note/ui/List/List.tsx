@@ -7,8 +7,8 @@ import s from './List.module.scss';
 
 interface IListProps {
 	notes: INote[];
-	selectedNodeID?: INote['id'];
-	onClickNote?: (id: INote['id']) => void;
+	selectedNodeID?: INote['_id'];
+	onClickNote?: (id: INote['_id']) => void;
 	//
 	isLoading?: boolean;
 	className?: string;
@@ -30,9 +30,12 @@ export const List = (props: IListProps) => {
 				notes.map((note) => {
 					return (
 						<ListItem
-							key={note.id}
+							key={note._id}
 							{...note}
-							className={classNames(s.item, note.id === selectedNodeID && s.selected)}
+							className={classNames(
+								s.item,
+								note._id === selectedNodeID && s.selected,
+							)}
 							onClick={onClickNote}
 						/>
 					);

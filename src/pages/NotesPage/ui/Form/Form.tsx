@@ -23,10 +23,10 @@ export const Form = () => {
 	const handleSubmitForm = useCallback(
 		(selectedNote: INote, values: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
-			putNote({ body: values, id: selectedNote.id })
+			putNote({ body: values, id: selectedNote._id })
 				.then(() => {
 					const updatedNotes = notes.map((note) =>
-						note.id === selectedNote.id ? { ...note, ...values } : note,
+						note._id === selectedNote._id ? { ...note, ...values } : note,
 					);
 
 					mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
@@ -51,15 +51,15 @@ export const Form = () => {
 
 		/** Очистка подписки при размонтировании компонента */
 		return () => subscription.unsubscribe();
-	}, [debouncedHandleSubmitForm, selectedNote, selectedNote?.id, watch]);
+	}, [debouncedHandleSubmitForm, selectedNote, selectedNote?._id, watch]);
 
 	/** Для удаления ноды */
 	const handleNoteDelete = useCallback(
-		(id: INote['id']) => {
+		(id: INote['_id']) => {
 			deleteNote({ id }).then(() => {
 				setSelectedNote(null);
 
-				const updatedNotes = notes.filter((note) => id !== note.id);
+				const updatedNotes = notes.filter((note) => id !== note._id);
 
 				mutateNodes(updatedNotes, false).finally();
 			});
@@ -94,7 +94,7 @@ export const Form = () => {
 			onChangeText={onChangeText}
 			title={title}
 			text={text}
-			id={selectedNote.id}
+			id={selectedNote._id}
 			onDelete={handleNoteDelete}
 		/>
 	);

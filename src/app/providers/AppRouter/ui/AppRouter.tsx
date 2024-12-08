@@ -1,16 +1,22 @@
-import { memo, Suspense, useCallback } from 'react';
-import { Route, RouteProps, Routes } from 'react-router-dom';
-import { routerConfig } from '../routerConfig/routerConfig';
-// import cls from './AppRouter.module.scss';
+import { Suspense } from 'react';
+import { useCallback } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Loader } from 'shared/ui';
+import { AppRoutesProps, routerConfig } from '../routerConfig/routerConfig';
+import { RequireAuth } from './RequireAuth';
 
-// TODO добавить Loader
-// провайдер и функция для отрисовки страниц исходя из конфига
-export const AppRouter = memo(() => {
-	const renderRoutes = useCallback((route: RouteProps) => {
-		const element = <Suspense fallback={'Загрузка...'}>{route.element}</Suspense>;
+export const AppRouter = () => {
+	const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+		const element = <Suspense fallback={<Loader />}>{route.element}</Suspense>;
 
-		return <Route element={element} key={route.path} path={route.path} />;
+		return (
+			<Route
+				key={route.path}
+				path={route.path}
+				element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+			/>
+		);
 	}, []);
 
-	return <Routes>{Object.values(routerConfig).map(renderRoutes)}</Routes>;
-});
+	return <Routes>{Object.values(routerConfig).map(renderWithWrapper)}</Routes>;
+};

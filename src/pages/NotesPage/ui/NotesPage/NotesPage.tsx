@@ -21,8 +21,8 @@ export const NotesPage = () => {
 	const methods = useForm<TNoteFormFields>();
 
 	const handleNoteClick = useCallback(
-		(id: INote['id']) => {
-			const note = notes.find((note) => note.id === id);
+		(id: INote['_id']) => {
+			const note = notes.find((note) => note._id === id);
 
 			if (!note) {
 				return;
@@ -54,7 +54,7 @@ export const NotesPage = () => {
 				<Note.List
 					notes={notes}
 					onClickNote={handleNoteClick}
-					selectedNodeID={selectedNote?.id}
+					selectedNodeID={selectedNote?._id}
 					isLoading={isLoading}
 				/>
 			</div>
