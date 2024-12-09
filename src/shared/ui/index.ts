@@ -19,4 +19,6 @@ export {
 	Input,
 	//
 	LoadScreen,
+	//
+	Warning,
 } from '@uniteam31/uni-shared-ui';

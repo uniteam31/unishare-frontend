@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Skeleton, Text, TextAlign } from 'shared/ui';
+import { Skeleton, Warning } from 'shared/ui';
 import { INote } from '../../model/types/note';
 import { ListItem } from '../ListItem/ListItem';
 import s from './List.module.scss';
@@ -19,7 +19,9 @@ export const List = (props: IListProps) => {
 
 	return (
 		<div className={classNames(s.List, className)}>
-			{!isLoading && !notes.length && <Text title={'Пусто'} align={TextAlign.CENTER} />}
+			{!isLoading && !notes.length && (
+				<Warning text={'Здесь вы можете создать свою заметку!'} />
+			)}
 
 			{isLoading &&
 				Array.from({ length: 5 }).map((_, index) => (

@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { INote, Note, useGetNotes, useNoteStore } from 'entities/Note';
 import { Widget } from 'entities/Widget';
 import NoteIcon from 'shared/assets/icons/note.svg';
-import { Skeleton } from 'shared/ui';
+import { Skeleton, Warning } from 'shared/ui';
 import { Link } from 'shared/ui/Link/Link';
 import s from './NoteWidget.module.scss';
 
@@ -14,7 +14,6 @@ interface INoteWidgetProps {
 export const NoteWidget = (props: INoteWidgetProps) => {
 	const { className } = props;
 
-	// TODO обрабаывать ошибку
 	const { notes, isLoading, error } = useGetNotes();
 	const { setSelectedNote } = useNoteStore();
 
@@ -51,6 +50,22 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 								/>
 							</Link>
 						))}
+
+					{!isLoading && !notes.length && (
+						<Warning
+							title={'Заметок нет'}
+							text={'Создайте первую внутри сервиса!'}
+							theme={'blue'}
+						/>
+					)}
+
+					{!isLoading && error && (
+						<Warning
+							title={'Произошла ошибка'}
+							text={'Скорее всего мы уже работаем над этим'}
+							theme={'red'}
+						/>
+					)}
 				</div>
 			</Widget>
 		</div>
