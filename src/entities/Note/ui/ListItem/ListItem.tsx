@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { FC, memo, useCallback } from 'react';
 import { formatDate } from 'shared/lib/formatDate/formatDate';
-import { INote } from '../../model/types/note';
+import type { INote } from '../../model/types/note';
 import s from './ListItem.module.scss';
 
 interface IListItemProps extends Partial<INote> {
@@ -24,7 +24,6 @@ export const ListItem: FC<IListItemProps> = memo((props) => {
 		onClick?.(_id);
 	}, [_id, onClick]);
 
-	// TODO добавить валидатор длины полей и скрывать под хайд и ...
 	return (
 		<div className={classNames(s.ListItem, className)} onClick={handleClick}>
 			<div className={s.title}>{title?.length ? title : 'Нет названия'}</div>
