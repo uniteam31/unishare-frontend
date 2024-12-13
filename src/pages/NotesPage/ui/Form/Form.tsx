@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { deleteNote, Note, putNote, useGetNotes, useNoteStore } from 'entities/Note';
+import { Note, useGetNotes, useNoteStore, useDeleteNote, useUpdateNote } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
 import { useDebounce } from 'shared/hooks/useDebounce/useDebounce';
 
@@ -8,6 +8,11 @@ export const Form = () => {
 	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
 	const { notes, mutateNodes } = useGetNotes();
 	const { selectedNote, setSelectedNote } = useNoteStore();
+
+	// TODO задействовать информационные поля
+	const { deleteNote, isLoading: isDeletingNote, error: deleteNoteError } = useDeleteNote();
+
+	const { updateNote, isLoading: isUpdatingNote, error: updateNoteError } = useUpdateNote();
 
 	useEffect(() => {
 		if (!selectedNote) {
@@ -23,19 +28,15 @@ export const Form = () => {
 	const handleSubmitForm = useCallback(
 		(selectedNote: INote, values: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
-			putNote({ body: values, id: selectedNote._id })
-				.then(() => {
-					const updatedNotes = notes.map((note) =>
-						note._id === selectedNote._id ? { ...note, ...values } : note,
-					);
+			updateNote({ body: values, id: selectedNote._id }).then(() => {
+				const updatedNotes = notes.map((note) =>
+					note._id === selectedNote._id ? { ...note, ...values } : note,
+				);
 
-					mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
-				})
-				.catch((e) => {
-					// TODO можно выводить уведомление об ошибке
-				});
+				mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
+			});
 		},
-		[mutateNodes, notes],
+		[mutateNodes, notes, updateNote],
 	);
 
 	const debouncedHandleSubmitForm = useDebounce(handleSubmitForm, 500);
@@ -64,7 +65,7 @@ export const Form = () => {
 				mutateNodes(updatedNotes, false).finally();
 			});
 		},
-		[mutateNodes, notes, setSelectedNote],
+		[deleteNote, mutateNodes, notes, setSelectedNote],
 	);
 
 	const {

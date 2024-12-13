@@ -20,6 +20,6 @@ export const Note: TNoteComponents = {
 export { useNoteStore } from './model/slice/useNoteStore';
 
 export { useGetNotes } from './api/useGetNotes';
-export { putNote } from './api/putNote';
-export { postNote } from './api/postNote';
-export { deleteNote } from './api/deleteNote';
+export { useCreateNote } from './api/useCreateNote';
+export { useUpdateNote } from './api/useUpdateNote';
+export { useDeleteNote } from './api/useDeleteNote';
