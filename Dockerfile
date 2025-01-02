@@ -27,7 +27,7 @@ RUN git checkout ${BRANCH}
 # INSTALL DEPS
 # TODO расхардкодить
 RUN yarn install
-RUN API_URL=https://176.114.90.241/api yarn build
+RUN API_URL=http://176.114.90.241/api yarn build
 
 RUN rm -rf /var/www/html
 RUN mv build /var/www/
