@@ -13,6 +13,9 @@ COPY nginx/default /etc/nginx/sites-enabled
 RUN corepack enable
 RUN yarn init -2
 
+# SETUP .NMPRC
+COPY --from=npmrc-context .npmrc /root/.npmrc
+
 # CHECKOUT
 ARG BRANCH=dev
 RUN git clone https://github.com/uniteam31/unishare-frontend.git

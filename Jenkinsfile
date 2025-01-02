@@ -22,16 +22,24 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
-                    echo "Building branch: ${branchName}"
+       stage('Build Docker Image') {
+           steps {
+               script {
+                   // Загружаем конфигурационный файл .npmrc
+                   configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
+                       def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
+                       echo "Building branch: ${branchName}"
 
-                    app = docker.build("def1s/unishare-frontend", "--no-cache --build-arg BRANCH=${branchName} .") // TODO можно проюзать только к clone
-                }
-            }
-        }
+                       // Используем временный .npmrc при сборке
+                       app = docker.build(
+                           "def1s/unishare-frontend",
+                           "--no-cache --build-arg BRANCH=${branchName} --build-context=. --build-context=npmrc-context=${NPMRC_PATH}"
+                       )
+                   }
+               }
+           }
+       }
+
 
         stage('Push Docker Image') {
            when {
