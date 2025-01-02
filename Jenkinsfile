@@ -25,15 +25,19 @@ pipeline {
        stage('Build Docker Image') {
            steps {
                script {
+
+                def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
+                echo "Building branch: ${branchName}"
+
                    // Загружаем конфигурационный файл .npmrc
-                  configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
-                      sh "cp ${NPMRC_PATH} .npmrc"
-                      app = docker.build(
-                          "def1s/unishare-frontend",
-                          "--no-cache --build-arg BRANCH=${branchName} ."
-                      )
-                      sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
-                  }
+                    configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
+                        sh "cp ${NPMRC_PATH} .npmrc"
+                        app = docker.build(
+                            "def1s/unishare-frontend",
+                            "--no-cache --build-arg BRANCH=${branchName} ."
+                        )
+                        sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
+                   }
                }
            }
        }
