@@ -1,22 +1,31 @@
-// TODO повыносить все в env
 pipeline {
     agent any
 
     environment {
         NODEJS_HOME = "${tool 'node21'}"
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+
+        REPO_URL = "https://github.com/uniteam31/unishare-frontend.git"
+        BRANCH_NAME = "${env.BRANCH_NAME ?: 'dev'}"
+        DOCKER_IMAGE_NAME = "def1s/unishare-frontend"
+        DOCKER_REGISTRY = "https://registry.hub.docker.com"
+        DOCKER_CREDENTIALS_ID = "docker-def1s"
+        DEV_SERVER_IP = "176.114.90.241"
+        DEPLOY_SCRIPT_PATH = "/root/unishare-orchestration/deploy.sh"
+        API_URL = "http://176.114.90.241/api"
+        NPMRC_CONFIG_FILE_ID = "uniteam-npmrc"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: "${env.BRANCH_NAME ?: 'dev'}", url: 'https://github.com/uniteam31/unishare-frontend.git'
+                git branch: BRANCH_NAME, url: REPO_URL
             }
         }
 
         stage('Run Tests and Linters') {
             steps {
-                echo "Current branch: ${env.BRANCH_NAME}"
+                echo "Current branch: ${BRANCH_NAME}"
 
                 // TODO добавить сборку и тесты
                 // sh 'yarn install && yarn lint && yarn test'
@@ -24,32 +33,31 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-           steps {
-               script {
-
-                def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
-                echo "Building branch: ${branchName}"
-
-                   // Загружаем конфигурационный файл .npmrc
-                    configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
-                        sh "cp ${NPMRC_PATH} .npmrc"
-                        app = docker.build(
-                            "def1s/unishare-frontend",
-                            "--no-cache --build-arg BRANCH=${branchName} --build-arg API_URL=http://176.114.90.241/api ."
-                        )
-                        sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
-                   }
-               }
-           }
-       }
-
-        stage('Push Docker Image') {
-           when {
-               branch 'dev'
-           }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-def1s') {
+                    def branchName = env.CHANGE_BRANCH ?: BRANCH_NAME
+                    echo "Building branch: ${branchName}"
+
+                    // Загружаем конфигурационный файл .npmrc
+                    configFileProvider([configFile(fileId: NPMRC_CONFIG_FILE_ID, variable: 'NPMRC_PATH')]) {
+                        sh "cp ${NPMRC_PATH} .npmrc"
+                        app = docker.build(
+                            DOCKER_IMAGE_NAME,
+                            "--no-cache --build-arg BRANCH=${branchName} --build-arg API_URL=${API_URL} ."
+                        )
+                        sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
+                    }
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                script {
+                    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID) {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
@@ -63,7 +71,7 @@ pipeline {
             }
             steps {
                 sshagent(['jenkins-test_ssh']) {
-                     sh 'ssh root@176.114.90.241 "/root/unishare-orchestration/deploy.sh"'
+                     sh "ssh root@${DEV_SERVER_IP} \"${DEPLOY_SCRIPT_PATH}\""
                 }
             }
         }
@@ -81,4 +89,3 @@ pipeline {
         }
     }
 }
-
