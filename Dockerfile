@@ -1,3 +1,9 @@
+# При деплое ОБЯЗАТЕЛЬНО указывать все ENV через Jenkins
+
+# Ставится в pipeline на Jenkins
+ARG BRANCH=dev
+ARG API_URL
+
 FROM node
 
 # INSTALL PACKAGES
@@ -17,7 +23,6 @@ RUN yarn init -2
 COPY .npmrc /root/
 
 # CHECKOUT
-ARG BRANCH=dev
 RUN git clone https://github.com/uniteam31/unishare-frontend.git
 WORKDIR /unishare-frontend
 RUN git fetch --all
@@ -25,9 +30,8 @@ RUN git pull
 RUN git checkout ${BRANCH}
 
 # INSTALL DEPS
-# TODO расхардкодить
 RUN yarn install
-RUN API_URL=http://176.114.90.241/api yarn build
+RUN API_URL=${API_URL} yarn build
 
 RUN rm -rf /var/www/html
 RUN mv build /var/www/
