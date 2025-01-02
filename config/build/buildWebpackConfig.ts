@@ -5,13 +5,12 @@ import { BuildPlugins } from './buildPlugins';
 import { BuildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
-
 export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration => {
 	const { mode, paths } = options;
 
 	return {
 		module: {
-			rules: BuildLoaders(options)
+			rules: BuildLoaders(options),
 		},
 		resolve: BuildResolvers(options),
 		entry: paths.entry,
@@ -19,7 +18,7 @@ export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration 
 			filename: '[name][contenthash].js',
 			path: paths.build,
 			clean: true,
-			publicPath: '/'
+			publicPath: '/',
 		},
 		mode: mode,
 		plugins: BuildPlugins(options),
@@ -31,4 +30,3 @@ export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration 
 		],
 	};
 };
-

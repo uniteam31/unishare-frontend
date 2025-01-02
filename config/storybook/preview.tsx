@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import '../../src/app/styles/index.scss';
+import '@uniteam31/uni-shared-ui/dist/esm/global.scss';
 import { MemoryRouter } from 'react-router-dom';
 
 const preview: Preview = {
@@ -15,10 +16,10 @@ const preview: Preview = {
 	decorators: [
 		(Story) => (
 			<MemoryRouter>
-				<Story/>
+				<Story />
 			</MemoryRouter>
-		)
-	]
+		),
+	],
 };
 
 export default preview;

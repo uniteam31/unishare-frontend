@@ -1,0 +1,15 @@
+.UserWidget {
+    height: 321px;
+    width: 321px;
+
+    .avatar {
+        height: 200px;
+        width: 200px;
+    }
+
+    .innerWidget {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
