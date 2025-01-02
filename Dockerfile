@@ -1,10 +1,9 @@
-# При деплое ОБЯЗАТЕЛЬНО указывать все ENV через Jenkins
+FROM node
 
+# При деплое ОБЯЗАТЕЛЬНО указывать все ENV через Jenkins
 # Ставится в pipeline на Jenkins
 ARG BRANCH=dev
 ARG API_URL
-
-FROM node
 
 # INSTALL PACKAGES
 RUN apt -yqq update \
