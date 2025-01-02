@@ -26,7 +26,7 @@ pipeline {
            steps {
                script {
                    // Загружаем конфигурационный файл .npmrc
-                  configFileProvider([configFile(fileId: 'npmrc-config-id', variable: 'NPMRC_PATH')]) {
+                  configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
                       sh "cp ${NPMRC_PATH} .npmrc"
                       app = docker.build(
                           "def1s/unishare-frontend",
