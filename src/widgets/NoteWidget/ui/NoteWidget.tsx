@@ -35,6 +35,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 			<Widget Icon={<NoteIcon className={s.icon} />} title={'Заметки'} headerTo={'/notes'}>
 				<div className={s.notesList}>
 					{isLoading &&
+						!error &&
 						Array.from({ length: 2 }).map((_, index) => (
 							<Skeleton className={s.skeleton} key={index} />
 						))}
@@ -51,7 +52,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 							</Link>
 						))}
 
-					{!isLoading && !notes.length && (
+					{!isLoading && !error && !notes.length && (
 						<Warning
 							title={'Заметок нет'}
 							text={'Создайте первую внутри сервиса!'}

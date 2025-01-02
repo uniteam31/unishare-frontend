@@ -22,7 +22,6 @@ export const Form = () => {
 		field: { value: password, onChange: onChangePassword },
 	} = useController({ control, name: 'password', rules: { required: true } });
 
-	// TODO написать хук для запросов на бекенд, принимающий фетчер
 	const handleSubmit = useCallback(
 		(e: FormEvent) => {
 			e.preventDefault();

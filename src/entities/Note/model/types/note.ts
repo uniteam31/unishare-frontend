@@ -2,7 +2,6 @@ import { TMeta } from 'shared/types/meta';
 
 /** Поля у формы заметки */
 export type TNoteFormFields = {
-	date?: string;
 	title?: string;
 	text?: string;
 };

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import TrashIcon from 'shared/assets/icons/trash.svg';
+import { formatDate } from 'shared/lib/formatDate/formatDate';
 import { INote, TNoteFormFields } from '../../model/types/note';
 import { TextArea } from '../TextArea/TextArea';
 import { TitleInput } from '../TitleInput/TitleInput';
@@ -19,12 +20,14 @@ interface INoteProps extends TNoteFormFields {
 // TODO задействовать поле date
 export const Item = (props: INoteProps) => {
 	const { onChangeText, onChangeTitle } = props;
-	const { date, title, text, className } = props;
+	const { title, text, className } = props;
 	const { id, onDelete } = props;
 
 	return (
 		<div className={classNames(s.Item, className)}>
 			<TrashIcon className={s.trashIcon} onClick={() => onDelete?.(id)} />
+
+			{/*<div>{formatDate(new Date(date || 0))}</div>*/}
 
 			<TitleInput
 				value={title}

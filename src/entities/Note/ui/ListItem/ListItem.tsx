@@ -12,7 +12,7 @@ interface IListItemProps extends Partial<INote> {
 
 // TODO добавить автора
 export const ListItem: FC<IListItemProps> = memo((props) => {
-	const { title, text, date, className } = props;
+	const { title, text, className, createdAt } = props;
 	//
 	const { _id, onClick } = props;
 
@@ -29,7 +29,7 @@ export const ListItem: FC<IListItemProps> = memo((props) => {
 			<div className={s.title}>{title?.length ? title : 'Нет названия'}</div>
 			<div className={s.text}>{text?.length ? text : 'Нет содержимого'}</div>
 			<div className={s.date}>
-				{date?.length ? formatDate(new Date(date)) : 'Без даты создания'}
+				{createdAt?.length ? formatDate(new Date(createdAt)) : 'Без даты создания'}
 			</div>
 		</div>
 	);
