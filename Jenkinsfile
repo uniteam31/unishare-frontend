@@ -26,20 +26,17 @@ pipeline {
            steps {
                script {
                    // Загружаем конфигурационный файл .npmrc
-                   configFileProvider([configFile(fileId: 'uniteam-npmrc', variable: 'NPMRC_PATH')]) {
-                       def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
-                       echo "Building branch: ${branchName}"
-
-                       // Используем временный .npmrc при сборке
-                       app = docker.build(
-                           "def1s/unishare-frontend",
-                           "--no-cache --build-arg BRANCH=${branchName} --build-context=. --build-context=npmrc-context=${NPMRC_PATH}"
-                       )
-                   }
+                  configFileProvider([configFile(fileId: 'npmrc-config-id', variable: 'NPMRC_PATH')]) {
+                      sh "cp ${NPMRC_PATH} .npmrc"
+                      app = docker.build(
+                          "def1s/unishare-frontend",
+                          "--no-cache --build-arg BRANCH=${branchName} ."
+                      )
+                      sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
+                  }
                }
            }
        }
-
 
         stage('Push Docker Image') {
            when {

@@ -14,7 +14,7 @@ RUN corepack enable
 RUN yarn init -2
 
 # SETUP .NMPRC
-COPY --from=npmrc-context .npmrc /root/.npmrc
+COPY .npmrc /root/
 
 # CHECKOUT
 ARG BRANCH=dev
