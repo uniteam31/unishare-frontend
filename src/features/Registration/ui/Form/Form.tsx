@@ -22,12 +22,12 @@ export const Form = () => {
 	} = useController({ control, name: 'password', rules: { required: true } });
 
 	const {
-		field: { value: name, onChange: onChangeName },
-	} = useController({ control, name: 'name' });
+		field: { value: firstName, onChange: onChangeFirstName },
+	} = useController({ control, name: 'firstName' });
 
 	const {
-		field: { value: nickname, onChange: onChangeNickname },
-	} = useController({ control, name: 'nickname' });
+		field: { value: username, onChange: onChangeUsername },
+	} = useController({ control, name: 'username' });
 
 	const onSubmit = useCallback(
 		(e: FormEvent) => {
@@ -60,12 +60,17 @@ export const Form = () => {
 				className={s.input}
 			/>
 
-			<Input label={'Ваше имя'} value={name} onChange={onChangeName} className={s.input} />
+			<Input
+				label={'Ваше имя'}
+				value={firstName}
+				onChange={onChangeFirstName}
+				className={s.input}
+			/>
 
 			<Input
-				label={'Nickname'}
-				value={nickname}
-				onChange={onChangeNickname}
+				label={'Username'}
+				value={username}
+				onChange={onChangeUsername}
 				className={s.input}
 			/>
 
