@@ -42,6 +42,7 @@ pipeline {
            }
        }
 
+//      TODO расхардкодить
         stage('Push Docker Image') {
 //            when {
 //                branch 'dev'
