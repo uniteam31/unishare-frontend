@@ -17,8 +17,10 @@ export const UserWidget = () => {
 					}
 				/>
 
-				{/* TODO разделить на два компонента, first и last names */}
-				<Text title={authData?.firstName} />
+				<div>
+					<Text title={authData?.firstName} />
+					<Text text={authData?.username} />
+				</div>
 			</Widget>
 		</div>
 	);
