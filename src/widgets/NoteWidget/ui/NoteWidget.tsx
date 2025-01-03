@@ -32,7 +32,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 
 	return (
 		<div className={classNames(s.NoteWidget, className)}>
-			<Widget Icon={<NoteIcon className={s.icon} />} title={'Заметки'} headerTo={'/notes'}>
+			<Widget Icon={<NoteIcon className={s.icon} />} title={'Заметки'} to={'/notes'}>
 				<div className={s.notesList}>
 					{isLoading &&
 						!error &&

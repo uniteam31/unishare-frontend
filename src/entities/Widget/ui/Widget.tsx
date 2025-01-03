@@ -7,18 +7,18 @@ interface IWidgetProps {
 	Icon?: ReactNode;
 	title?: string;
 	/** Куда введет ссылка при клике на header */
-	headerTo?: string;
+	to?: string;
 	//
 	className?: string;
 }
 
 export const Widget = (props: PropsWithChildren<IWidgetProps>) => {
-	const { Icon, title, headerTo = '', className, children } = props;
+	const { Icon, title, to = '', className, children } = props;
 
 	return (
 		<div className={classNames(s.Widget, className)}>
 			{(Icon || title) && (
-				<Link to={headerTo}>
+				<Link to={to}>
 					<div className={s.header}>
 						{Icon && <div className={s.icon}>{Icon}</div>}
 						{title && <div className={s.title}>{title}</div>}

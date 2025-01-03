@@ -15,27 +15,27 @@ interface IListProps {
 	className?: string;
 }
 
+/** Отрисовывает список заметок и отвечает за обработку состояний загрузки и ошибок */
 export const List = (props: IListProps) => {
 	const { notes, selectedNodeID, onClickNote } = props;
 	const { isLoading, error, className } = props;
 
+	const isNotesLoading = !isLoading && !error;
+	const isError = !isLoading && error;
+	const isNotesEmpty = !isNotesLoading && !notes.length;
+
 	return (
 		<div className={classNames(s.List, className)}>
-			{!isLoading && error && (
-				<Warning text={'При загрузке заметок произошла ошибка'} theme={'red'} />
-			)}
+			{isError && <Warning text={'При загрузке заметок произошла ошибка'} theme={'red'} />}
 
-			{!isLoading && !error && !notes.length && (
-				<Warning text={'Здесь вы можете создать свою заметку!'} />
-			)}
+			{isNotesEmpty && <Warning text={'Здесь вы можете создать свою заметку!'} />}
 
-			{isLoading &&
-				!error &&
+			{isNotesLoading &&
 				Array.from({ length: 5 }).map((_, index) => (
 					<Skeleton className={classNames(s.item, s.skeleton)} key={index} />
 				))}
 
-			{!isLoading &&
+			{!isNotesLoading &&
 				notes.map((note) => {
 					return (
 						<ListItem

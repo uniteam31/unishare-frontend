@@ -43,12 +43,16 @@ const WelcomePage = () => {
 				</Button>
 			</div>
 
-			<Registration.Modal
-				isOpen={isRegistrationModalOpen}
-				onClose={handleRegistrationModal}
-			/>
+			{isRegistrationModalOpen && (
+				<Registration.Modal
+					isOpen={isRegistrationModalOpen}
+					onClose={handleRegistrationModal}
+				/>
+			)}
 
-			<Login.Modal isOpen={isLoginModalOpen} onClose={handleLoginModal} />
+			{isLoginModalOpen && (
+				<Login.Modal isOpen={isLoginModalOpen} onClose={handleLoginModal} />
+			)}
 		</div>
 	);
 };

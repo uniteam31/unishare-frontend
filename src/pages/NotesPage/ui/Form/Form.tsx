@@ -95,8 +95,11 @@ export const Form = () => {
 			onChangeText={onChangeText}
 			title={title}
 			text={text}
-			id={selectedNote._id}
+			_id={selectedNote._id}
 			onDelete={handleNoteDelete}
+			createdAt={selectedNote.createdAt}
+			updatedAt={selectedNote.updatedAt}
+			author={selectedNote.author}
 		/>
 	);
 };

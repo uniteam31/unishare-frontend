@@ -1,17 +1,15 @@
-import { Text, TextAlign } from '@uniteam31/uni-shared-ui';
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { useUserStore } from 'entities/User';
-import { Button, Input } from 'shared/ui';
-import { postRegistration } from '../../api/postRegistration';
+import { Button, Input, Text, TextAlign, Warning } from 'shared/ui';
+import { useRegistration } from '../../api/useRegistration';
 import { TRegistrationFormField } from '../../model/registration';
 import s from './Form.module.scss';
 
 export const Form = () => {
 	const { control, getValues } = useFormContext<TRegistrationFormField>();
 	const { initAuthData } = useUserStore();
-
-	const [isLoading, setIsLoading] = useState(false);
+	const { registration, isLoading, error } = useRegistration();
 
 	const {
 		field: { value: email, onChange: onChangeEmail },
@@ -33,22 +31,21 @@ export const Form = () => {
 		(e: FormEvent) => {
 			e.preventDefault();
 
-			setIsLoading(true);
-
-			postRegistration({ formValues: getValues() })
-				.then(() => {
-					initAuthData();
-				})
-				.finally(() => {
-					setIsLoading(false);
-				});
+			registration({ formValues: getValues() }).then(() => {
+				initAuthData();
+			});
 		},
-		[getValues, initAuthData],
+		[getValues, initAuthData, registration],
 	);
 
+	// TODO стили для форм повторяются, можно вынести в basedFormStyle.scss в shared
 	return (
 		<form className={s.Form} onSubmit={onSubmit}>
 			<Text title={'Регистрация'} className={s.title} align={TextAlign.CENTER} />
+
+			{!isLoading && error && (
+				<Warning className={s.error} title={'Ошибка'} text={error} theme={'red'} />
+			)}
 
 			<Input label={'Почта'} value={email} onChange={onChangeEmail} className={s.input} />
 
@@ -74,7 +71,9 @@ export const Form = () => {
 				className={s.input}
 			/>
 
-			<Button className={s.button}>Регистрация</Button>
+			<Button className={s.button} disabled={isLoading}>
+				Регистрация
+			</Button>
 		</form>
 	);
 };
