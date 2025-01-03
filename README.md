@@ -1,6 +1,11 @@
 # unishare
 
-Dev стенд -> [ссылка](http://176.114.90.241/) (работает в режиме воруй-убивай)
+### ССЫЛКИ
+
+[DEV стенд](http://176.114.90.241/) (работает в режиме воруй-убивай)  
+[UNITEAM NOTION](https://www.notion.so/UNITEAM-1049780386b880adbbe1e3480e5159ce?pvs=4)  
+[UNISHARE NOTION](https://www.notion.so/UNISHARE-1709780386b880388d2dfbbc751678c3?pvs=4)  
+[YOUGILE](https://ru.yougile.com/team/4dc2cd0370c1/UniShare/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B4%D0%BE%D1%81%D0%BA%D0%B0#UNI-30)  
 
 ## DEVELOPER GUIDE
 ### Сборка Dockerfile
