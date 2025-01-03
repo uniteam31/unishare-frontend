@@ -1,9 +1,12 @@
 import { Avatar, Text } from '@uniteam31/uni-shared-ui';
 import React from 'react';
+import { useUserStore } from 'entities/User';
 import { Widget } from 'entities/Widget';
 import s from './UserWidget.module.scss';
 
 export const UserWidget = () => {
+	const { authData } = useUserStore();
+
 	return (
 		<div className={s.UserWidget}>
 			<Widget className={s.innerWidget}>
@@ -14,8 +17,10 @@ export const UserWidget = () => {
 					}
 				/>
 
-				{/* TODO разделить на два компонента, first и last names */}
-				<Text title={'Даниил Перекосов'} />
+				<div>
+					<Text title={authData?.firstName} />
+					<Text text={authData?.username} />
+				</div>
 			</Widget>
 		</div>
 	);

@@ -10,8 +10,16 @@
 
     .breadcrumbs {
         align-items: center;
+        justify-content: space-between;
         display: flex;
         height: 100%;
+        width: 100%;
+
+        .navigation {
+            align-items: center;
+            display: flex;
+            height: 100%;
+        }
     }
 
     .mainName {
@@ -19,14 +27,8 @@
         font-weight: bold;
     }
 
-    // .serviceIcon {
-    //    margin-left: 20px;
-    // }
-
     .serviceName {
         font: var(--font-subheadline);
         font-weight: 100;
-
-        // margin-left: 20px;
     }
 }

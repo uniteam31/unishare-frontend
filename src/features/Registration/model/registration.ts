@@ -1,6 +1,6 @@
 export type TRegistrationFormField = {
 	email: string;
 	password: string;
-	name: string;
-	nickname: string;
+	firstName: string;
+	username: string;
 };
