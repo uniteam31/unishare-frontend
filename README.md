@@ -8,12 +8,12 @@
 [YOUGILE](https://ru.yougile.com/team/4dc2cd0370c1/UniShare/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B4%D0%BE%D1%81%D0%BA%D0%B0#UNI-30)  
 
 ## DEVELOPER GUIDE
-### Сборка Dockerfile
+### Сборка Dockerfile (для локального теста docker-compose)
 
 **ENV**: API_URL, BRANCH  
 **COMMANDS**:
 1. Сборка образа -> `docker build --no-cache -t def1s/unishare-frontend --build-arg API_URL=... --build-arg BRANCH=... .` (точку не забывать)
-2. Push -> `docker push def1s/unishare-frontend` (optional)
+2. Push -> `docker push def1s/unishare-frontend` (но смысла особо нет, в пайплайне все равно перепушит)
 3. Run -> `docker run def1s/unishare-frontend`
 4. Можно взять образ из DockerHub -> `docker pull def1s/unishare-frontend`
 
@@ -56,8 +56,10 @@ export interface INote extends TNodeData, TMeta {}
 Чаще всего дробим интерфейс на форму, данные, не входящие в форму и мета данные.
 
 3. Если компонент (entity, widget, ...) содержит сущности, которые логически связаны с
-родителем, то наружу мы выпускаем компонент-обертку, который эти сущности собирает в
+родителем, то наружу мы выпускаем компонент-обертку, собирающая эти сущности в
 единое целое
+
+**entities/Note/index.ts**
 ```
 import { Item } from './ui/Item/Item';
 import { List } from './ui/List/List';
@@ -86,3 +88,27 @@ export { useUpdateNote } from './api/useUpdateNote';
 export { useDeleteNote } from './api/useDeleteNote';
 ```
 Улучшается читаемость и нет пересечений между компонентами по типу Item, Title и т.п.
+
+4. Все формы оборачиваем в FormWrapper и прокидываем в него тип для значений (см. пункт 2)
+```
+...
+
+const methods = useForm<TLoginFormField>();
+
+return (
+    <ModalUI isOpen={isOpen} onClose={onClose}>
+        <FormWrapper<TLoginFormField> methods={methods}>
+            <Form />
+        </FormWrapper>
+    </ModalUI>
+);
+```
+Получается строгая типизация формы.
+
+5. Все состояния (загрузка, ошибки) управляются компонентом с наибольшей ответственностью за ui сущности.
+На примере entites/Note.List заметим, что он имеет в пропсах isLoading и error, но вот виджет заметки, рисующий часть заметок,
+контролирует сам себя, потому что entites/Note.ListItem не имеет под собой большой ответственности за ui самого виджета.
+
+6. На данный момент (пока что!) все методы по работе с бэкендом выносятся в api сущности в виде хуков. Все get запросы
+контролируются с помощью SWR, который предоставляет стейт с состояниями, в остальных методах вручную пишем
+стейты с загрузкой и ошибкой.
