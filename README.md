@@ -3,10 +3,10 @@
 ### ССЫЛКИ
 
 [DEV стенд](http://176.114.90.241/) (работает в режиме воруй-убивай)  
-[JENKINS CI/CD](https://176.114.90.241:8080/)  
-[UNITEAM NOTION](https://www.notion.so/UNITEAM-1049780386b880adbbe1e3480e5159ce?pvs=4)  
-[UNISHARE NOTION](https://www.notion.so/UNISHARE-1709780386b880388d2dfbbc751678c3?pvs=4)  
-[YOUGILE](https://ru.yougile.com/board/kyihl3hhjnbh)
+[JENKINS CI/CD](https://176.114.90.241:8080/) (private)  
+[UNITEAM NOTION](https://www.notion.so/UNITEAM-1049780386b880adbbe1e3480e5159ce?pvs=4) (private)  
+[UNISHARE NOTION](https://www.notion.so/UNISHARE-1709780386b880388d2dfbbc751678c3?pvs=4) (private)  
+[YOUGILE](https://ru.yougile.com/board/kyihl3hhjnbh)  
 
 ## DEVELOPER GUIDE
 ### Сборка Dockerfile (для локального теста docker-compose)
