@@ -13,7 +13,7 @@ export const useGetNotes = () => {
 	const notes = data || [];
 
 	return {
-		mutateNodes: mutate,
+		mutateNotes: mutate,
 		notes,
 		error,
 		isLoading: isValidating,

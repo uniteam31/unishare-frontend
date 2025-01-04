@@ -30,18 +30,21 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 		[notes, setSelectedNote],
 	);
 
+	const isNotesLoading = isLoading && !error;
+	const isNotesEmpty = !isLoading && !error && !notes.length;
+	const isError = !isLoading && error;
+
 	return (
 		<div className={classNames(s.NoteWidget, className)}>
 			<Widget Icon={<NoteIcon className={s.icon} />} title={'Заметки'} to={'/notes'}>
 				<div className={s.notesList}>
-					{isLoading &&
-						!error &&
+					{isNotesLoading &&
 						Array.from({ length: 2 }).map((_, index) => (
 							<Skeleton className={s.skeleton} key={index} />
 						))}
 
 					{/** В данном виджете можно отобразить только 2 последние заметки */}
-					{!isLoading &&
+					{!isNotesLoading &&
 						notes.slice(0, 2).map((note) => (
 							<Link to={'/notes'} key={note._id}>
 								<Note.ListItem
@@ -52,7 +55,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 							</Link>
 						))}
 
-					{!isLoading && !error && !notes.length && (
+					{isNotesEmpty && (
 						<Warning
 							title={'Заметок нет'}
 							text={'Создайте первую внутри сервиса!'}
@@ -60,7 +63,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 						/>
 					)}
 
-					{!isLoading && error && (
+					{isError && (
 						<Warning
 							title={'Произошла ошибка'}
 							text={'Скорее всего мы уже работаем над этим'}

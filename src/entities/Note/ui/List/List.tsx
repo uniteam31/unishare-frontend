@@ -20,7 +20,7 @@ export const List = (props: IListProps) => {
 	const { notes, selectedNodeID, onClickNote } = props;
 	const { isLoading, error, className } = props;
 
-	const isNotesLoading = !isLoading && !error;
+	const isNotesLoading = isLoading && !error;
 	const isError = !isLoading && error;
 	const isNotesEmpty = !isNotesLoading && !notes.length;
 

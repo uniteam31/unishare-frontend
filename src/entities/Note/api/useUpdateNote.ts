@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
+import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote, TNoteFormFields } from '../model/types/note';
 
 interface IUpdateNoteProps {
@@ -12,15 +13,17 @@ export const useUpdateNote = () => {
 	const [error, setError] = useState<null | string>(null);
 
 	const updateNote = async ({ id, body }: IUpdateNoteProps) => {
-		try {
-			setIsLoading(true);
+		setIsLoading(true);
+		setError(null);
 
+		try {
 			const result = await axiosInstance.put<INote>(`${__API_URL__}/notes/${id}`, body);
 
 			return result.data;
-		} catch (e) {
-			setError('Произошла ошибка при обновлении заметки');
-			console.error(e);
+		} catch (error) {
+			const errorMessage =
+				getApiResponseErrorMessage(error) || 'Произошла ошибка при обновлении заметки';
+			setError(errorMessage);
 		} finally {
 			setIsLoading(false);
 		}

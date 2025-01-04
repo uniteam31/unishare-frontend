@@ -1,7 +1,7 @@
-import { Button } from '@uniteam31/uni-shared-ui';
 import React, { useCallback } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
 import { useUserStore } from 'entities/User';
+import LogoutIcon from 'shared/assets/icons/logout.svg';
 import { Link } from 'shared/ui/Link/Link';
 import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
@@ -30,7 +30,7 @@ export const Navbar = () => {
 						)}
 					</div>
 
-					<Button onClick={handleLogout}>Выход</Button>
+					<LogoutIcon className={s.logoutIcon} onClick={handleLogout} />
 				</div>
 			</div>
 		</div>

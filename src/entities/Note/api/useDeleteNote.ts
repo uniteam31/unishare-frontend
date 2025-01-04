@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
+import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote } from '../model/types/note';
 
 interface IDeleteNoteProps {
@@ -11,15 +12,17 @@ export const useDeleteNote = () => {
 	const [error, setError] = useState<null | string>(null);
 
 	const deleteNote = async ({ id }: IDeleteNoteProps) => {
-		try {
-			setIsLoading(true);
+		setIsLoading(true);
+		setError(null);
 
-			const result = await axiosInstance.delete(`${__API_URL__}/notes/${id}`);
+		try {
+			const result = await axiosInstance.delete(`/notes/${id}`);
 
 			return result.data;
-		} catch (e) {
-			setError('Произошла ошибка при удалении заметки');
-			console.error(e);
+		} catch (error) {
+			const errorMessage =
+				getApiResponseErrorMessage(error) || 'Произошла ошибка при удалении заметки';
+			setError(errorMessage);
 		} finally {
 			setIsLoading(false);
 		}
