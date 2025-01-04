@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
+import { ApiResponse } from 'shared/api/types';
 import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote, TNoteFormFields } from '../model/types/note';
+
+type TCreateNoteResponse = ApiResponse<INote>;
 
 export const useCreateNote = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,8 +20,10 @@ export const useCreateNote = () => {
 		setError(null);
 
 		try {
-			const result = await axiosInstance.post<INote>('/notes', body);
-			return result.data;
+			const response = await axiosInstance.post<TCreateNoteResponse>('/notes', body);
+			const createdNote = response.data.data;
+
+			return createdNote;
 		} catch (error) {
 			const errorMessage = getApiResponseErrorMessage(error) || 'Не удалось создать заметку';
 			setError(errorMessage);
