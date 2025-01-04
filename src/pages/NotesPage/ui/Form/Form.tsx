@@ -1,71 +1,92 @@
 import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { Note, useGetNotes, useNoteStore, useDeleteNote, useUpdateNote } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
+import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
 import { useDebounce } from 'shared/hooks/useDebounce/useDebounce';
+import { LoadScreen } from 'shared/ui';
+import s from './Form.module.scss';
 
 export const Form = () => {
 	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
-	const { notes, mutateNodes } = useGetNotes();
+	const { notes, mutateNotes } = useGetNotes();
 	const { selectedNote, setSelectedNote } = useNoteStore();
 
-	// TODO задействовать информационные поля
+	// TODO в будущем добавить уведомление на ошибки
 	const { deleteNote, isLoading: isDeletingNote, error: deleteNoteError } = useDeleteNote();
+	const { updateNote, error: updateNoteError } = useUpdateNote();
 
-	const { updateNote, isLoading: isUpdatingNote, error: updateNoteError } = useUpdateNote();
-
-	useEffect(() => {
+	const setSelectedNoteFormValues = useCallback(() => {
 		if (!selectedNote) {
 			return;
 		}
 
-		/** Устанавливаем новые значения в форму при изменении selectedNote */
 		setValue('title', selectedNote.title);
 		setValue('text', selectedNote.text);
 	}, [selectedNote, setValue]);
 
-	/** Функция, посылающая новые данные заметки на сервер после ее изменения */
-	const handleSubmitForm = useCallback(
-		(selectedNote: INote, values: TNoteFormFields) => {
-			/** Вызываем обновление заметки только после изменения данных формы */
-			updateNote({ body: values, id: selectedNote._id }).then(() => {
-				const updatedNotes = notes.map((note) =>
-					note._id === selectedNote._id ? { ...note, ...values } : note,
-				);
+	useEffect(() => {
+		setSelectedNoteFormValues();
+	}, [setSelectedNoteFormValues]);
 
-				mutateNodes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
-			});
+	const updateCachedNote = useCallback(
+		(selectedNote: INote, values: TNoteFormFields) => {
+			const updatedNotes = notes.map((note) =>
+				note._id === selectedNote._id ? { ...note, ...values } : note,
+			);
+
+			mutateNotes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
 		},
-		[mutateNodes, notes, updateNote],
+		[mutateNotes, notes],
 	);
 
-	const debouncedHandleSubmitForm = useDebounce(handleSubmitForm, 500);
+	/** Функция, посылающая новые данные заметки на сервер после ее изменения */
+	const handleSubmitNoteForm = useCallback(
+		(selectedNote: INote, updatedNoteValues: TNoteFormFields) => {
+			/** Вызываем обновление заметки только после изменения данных формы */
+			updateNote({ body: updatedNoteValues, id: selectedNote._id }).then(() => {
+				updateCachedNote(selectedNote, updatedNoteValues);
+			});
+		},
+		[updateCachedNote, updateNote],
+	);
 
-	useEffect(() => {
-		const subscription = watch((values) => {
+	const debouncedHandleSubmitNoteForm = useDebounce(handleSubmitNoteForm, 500);
+
+	const getSubscribeOnNoteFormChanges = useCallback(() => {
+		return watch((values) => {
 			if (!selectedNote) {
 				return;
 			}
 
-			debouncedHandleSubmitForm(selectedNote, values);
+			debouncedHandleSubmitNoteForm(selectedNote, values);
 		});
+	}, [debouncedHandleSubmitNoteForm, selectedNote, watch]);
+
+	useEffect(() => {
+		const subscription = getSubscribeOnNoteFormChanges();
 
 		/** Очистка подписки при размонтировании компонента */
 		return () => subscription.unsubscribe();
-	}, [debouncedHandleSubmitForm, selectedNote, selectedNote?._id, watch]);
+	}, [getSubscribeOnNoteFormChanges]);
 
-	/** Для удаления ноды */
+	const deleteNoteFromCache = useCallback(
+		(id: INote['_id']) => {
+			setSelectedNote(null);
+
+			const updatedNotes = notes.filter((note) => id !== note._id);
+
+			mutateNotes(updatedNotes, false).finally();
+		},
+		[mutateNotes, notes, setSelectedNote],
+	);
+
 	const handleNoteDelete = useCallback(
 		(id: INote['_id']) => {
 			deleteNote({ id }).then(() => {
-				setSelectedNote(null);
-
-				const updatedNotes = notes.filter((note) => id !== note._id);
-
-				mutateNodes(updatedNotes, false).finally();
+				deleteNoteFromCache(id);
 			});
 		},
-		[deleteNote, mutateNodes, notes, setSelectedNote],
+		[deleteNote, deleteNoteFromCache],
 	);
 
 	const {
@@ -84,7 +105,10 @@ export const Form = () => {
 		defaultValue: selectedNote?.text,
 	});
 
-	/** В общем если не выбрана заметка, то ничего не возвращаем */
+	if (isDeletingNote) {
+		return <LoadScreen className={s.loader} label={'Заметка удаляется...'} />;
+	}
+
 	if (!selectedNote) {
 		return;
 	}
@@ -95,8 +119,11 @@ export const Form = () => {
 			onChangeText={onChangeText}
 			title={title}
 			text={text}
-			id={selectedNote._id}
 			onDelete={handleNoteDelete}
+			_id={selectedNote._id}
+			createdAt={selectedNote.createdAt}
+			updatedAt={selectedNote.updatedAt}
+			author={selectedNote.author}
 		/>
 	);
 };

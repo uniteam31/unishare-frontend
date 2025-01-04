@@ -4,7 +4,7 @@ import { useNavigationStore } from 'entities/Navigation';
 import { Note, useCreateNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
 import type { INote } from 'entities/Note';
 import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
-import { Button } from 'shared/ui';
+import { Button, LoadScreen, Warning } from 'shared/ui';
 import { Divider } from 'shared/ui/Divider/Divider';
 import { Form } from '../Form/Form';
 import s from './NotesPage.module.scss';
@@ -17,9 +17,7 @@ const NotesPage = () => {
 		setCurrentService('/notes');
 	}, [setCurrentService]);
 
-	// TODO задействовать isLoading и error
-	const { notes, isLoading, error, mutateNodes } = useGetNotes();
-
+	const { notes, isLoading: isNotesLoading, error: getNotesError, mutateNotes } = useGetNotes();
 	const { createNote, isLoading: isNoteCreating, error: createNoteError } = useCreateNote();
 
 	const methods = useForm<TNoteFormFields>();
@@ -37,17 +35,23 @@ const NotesPage = () => {
 		[notes, setSelectedNote],
 	);
 
+	const setCreatedNoteAndMutate = useCallback(
+		(createdNote: INote) => {
+			setSelectedNote(createdNote);
+			mutateNotes([createdNote, ...notes], false).finally();
+		},
+		[mutateNotes, notes, setSelectedNote],
+	);
+
 	const handleNoteCreate = useCallback(() => {
 		createNote().then((createdNote) => {
 			if (!createdNote) {
 				return;
 			}
 
-			setSelectedNote(createdNote);
-
-			mutateNodes([createdNote, ...notes], false).finally();
+			setCreatedNoteAndMutate(createdNote);
 		});
-	}, [createNote, mutateNodes, notes, setSelectedNote]);
+	}, [createNote, setCreatedNoteAndMutate]);
 
 	return (
 		<div className={s.NotesPage}>
@@ -60,14 +64,21 @@ const NotesPage = () => {
 					notes={notes}
 					onClickNote={handleNoteClick}
 					selectedNodeID={selectedNote?._id}
-					isLoading={isLoading}
+					isLoading={isNotesLoading}
+					error={getNotesError}
 				/>
 			</div>
 
 			<Divider />
 
 			<FormWrapper<TNoteFormFields> methods={methods}>
-				<Form />
+				{!isNoteCreating && createNoteError && (
+					<Warning title={'Ошибка создания заметки'} text={createNoteError} />
+				)}
+
+				{isNoteCreating && <LoadScreen label={'Заметка создается'} className={s.loader} />}
+
+				{!isNoteCreating && !createNoteError && <Form />}
 			</FormWrapper>
 		</div>
 	);

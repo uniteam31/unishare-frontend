@@ -2421,10 +2421,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.1.tgz#28fa185f67daaf7b7a1a8c1d445132c5d979f8bd"
   integrity sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==
 
-"@uniteam31/uni-shared-ui@^0.0.11":
-  version "0.0.11"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.11/4b1ff4c6df0803d34d43df5b2160de50d2a78709#4b1ff4c6df0803d34d43df5b2160de50d2a78709"
-  integrity sha512-LM34woDViaTOTNJPeHuRecqtUomLNgimJU0r+uMGK/ztq/zVTJOfGk0Rme65OTE2m2zvsLQqEdpvhh3CZaDxBw==
+"@uniteam31/uni-shared-ui@^0.0.12":
+  version "0.0.12"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.12/3d52aa502c6fe50572c34e95c3fac22be5331d6c#3d52aa502c6fe50572c34e95c3fac22be5331d6c"
+  integrity sha512-LjqlPl7ewEe0b/zeW595vGf3lrAP/4Qdw/V6TPcOff0a2HJp2FKrpUCgFtBSA61cjmfq72G0BrQSU2qQOyU0Zg==
   dependencies:
     classnames "^2.5.1"
     react "^18.3.1"

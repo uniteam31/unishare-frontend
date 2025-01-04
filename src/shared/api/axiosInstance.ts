@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from '../const/localstorage';
-import { ApiResponse, Token } from './types';
+import { ApiResponse, TAccessToken } from './types';
 
 const axiosInstance = axios.create({
 	baseURL: __API_URL__,
@@ -62,11 +62,11 @@ axiosInstance.interceptors.response.use(
 
 			const refreshToken = async () => {
 				try {
-					const refreshResponse = await axios.get<ApiResponse<Token>>(
+					const refreshResponse = await axios.get<ApiResponse<TAccessToken>>(
 						`${__API_URL__}/refresh`,
 						{ withCredentials: true },
 					);
-					const updatedToken = refreshResponse.data.data.token;
+					const updatedToken = refreshResponse.data.data;
 					localStorage.setItem(ACCESS_TOKEN_LOCALSTORAGE_KEY, updatedToken);
 					/**
 					 * добавляем заголовок Authorization к объекту defaults.headers.common экземпляра axiosInstance.

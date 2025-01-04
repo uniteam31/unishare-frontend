@@ -3,6 +3,4 @@ export interface ApiResponse<T> {
 	message: string;
 }
 
-export type Token = {
-	token: string;
-};
+export type TAccessToken = string;
