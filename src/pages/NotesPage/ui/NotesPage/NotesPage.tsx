@@ -43,6 +43,11 @@ const NotesPage = () => {
 		[mutateNotes, notes, setSelectedNote],
 	);
 
+	const resetNoteFields = useCallback(() => {
+		methods.setValue('title', '');
+		methods.setValue('text', '');
+	}, [methods]);
+
 	const handleNoteCreate = useCallback(() => {
 		createNote().then((createdNote) => {
 			if (!createdNote) {
@@ -50,8 +55,9 @@ const NotesPage = () => {
 			}
 
 			setCreatedNoteAndMutate(createdNote);
+			resetNoteFields();
 		});
-	}, [createNote, setCreatedNoteAndMutate]);
+	}, [createNote, resetNoteFields, setCreatedNoteAndMutate]);
 
 	return (
 		<div className={s.NotesPage}>
