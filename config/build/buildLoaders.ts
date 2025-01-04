@@ -1,9 +1,7 @@
-import { WebpackConfiguration } from 'webpack-cli';
 import { buildScssLoader } from './loaders/buildScssLoader';
 import { BuildOptions } from './types/config';
 
-export const BuildLoaders = ({ isDev }: BuildOptions): WebpackConfiguration['module']['rules'] => {
-
+export const BuildLoaders = ({ isDev }: BuildOptions) => {
 	const tsLoader = {
 		test: /\.tsx?$/,
 		use: 'ts-loader',
@@ -18,9 +16,9 @@ export const BuildLoaders = ({ isDev }: BuildOptions): WebpackConfiguration['mod
 		use: {
 			loader: 'babel-loader',
 			options: {
-				presets: ['@babel/preset-env']
-			}
-		}
+				presets: ['@babel/preset-env'],
+			},
+		},
 	};
 
 	const svgLoader = {
@@ -29,10 +27,5 @@ export const BuildLoaders = ({ isDev }: BuildOptions): WebpackConfiguration['mod
 		use: ['@svgr/webpack'],
 	};
 
-	return [
-		svgLoader,
-		babelLoader,
-		tsLoader,
-		scssLoader
-	];
+	return [svgLoader, babelLoader, tsLoader, scssLoader];
 };

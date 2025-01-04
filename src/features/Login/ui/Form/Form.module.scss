@@ -1,0 +1,25 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    padding: var(--medium-indent);
+    width: 300px;
+
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .input {
+        height: 50px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .button {
+        height: 40px;
+        width: 100%;
+    }
+
+    .error {
+        margin-bottom: var(--medium-indent);
+    }
+}
