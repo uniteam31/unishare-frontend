@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
 import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote } from '../model/types/note';
@@ -11,7 +11,7 @@ export const useDeleteNote = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<null | string>(null);
 
-	const deleteNote = async ({ id }: IDeleteNoteProps) => {
+	const deleteNote = useCallback(async ({ id }: IDeleteNoteProps) => {
 		setIsLoading(true);
 		setError(null);
 
@@ -26,7 +26,7 @@ export const useDeleteNote = () => {
 		} finally {
 			setIsLoading(false);
 		}
-	};
+	}, []);
 
 	return {
 		deleteNote,

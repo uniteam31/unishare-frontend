@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
 import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote, TNoteFormFields } from '../model/types/note';
@@ -12,7 +12,7 @@ export const useUpdateNote = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<null | string>(null);
 
-	const updateNote = async ({ id, body }: IUpdateNoteProps) => {
+	const updateNote = useCallback(async ({ id, body }: IUpdateNoteProps) => {
 		setIsLoading(true);
 		setError(null);
 
@@ -27,7 +27,7 @@ export const useUpdateNote = () => {
 		} finally {
 			setIsLoading(false);
 		}
-	};
+	}, []);
 
 	return {
 		updateNote,

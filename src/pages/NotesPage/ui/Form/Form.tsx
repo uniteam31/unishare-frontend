@@ -3,13 +3,15 @@ import { useController, useFormContext } from 'react-hook-form';
 import type { INote, TNoteFormFields } from 'entities/Note';
 import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
 import { useDebounce } from 'shared/hooks/useDebounce/useDebounce';
+import { LoadScreen } from 'shared/ui';
+import s from './Form.module.scss';
 
 export const Form = () => {
 	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
 	const { notes, mutateNotes } = useGetNotes();
 	const { selectedNote, setSelectedNote } = useNoteStore();
 
-	// TODO задействовать информационные поля
+	// TODO в будущем добавить уведомление на ошибки
 	const { deleteNote, isLoading: isDeletingNote, error: deleteNoteError } = useDeleteNote();
 	const { updateNote, error: updateNoteError } = useUpdateNote();
 
@@ -102,6 +104,10 @@ export const Form = () => {
 		control,
 		defaultValue: selectedNote?.text,
 	});
+
+	if (isDeletingNote) {
+		return <LoadScreen className={s.loader} label={'Заметка удаляется...'} />;
+	}
 
 	if (!selectedNote) {
 		return;
