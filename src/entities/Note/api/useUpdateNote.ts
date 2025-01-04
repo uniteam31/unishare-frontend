@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import axiosInstance from 'shared/api/axiosInstance';
+import { ApiResponse } from 'shared/api/types';
 import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { INote, TNoteFormFields } from '../model/types/note';
 
@@ -7,6 +8,8 @@ interface IUpdateNoteProps {
 	id: INote['_id'];
 	body: TNoteFormFields;
 }
+
+type TUpdateNoteResponse = ApiResponse<INote>;
 
 export const useUpdateNote = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,9 +20,10 @@ export const useUpdateNote = () => {
 		setError(null);
 
 		try {
-			const result = await axiosInstance.put<INote>(`${__API_URL__}/notes/${id}`, body);
+			const response = await axiosInstance.put<TUpdateNoteResponse>(`/notes/${id}`, body);
+			const updatedNote = response.data.data;
 
-			return result.data;
+			return updatedNote;
 		} catch (error) {
 			const errorMessage =
 				getApiResponseErrorMessage(error) || 'Произошла ошибка при обновлении заметки';
