@@ -1,0 +1,39 @@
+.ListItem {
+	align-items: center;
+	border-radius: var(--medium-round);
+	display: flex;
+	gap: var(--medium-indent);
+	height: 80px;
+	justify-content: space-between;
+	padding: var(--medium-indent);
+	transition: all 0.3s;
+
+	&:hover {
+		box-shadow:
+				0 10px 15px rgb(0 0 0 / 10%),
+				0 4px 6px rgb(0 0 0 / 5%);
+		scale: 1.01;
+	}
+
+	.wrapper {
+		align-items: center;
+		display: flex;
+		gap: var(--medium-indent);
+
+		.avatar {
+			height: 50px;
+			width: 50px;
+		}
+	}
+
+	.icon {
+		cursor: pointer;
+		height: 25px;
+		transition: scale 0.3s;
+		width: 25px;
+
+		&:hover {
+			scale: 1.1;
+		}
+	}
+}

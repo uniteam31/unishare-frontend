@@ -1,0 +1,32 @@
+.friends {
+	overflow: auto;
+	padding: var(--medium-indent);
+	width: 450px;
+
+	.wrapper {
+		align-items: center;
+		display: flex;
+		gap: var(--small-indent);
+		margin-bottom: var(--medium-indent);
+
+		.icon {
+			cursor: pointer;
+			height: 30px;
+			transition: scale 0.3s;
+			width: 30px;
+
+			&:hover {
+				scale: 1.1;
+			}
+		}
+
+		.input {
+			flex: 1;
+			height: 45px;
+		}
+	}
+
+	.friendsList {
+		height: 100%;
+	}
+}

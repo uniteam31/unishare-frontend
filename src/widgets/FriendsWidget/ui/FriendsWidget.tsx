@@ -10,7 +10,11 @@ interface IFriendsWidgetProps {
 export const FriendsWidget = ({ className }: IFriendsWidgetProps) => {
 	return (
 		<div className={classNames(s.FriendsWidget, className)}>
-			<Widget Icon={<FriendsIcon className={s.icon} />} title={'Друзья'}></Widget>
+			<Widget
+				Icon={<FriendsIcon className={s.icon} />}
+				title={'Друзья'}
+				to={'/friends'}
+			></Widget>
 		</div>
 	);
 };
