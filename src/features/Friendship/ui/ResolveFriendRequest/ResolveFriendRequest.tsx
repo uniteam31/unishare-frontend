@@ -13,8 +13,18 @@ interface IResolveFriendRequestProps {
 export const ResolveFriendRequest = (props: IResolveFriendRequestProps) => {
 	const { _id } = props;
 
-	const { acceptFriendRequest } = useAcceptFriendRequest();
-	const { declineFriendRequest } = useDeclineFriendRequest();
+	// TODO добавить уведомления на error
+	const {
+		acceptFriendRequest,
+		isLoading: isRequestAccepting,
+		error: errorAcceptFriendRequest,
+	} = useAcceptFriendRequest();
+
+	const {
+		declineFriendRequest,
+		isLoading: isRequestDeclining,
+		error: errorDeclineFriendRequest,
+	} = useDeclineFriendRequest();
 
 	const handleAcceptFriendRequest = useCallback(() => {
 		acceptFriendRequest({ userID: _id }).then(() => {
@@ -32,8 +42,21 @@ export const ResolveFriendRequest = (props: IResolveFriendRequestProps) => {
 
 	return (
 		<div className={s.ResolveFriendRequest}>
-			<Button onClick={handleAcceptFriendRequest}>Принять</Button>
-			<Button onClick={handleDeclineFriendRequest}>Отклонить</Button>
+			<Button
+				onClick={handleAcceptFriendRequest}
+				className={s.acceptRequest}
+				disabled={isRequestAccepting}
+			>
+				Принять
+			</Button>
+
+			<Button
+				onClick={handleDeclineFriendRequest}
+				className={s.declineRequest}
+				disabled={isRequestDeclining}
+			>
+				Отклонить
+			</Button>
 		</div>
 	);
 };

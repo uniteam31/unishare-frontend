@@ -11,6 +11,7 @@ interface ICancelFriendRequestProps {
 export const CancelFriendRequest = (props: ICancelFriendRequestProps) => {
 	const { _id } = props;
 
+	// TODO добавить уведомление на error
 	const { isLoading, canselFriendRequest, error } = useCancelFriendRequest();
 
 	const handleCancelFriendRequest = useCallback(() => {
@@ -20,5 +21,9 @@ export const CancelFriendRequest = (props: ICancelFriendRequestProps) => {
 		});
 	}, [_id, canselFriendRequest]);
 
-	return <Button onClick={handleCancelFriendRequest}>Отменить</Button>;
+	return (
+		<Button onClick={handleCancelFriendRequest} disabled={isLoading}>
+			Отменить
+		</Button>
+	);
 };

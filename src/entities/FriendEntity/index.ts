@@ -11,5 +11,6 @@ export const FriendEntity: TFriendEntityComponents = {
 export { useGetFriendsList } from './api/useGetFriendsList';
 export { useSearchUsersExtendedFriend } from './api/useSearchUsersExtendedFriend';
 export { useGetIncomingFriendRequests } from './api/useGetIncomingFriendRequests';
+export { useGetOutgoingFriendRequests } from './api/useGetOutgoingFriendRequests';
 
 export { TFriendStatus, TExtendedUserWithFriendStatus } from './model/types/friendEntity';

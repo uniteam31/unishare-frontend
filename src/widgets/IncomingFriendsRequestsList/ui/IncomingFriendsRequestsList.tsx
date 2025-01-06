@@ -4,12 +4,16 @@ import { FriendEntity, useGetIncomingFriendRequests } from 'entities/FriendEntit
 import s from './IncomingFriendsRequestsList.module.scss';
 
 export const IncomingFriendsRequestsList = memo(() => {
-	// TODO состояния!
-	const { incomingFriendRequests } = useGetIncomingFriendRequests();
+	const { incomingFriendRequests, isLoading, error } = useGetIncomingFriendRequests();
 
 	return (
 		<div className={s.IncomingFriendsRequestsList}>
-			<FriendEntity.List friends={incomingFriendRequests} ActionComponent={FriendAction} />
+			<FriendEntity.List
+				friends={incomingFriendRequests}
+				ActionComponent={FriendAction}
+				isLoading={isLoading}
+				error={error}
+			/>
 		</div>
 	);
 });

@@ -11,6 +11,7 @@ interface IAddFriendProps {
 export const AddFriend = (props: IAddFriendProps) => {
 	const { _id } = props;
 
+	// TODO добавить уведомление на error
 	const { isLoading, addFriend, error } = useAddFriend();
 
 	const handleAddFriend = useCallback(() => {
@@ -20,5 +21,9 @@ export const AddFriend = (props: IAddFriendProps) => {
 		});
 	}, [_id, addFriend]);
 
-	return <Button onClick={handleAddFriend}>Добавить</Button>;
+	return (
+		<Button onClick={handleAddFriend} disabled={isLoading}>
+			Добавить
+		</Button>
+	);
 };

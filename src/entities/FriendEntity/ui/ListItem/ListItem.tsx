@@ -27,15 +27,17 @@ export const ListItem = memo((props: IListItemProps) => {
 	return (
 		<div className={classNames(s.ListItem, className)}>
 			{/* TODO расхардкодить */}
-			<Avatar
-				src={
-					avatar ||
-					'https://avatars.mds.yandex.net/i?id=29f7366ac823f46165612d9480e60f0e_l-13215132-images-thumbs&n=13'
-				}
-				className={s.avatar}
-			/>
+			<div>
+				<Avatar
+					src={
+						avatar ||
+						'https://avatars.mds.yandex.net/i?id=29f7366ac823f46165612d9480e60f0e_l-13215132-images-thumbs&n=13'
+					}
+					className={s.avatar}
+				/>
 
-			<Text title={username} text={firstName} className={s.personalInfo} />
+				<Text title={username} text={firstName} className={s.personalInfo} />
+			</div>
 
 			{ActionComponent && <ActionComponent _id={_id} friendStatus={friendStatus} />}
 		</div>

@@ -1,0 +1,23 @@
+.CircleCounter {
+	align-items: center;
+	border-radius: 50%;
+	display: flex;
+	height: 21px;
+	justify-content: center;
+	position: absolute;
+	right: -7px;
+	top: -7px;
+	width: 21px;
+}
+
+.red {
+	background-color: var(--red-color);
+}
+
+.green {
+	background-color: var(--green-color);
+}
+
+.orange {
+	background-color: var(--orange-color);
+}

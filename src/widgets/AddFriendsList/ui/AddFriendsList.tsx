@@ -13,8 +13,7 @@ export const AddFriendsList = memo(() => {
 		field: { value, onChange },
 	} = useController({ name: 'username', control, defaultValue: '' });
 
-	// TODO передать в List
-	const { foundUsers, isLoading, error, mutateFoundUsers } = useSearchUsersExtendedFriend({
+	const { foundUsers, isLoading, error } = useSearchUsersExtendedFriend({
 		username: value,
 	});
 
@@ -32,6 +31,8 @@ export const AddFriendsList = memo(() => {
 				friends={foundUsers}
 				className={s.friendsList}
 				ActionComponent={FriendAction}
+				isLoading={isLoading}
+				error={error}
 			/>
 		</div>
 	);

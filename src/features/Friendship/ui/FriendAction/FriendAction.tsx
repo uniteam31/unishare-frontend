@@ -15,7 +15,6 @@ export const FriendAction = (props: IFriendActionProps) => {
 	const { _id, friendStatus } = props;
 
 	// TODO поправить мутацию в каждой фиче!!!!
-	// TODO в каждой фиче юзать состояния!!!!
 	switch (friendStatus) {
 		case 'friend':
 			return <DeleteFriend _id={_id} />;

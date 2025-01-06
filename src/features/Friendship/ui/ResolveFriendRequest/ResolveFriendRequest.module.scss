@@ -2,4 +2,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--small-indent);
+
+	.acceptRequest {
+		border: 1px var(--green-color) solid;
+	}
+
+	.declineRequest {
+		border: 1px var(--red-color) solid;
+	}
 }
