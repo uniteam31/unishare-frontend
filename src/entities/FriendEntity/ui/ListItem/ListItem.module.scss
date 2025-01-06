@@ -1,30 +1,28 @@
 .ListItem {
-	align-items: center;
+	border: solid var(--mid-gray-bg-color) 1px;
 	border-radius: var(--medium-round);
 	display: flex;
+	flex-direction: column;
 	gap: var(--medium-indent);
-	height: 80px;
-	justify-content: space-between;
+	min-height: 150px;
 	padding: var(--medium-indent);
+	place-content: center center;
 	transition: all 0.3s;
+	width: 150px;
 
 	&:hover {
-		box-shadow:
-				0 10px 15px rgb(0 0 0 / 10%),
-				0 4px 6px rgb(0 0 0 / 5%);
-		scale: 1.01;
-	}
+		//box-shadow:
+		//		0 10px 15px rgb(0 0 0 / 10%),
+		//		0 4px 6px rgb(0 0 0 / 5%);
 
-	.wrapper {
-		align-items: center;
-		display: flex;
-		gap: var(--medium-indent);
+	}
 
 		.avatar {
 			height: 50px;
 			width: 50px;
 		}
-	}
+
+	//}
 
 	.icon {
 		cursor: pointer;

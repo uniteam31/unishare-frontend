@@ -9,4 +9,7 @@ export const FriendEntity: TFriendEntityComponents = {
 };
 
 export { useGetFriendsList } from './api/useGetFriendsList';
-export { TFriend } from './model/types/friendEntity';
+export { useSearchUsersExtendedFriend } from './api/useSearchUsersExtendedFriend';
+export { useGetIncomingFriendRequests } from './api/useGetIncomingFriendRequests';
+
+export { TFriendStatus, TExtendedUserWithFriendStatus } from './model/types/friendEntity';
