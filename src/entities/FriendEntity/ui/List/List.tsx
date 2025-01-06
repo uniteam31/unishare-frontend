@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { memo } from 'react';
-import { Skeleton, Warning } from '../../../../../../uni-shared-ui';
+import { Skeleton, Warning } from 'shared/ui';
 import type { IFriendEntity, TActionComponent } from '../../model/types/friendEntity';
 import { ListItem } from '../ListItem/ListItem';
 import s from './List.module.scss';
