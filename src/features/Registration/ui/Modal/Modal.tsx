@@ -1,8 +1,9 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
 import { ModalUI } from 'shared/ui';
-import { TRegistrationFormField } from '../../model/registration';
+import { registrationSchema, TRegistrationFormField } from '../../model/registration';
 import { Form } from '../Form/Form';
 
 interface IModalProps {
@@ -13,7 +14,15 @@ interface IModalProps {
 export const Modal = memo((props: IModalProps) => {
 	const { isOpen, onClose } = props;
 
-	const methods = useForm<TRegistrationFormField>();
+	const methods = useForm<TRegistrationFormField>({
+		resolver: yupResolver(registrationSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+			username: '',
+			firstName: '',
+		},
+	});
 
 	return (
 		<ModalUI isOpen={isOpen} onClose={onClose}>

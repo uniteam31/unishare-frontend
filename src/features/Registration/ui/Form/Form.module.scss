@@ -1,6 +1,4 @@
 .Form {
-    display: flex;
-    flex-direction: column;
     padding: var(--medium-indent);
     width: 300px;
 
@@ -8,10 +6,18 @@
         margin-bottom: 20px;
     }
 
-    .input {
-        height: 50px;
+
+    .inputWrapper {
         margin-bottom: 20px;
-        width: 100%;
+
+        .input {
+            height: 50px;
+            width: 100%;
+        }
+
+        .validateError {
+            color: var(--red-color);
+        }
     }
 
     .button {
