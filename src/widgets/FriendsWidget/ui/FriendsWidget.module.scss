@@ -1,8 +1,27 @@
 .FriendsWidget {
+    position: relative;
     width: 321px;
 
     .icon {
         height: 40px;
         width: 40px;
+    }
+
+    .request {
+        left: 50%;
+        min-height: 190px;
+        padding: var(--small-indent);
+        position: absolute;
+        top: 90px;
+        transform: translateX(-50%);
+    }
+
+    .skeleton {
+        height: 210px;
+        left: 50%;
+        position: absolute;
+        top: 90px;
+        transform: translateX(-50%);
+        width: 210px;
     }
 }

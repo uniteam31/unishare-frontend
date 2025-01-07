@@ -6,24 +6,22 @@ import { Input } from 'shared/ui';
 import s from './AddFriendsList.module.scss';
 
 export const AddFriendsList = memo(() => {
-	// TODO дописать тип
-	const { control } = useForm();
+	const { control } = useForm<{ username: string }>();
 
 	const {
-		field: { value, onChange },
-	} = useController({ name: 'username', control, defaultValue: '' });
+		field: { value: username, onChange },
+	} = useController({ name: 'username', defaultValue: '', control });
 
 	const { foundUsers, isLoading, error } = useSearchUsersExtendedFriend({
-		username: value,
+		username,
 	});
 
 	return (
 		<div className={s.friends}>
-			{/* TODO допилить */}
 			<Input
 				label={'Искать пользователя по username'}
 				className={s.input}
-				value={value}
+				value={username}
 				onChange={onChange}
 			/>
 

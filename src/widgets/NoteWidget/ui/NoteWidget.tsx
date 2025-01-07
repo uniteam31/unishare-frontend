@@ -30,6 +30,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 		[notes, setSelectedNote],
 	);
 
+	// TODO как и почему я это сделал??? НА РЕФАКТОРИНГ (в рамках общего рефа)
 	const isNotesLoading = isLoading && !error;
 	const isNotesEmpty = !isLoading && !error && !notes.length;
 	const isError = !isLoading && error;

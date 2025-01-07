@@ -1,11 +1,14 @@
 import { List } from './ui/List/List';
+import { ListItem } from './ui/ListItem/ListItem';
 
 type TFriendEntityComponents = {
 	List: typeof List;
+	ListItem: typeof ListItem;
 };
 
 export const FriendEntity: TFriendEntityComponents = {
-	List: List,
+	List,
+	ListItem,
 };
 
 export { useGetFriendsList } from './api/useGetFriendsList';

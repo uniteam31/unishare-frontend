@@ -15,6 +15,7 @@ interface IListProps {
 	className?: string;
 }
 
+// TODO добавить бесконечную ленту (UNI-89)
 export const List = memo((props: IListProps) => {
 	const { friends, ActionComponent } = props;
 	const { isLoading, error, className } = props;
