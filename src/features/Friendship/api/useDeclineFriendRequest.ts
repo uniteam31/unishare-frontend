@@ -21,7 +21,8 @@ export const useDeclineFriendRequest = () => {
 			await axiosInstance.post(`/friends/decline/${userID}`);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при отклонении запроса в друзья';
 
 			setError(errorMessage);
 		} finally {

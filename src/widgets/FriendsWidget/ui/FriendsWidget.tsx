@@ -11,18 +11,22 @@ interface IFriendsWidgetProps {
 }
 
 export const FriendsWidget = ({ className }: IFriendsWidgetProps) => {
-	const { incomingFriendRequests, isLoading, error } = useGetIncomingFriendRequests();
+	const {
+		incomingFriendRequests,
+		isLoading: isFriendsRequestsLoading,
+		error: errorFriendsRequests,
+	} = useGetIncomingFriendRequests();
 
-	const isRequestsLoading = isLoading && !error;
-	const isRequestsEmpty = !incomingFriendRequests.length;
-	const isError = !isLoading && error;
+	const isFriendsRequestsEmpty = !incomingFriendRequests.length;
 
 	return (
 		<div className={classNames(s.FriendsWidget, className)}>
 			<Widget Icon={<FriendsIcon className={s.icon} />} title={'Друзья'} to={'/friends'}>
-				{isError && <Warning title={'Ошибка'} text={'Скорее всего мы над этим работаем'} />}
+				{errorFriendsRequests && (
+					<Warning title={'Ошибка'} text={errorFriendsRequests} theme={'red'} />
+				)}
 
-				{!isRequestsEmpty && !isRequestsLoading && (
+				{!isFriendsRequestsEmpty && !isFriendsRequestsLoading && !errorFriendsRequests && (
 					<FriendEntity.ListItem
 						className={s.request}
 						{...incomingFriendRequests[0]}
@@ -30,11 +34,11 @@ export const FriendsWidget = ({ className }: IFriendsWidgetProps) => {
 					/>
 				)}
 
-				{!isRequestsLoading && isRequestsEmpty && (
+				{!isFriendsRequestsLoading && isFriendsRequestsEmpty && !errorFriendsRequests && (
 					<Warning title={'Входящих заявок нет'} theme={'blue'} />
 				)}
 
-				{isRequestsLoading && <Skeleton className={s.skeleton} />}
+				{isFriendsRequestsLoading && <Skeleton className={s.skeleton} />}
 			</Widget>
 		</div>
 	);

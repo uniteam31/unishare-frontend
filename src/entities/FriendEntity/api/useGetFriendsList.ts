@@ -3,12 +3,13 @@ import type { IUser } from 'entities/User';
 import axiosInstance from 'shared/api/axiosInstance';
 import type { ApiResponse } from 'shared/api/types';
 import { useDebounceValue } from 'shared/hooks/useDebounceValue/useDebounceValue';
+import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { IFriendEntity } from '../model/types/friendEntity';
 
 interface IGetFriendsListProps {
 	username?: IUser['username'];
 }
-type TGetFriendsList = ApiResponse<IFriendEntity['friends']>;
+type TGetFriendsListResponse = ApiResponse<IFriendEntity['friends']>;
 
 export const useGetFriendsList = (props?: IGetFriendsListProps) => {
 	const username = props?.username || '';
@@ -16,7 +17,7 @@ export const useGetFriendsList = (props?: IGetFriendsListProps) => {
 
 	const fetcher = () =>
 		axiosInstance
-			.get<TGetFriendsList>('/friends/list', {
+			.get<TGetFriendsListResponse>('/friends/list', {
 				params: {
 					username: debouncedUsername,
 				},
@@ -34,7 +35,7 @@ export const useGetFriendsList = (props?: IGetFriendsListProps) => {
 	return {
 		friendsList,
 		isLoading: isValidating,
-		error,
+		error: getApiResponseErrorMessage(error),
 		mutateFriendsList: mutate,
 	};
 };

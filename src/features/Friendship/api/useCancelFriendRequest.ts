@@ -21,7 +21,8 @@ export const useCancelFriendRequest = () => {
 			await axiosInstance.post(`/friends/cancel/${userID}`);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при отмене запроса в друзья';
 
 			setError(errorMessage);
 		} finally {

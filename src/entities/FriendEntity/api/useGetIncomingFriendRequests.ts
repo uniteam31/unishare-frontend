@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import axiosInstance from 'shared/api/axiosInstance';
 import type { ApiResponse } from 'shared/api/types';
+import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { IFriendEntity } from '../model/types/friendEntity';
 
 type TIncomingFriendRequestsResponse = ApiResponse<IFriendEntity['friends']>;
@@ -17,7 +18,7 @@ export const useGetIncomingFriendRequests = () => {
 
 	return {
 		isLoading: isValidating,
-		error,
+		error: getApiResponseErrorMessage(error),
 		incomingFriendRequests,
 	};
 };

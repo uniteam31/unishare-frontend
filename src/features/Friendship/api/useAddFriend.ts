@@ -21,7 +21,8 @@ export const useAddFriend = () => {
 			await axiosInstance.post(`/friends/add/${userID}`);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при отправке запроса в друзья';
 
 			setError(errorMessage);
 		} finally {

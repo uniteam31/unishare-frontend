@@ -3,7 +3,8 @@ import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
 import { ModalUI } from 'shared/ui';
-import { registrationSchema, TRegistrationFormField } from '../../model/registration';
+import { registrationSchema } from '../../model/registration';
+import type { TRegistrationFormField } from '../../model/registration';
 import { Form } from '../Form/Form';
 
 interface IModalProps {

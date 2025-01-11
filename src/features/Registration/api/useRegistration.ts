@@ -29,7 +29,7 @@ export const useRegistration = () => {
 			localStorage.setItem(ACCESS_TOKEN_LOCALSTORAGE_KEY, accessToken);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка при регистрации';
 			setError(errorMessage);
 		} finally {
 			setIsLoading(false);

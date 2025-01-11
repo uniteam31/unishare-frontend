@@ -21,7 +21,8 @@ export const useDeleteFriend = () => {
 			await axiosInstance.post(`/friends/delete/${userID}`);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при удалении друга';
 
 			setError(errorMessage);
 		} finally {

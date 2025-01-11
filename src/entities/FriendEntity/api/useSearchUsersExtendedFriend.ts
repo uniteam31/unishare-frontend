@@ -3,6 +3,7 @@ import type { IUser } from 'entities/User';
 import axiosInstance from 'shared/api/axiosInstance';
 import type { ApiResponse } from 'shared/api/types';
 import { useDebounceValue } from 'shared/hooks/useDebounceValue/useDebounceValue';
+import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
 import type { IFriendEntity } from '../model/types/friendEntity';
 
 interface ISearchUserProps {
@@ -34,7 +35,7 @@ export const useSearchUsersExtendedFriend = (props: ISearchUserProps) => {
 	return {
 		foundUsers,
 		isLoading: isValidating,
-		error,
+		error: getApiResponseErrorMessage(error),
 		mutateFoundUsers: mutate,
 	};
 };

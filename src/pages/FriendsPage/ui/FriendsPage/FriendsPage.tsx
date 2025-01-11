@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
 import { Direction, Divider } from 'shared/ui/Divider/Divider';
-import { friendsTabs, TFriendsTabName } from '../../model/friendsTabs';
+import { friendsTabs } from '../../model/friendsTabs';
+import type { TFriendsTabName } from '../../model/friendsTabs';
 import { TabsSelector } from '../TabsSelector/TabsSelector';
 import s from './FriendsPage.module.scss';
 

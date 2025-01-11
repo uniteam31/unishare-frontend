@@ -14,7 +14,7 @@ interface INoteWidgetProps {
 export const NoteWidget = (props: INoteWidgetProps) => {
 	const { className } = props;
 
-	const { notes, isLoading, error } = useGetNotes();
+	const { notes, isLoading: isNotesLoading, error: notesError } = useGetNotes();
 	const { setSelectedNote } = useNoteStore();
 
 	const handleNoteClick = useCallback(
@@ -30,10 +30,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 		[notes, setSelectedNote],
 	);
 
-	// TODO как и почему я это сделал??? НА РЕФАКТОРИНГ (в рамках общего рефа)
-	const isNotesLoading = isLoading && !error;
-	const isNotesEmpty = !isLoading && !error && !notes.length;
-	const isError = !isLoading && error;
+	const isNotesEmpty = !notes.length;
 
 	return (
 		<div className={classNames(s.NoteWidget, className)}>
@@ -46,6 +43,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 
 					{/** В данном виджете можно отобразить только 2 последние заметки */}
 					{!isNotesLoading &&
+						!notesError &&
 						notes.slice(0, 2).map((note) => (
 							<Link to={'/notes'} key={note._id}>
 								<Note.ListItem
@@ -56,7 +54,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 							</Link>
 						))}
 
-					{isNotesEmpty && (
+					{isNotesEmpty && !isNotesLoading && !notesError && (
 						<Warning
 							title={'Заметок нет'}
 							text={'Создайте первую внутри сервиса!'}
@@ -64,12 +62,8 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 						/>
 					)}
 
-					{isError && (
-						<Warning
-							title={'Произошла ошибка'}
-							text={'Скорее всего мы уже работаем над этим'}
-							theme={'red'}
-						/>
+					{notesError && !isNotesLoading && (
+						<Warning title={'Произошла ошибка'} text={notesError} theme={'red'} />
 					)}
 				</div>
 			</Widget>
