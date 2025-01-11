@@ -20,13 +20,16 @@ export const List = memo((props: IListProps) => {
 	const { friends, ActionComponent } = props;
 	const { isLoading, error, className } = props;
 
-	const isUsersLoading = isLoading && !error;
-	const isError = !isLoading && error;
-	const isUsersEmpty = !isUsersLoading && !friends.length;
+	const isUsersEmpty = !friends.length;
 
 	return (
 		<div className={classNames(s.List, className)}>
-			{isError && (
+			{isLoading &&
+				Array.from({ length: 5 }).map((_, index) => (
+					<Skeleton className={s.skeleton} key={index} />
+				))}
+
+			{error && (
 				<Warning
 					title={'Что-то явно пошло не так'}
 					text={error}
@@ -35,7 +38,7 @@ export const List = memo((props: IListProps) => {
 				/>
 			)}
 
-			{isUsersEmpty && (
+			{isUsersEmpty && !isLoading && !error && (
 				<Warning
 					title={'Список пуст'}
 					text={'Здесь никого нет'}
@@ -44,12 +47,8 @@ export const List = memo((props: IListProps) => {
 				/>
 			)}
 
-			{isUsersLoading &&
-				Array.from({ length: 5 }).map((_, index) => (
-					<Skeleton className={s.skeleton} key={index} />
-				))}
-
-			{!isUsersLoading &&
+			{!isLoading &&
+				!error &&
 				friends.map((friend) => (
 					<ListItem
 						{...friend}
