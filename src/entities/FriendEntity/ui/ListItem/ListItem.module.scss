@@ -1,0 +1,28 @@
+.ListItem {
+	border: solid var(--mid-gray-bg-color) 1px;
+	border-radius: var(--medium-round);
+	display: flex;
+	flex-direction: column;
+	gap: var(--medium-indent);
+	justify-content: space-between;
+	min-height: 230px;
+	padding: var(--medium-indent);
+	transition: all 0.3s;
+	width: 230px;
+
+	.avatar {
+		height: 50px;
+		width: 50px;
+	}
+
+	.icon {
+		cursor: pointer;
+		height: 25px;
+		transition: scale 0.3s;
+		width: 25px;
+
+		&:hover {
+			scale: 1.1;
+		}
+	}
+}

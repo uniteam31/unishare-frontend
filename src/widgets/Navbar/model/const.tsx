@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { Path } from 'app/providers/AppRouter';
+import FriendsIcon from 'shared/assets/icons/friends.svg';
 import NoteIcon from 'shared/assets/icons/note.svg';
 
 export type TModuleItem = {
@@ -22,5 +23,9 @@ export const MODULES: Record<Path, TModuleItem> = {
 	},
 	['/welcome']: {
 		name: 'Добро пожаловать на UniShare!',
+	},
+	['/friends']: {
+		name: 'Друзья',
+		Icon: <FriendsIcon style={baseIconStyles} />,
 	},
 };

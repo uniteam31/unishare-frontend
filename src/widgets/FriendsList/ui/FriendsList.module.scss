@@ -1,0 +1,14 @@
+.friends {
+	height: 100%;
+	overflow: auto;
+	width: 100%;
+
+	.input {
+		height: 40px;
+		margin-bottom: var(--medium-indent);
+	}
+
+	.friendsList {
+		overflow: scroll;
+	}
+}

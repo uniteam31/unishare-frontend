@@ -29,7 +29,8 @@ export const useLogin = () => {
 			localStorage.setItem(ACCESS_TOKEN_LOCALSTORAGE_KEY, accessToken);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при входе в аккаунт';
 			setError(errorMessage);
 		} finally {
 			setIsLoading(false);
