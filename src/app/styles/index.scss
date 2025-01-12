@@ -12,6 +12,7 @@ body {
 	background-image: url('shared/assets/bg.jpeg');
 	background-position: 50%;
 	background-size: cover;
+	overflow-y: scroll;
 
 	// TODO можно вынести в переменную
 	padding-top: 50px;

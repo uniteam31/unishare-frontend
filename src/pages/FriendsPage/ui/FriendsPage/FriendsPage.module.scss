@@ -6,8 +6,9 @@
 	width: 100%;
 
 	.tabs {
-		overflow: scroll;
+		overflow-y: auto;
 		padding: var(--big-indent);
+		scrollbar-gutter: stable both-edges;
 		width: 535px;
 	}
 }
