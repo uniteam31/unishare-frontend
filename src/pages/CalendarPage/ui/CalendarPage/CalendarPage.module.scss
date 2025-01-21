@@ -1,4 +1,4 @@
-.NotesPage {
+.CalendarPage {
     align-items: stretch;
     background-color: #fff;
     display: flex;
@@ -6,25 +6,17 @@
     overflow: hidden;
     width: 100%;
 
-    .notification {
+    .menu {
         padding: 20px;
+        width: 360px;
     }
 
-    .createNoteButton {
-        display: block;
-        margin: 20px auto 0;
-        width: 281px;
+    .createButton {
+        width: 100%;
     }
 
-    .notesList {
-        height: 100%;
-        overflow-y: scroll;
-    }
-
-    .loader {
-        z-index: 20;
-        position: relative;
+    .calendar {
+        padding: 20px;
         flex: 1;
-        height: 100%;
     }
 }

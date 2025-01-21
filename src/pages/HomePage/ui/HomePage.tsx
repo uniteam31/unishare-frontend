@@ -18,8 +18,8 @@ const HomePage = memo(() => {
 		<div className={s.HomePage}>
 			<UserWidget />
 			<NoteWidget />
-			<FriendsWidget />
 			<CalendarWidget />
+			<FriendsWidget />
 		</div>
 	);
 });

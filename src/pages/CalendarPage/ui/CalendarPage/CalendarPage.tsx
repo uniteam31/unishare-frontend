@@ -1,92 +1,51 @@
-// import React, { useCallback, useEffect } from 'react';
-// import { useForm } from 'react-hook-form';
-// import { useNavigationStore } from 'entities/Navigation';
-// import { Note, useCreateNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
-// import type { INote } from 'entities/Note';
-// import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
-// import { Button, LoadScreen, Warning } from 'shared/ui';
-// import { Divider } from 'shared/ui/Divider/Divider';
-// import s from './CalendarPage.module.scss';
+import ruLocale from '@fullcalendar/core/locales/ru';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import React, { useEffect } from 'react';
+import { useNavigationStore } from 'entities/Navigation';
+import { Button } from 'shared/ui';
+import { Divider } from 'shared/ui/Divider/Divider';
+import s from './CalendarPage.module.scss';
 
 const CalendarPage = () => {
-	// const { selectedNote, setSelectedNote } = useNoteStore();
-	// const { setCurrentService } = useNavigationStore();
-	//
-	// useEffect(() => {
-	// 	setCurrentService('/notes');
-	// }, [setCurrentService]);
-	//
-	// const { notes, isLoading: isNotesLoading, error: getNotesError, mutateNotes } = useGetNotes();
-	// const { createNote, isLoading: isNoteCreating, error: createNoteError } = useCreateNote();
-	//
-	// const methods = useForm<TNoteFormFields>();
-	//
-	// const handleNoteClick = useCallback(
-	// 	(id: INote['_id']) => {
-	// 		const note = notes.find((note) => note._id === id);
-	//
-	// 		if (!note) {
-	// 			return;
-	// 		}
-	//
-	// 		setSelectedNote(note);
-	// 	},
-	// 	[notes, setSelectedNote],
-	// );
-	//
-	// const setCreatedNoteAndMutate = useCallback(
-	// 	(createdNote: INote) => {
-	// 		setSelectedNote(createdNote);
-	// 		mutateNotes([createdNote, ...notes], false).finally();
-	// 	},
-	// 	[mutateNotes, notes, setSelectedNote],
-	// );
-	//
-	// const resetNoteFields = useCallback(() => {
-	// 	methods.setValue('title', '');
-	// 	methods.setValue('text', '');
-	// }, [methods]);
-	//
-	// const handleNoteCreate = useCallback(() => {
-	// 	createNote().then((createdNote) => {
-	// 		if (!createdNote) {
-	// 			return;
-	// 		}
-	//
-	// 		setCreatedNoteAndMutate(createdNote);
-	// 		resetNoteFields();
-	// 	});
-	// }, [createNote, resetNoteFields, setCreatedNoteAndMutate]);
-	//
-	// return (
-	// 	<div className={s.NotesPage}>
-	// 		<div className={s.notesList}>
-	// 			<Button className={s.createNoteButton} onClick={handleNoteCreate}>
-	// 				Создать заметку
-	// 			</Button>
-	//
-	// 			<Note.List
-	// 				notes={notes}
-	// 				onClickNote={handleNoteClick}
-	// 				selectedNodeID={selectedNote?._id}
-	// 				isLoading={isNotesLoading}
-	// 				error={getNotesError}
-	// 			/>
-	// 		</div>
-	//
-	// 		<Divider />
-	//
-	// 		<FormWrapper<TNoteFormFields> methods={methods}>
-	// 			{!isNoteCreating && createNoteError && (
-	// 				<Warning title={'Ошибка создания заметки'} text={createNoteError} />
-	// 			)}
-	//
-	// 			{isNoteCreating && <LoadScreen label={'Заметка создается'} className={s.loader} />}
-	//
-	// 			{!isNoteCreating && !createNoteError && <Form />}
-	// 		</FormWrapper>
-	// 	</div>
-	// );
+	const { setCurrentService } = useNavigationStore();
+
+	useEffect(() => {
+		setCurrentService('/calendar');
+	}, [setCurrentService]);
+
+	return (
+		<div className={s.CalendarPage}>
+			<div className={s.menu}>
+				<Button className={s.createButton}>
+					Новое событие
+				</Button>
+
+			</div>
+
+			<Divider />
+
+			<div className={s.calendar}>
+				<FullCalendar
+					plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
+					initialView={'dayGridMonth'}
+					themeSystem="yeti"
+					headerToolbar={{
+						left: 'prev,today,next',
+						center: 'title',
+						right: 'timeGridWeek dayGridMonth timeGridDay'
+					}}
+					nowIndicator={true}
+					navLinks={true}
+					firstDay={1}
+					locale={ruLocale}
+					// events={calendarEvents}
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default CalendarPage;
