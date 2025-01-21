@@ -7,8 +7,22 @@
     width: 100%;
 
     .menu {
+        display: flex;
+        flex-flow: column;
+        gap: 20px;
         padding: 20px;
         width: 360px;
+
+        .spaceItem {
+            display: flex;
+            gap: 10px;
+            padding: 10px 8px;
+            border-radius: 8px;
+
+            &:hover {
+                background-color: var(--mid-gray-bg-color);
+            }
+        }
     }
 
     .createButton {
