@@ -32,14 +32,14 @@ export const CalendarWidget = (props: INoteWidgetProps) => {
 
 	return (
 		<div className={classNames(s.CalendarWidget, className)}>
-			<Widget Icon={<CalendarIcon className={s.icon} />} title={'Календарь'} headerTo={'/calendar'}>
+			<Widget Icon={<CalendarIcon className={s.icon} />} title={'Календарь'} to={'/calendar'}>
 				<div className={s.eventsList}>
 					{isLoading &&
 						Array.from({ length: 2 }).map((_, index) => (
 							<Skeleton className={s.skeleton} key={index} />
 						))}
 
-					{/** В данном виджете можно отобразить только 2 последние заметки */}
+					{/** В данном виджете можно отобразить только 2 события */}
 					{!isLoading &&
 						events.slice(0, 2).map((event) => (
 							<Link to={'/calendar'} key={event._id}>

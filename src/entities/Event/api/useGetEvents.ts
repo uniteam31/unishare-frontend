@@ -22,24 +22,30 @@ export const useGetEvents = () => {
 
 const mock: IEvent[] = [
 	{
-		_id: 'event_number_1',
+		_id: 1,
 		title: 'Event 1',
 		description: 'Desription! Desription Desription Desription Desription Desription!!!',
 		startTime: (new Date()).toISOString(),
 		endTime: (new Date(+ new Date() + 1000 * 60 * 60)).toISOString(),
+		createdAt: '',
+		updatedAt: '',
 	},
 	{
-		_id: 'event_number_2',
+		_id: 2,
 		title: 'Event 2',
 		description: 'ghfghdhgfk sdkjhfsdkhf gfys',
 		startTime: (new Date(+ new Date() + 1000 * 60 * 60 * 3)).toISOString(),
 		endTime: (new Date(+ new Date() + 1000 * 60 * 60 * 4)).toISOString(),
+		createdAt: '',
+		updatedAt: '',
 	},
 	{
-		_id: 'event_number_3',
+		_id: 3,
 		title: 'Event 3',
 		description: 'dkfjhlkehfjkhefjhwekjfhkwjenbznvbnvxznbcvbnzxiuwyeoiquwpeuppowfjfjlljflksjdlfjslf',
 		startTime: (new Date(+ new Date() + 1000 * 60 * 60 * 5)).toISOString(),
 		endTime: (new Date(+ new Date() + 1000 * 60 * 60 * 6)).toISOString(),
+		createdAt: '',
+		updatedAt: '',
 	},
 ];
