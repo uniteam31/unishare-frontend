@@ -2426,6 +2426,15 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.1.tgz#28fa185f67daaf7b7a1a8c1d445132c5d979f8bd"
   integrity sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==
 
+"@uniteam31/uni-shared-toolkit@0.0.1":
+  version "0.0.1"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.1/112cf8333731e9ad641e3405629d478d1272b653#112cf8333731e9ad641e3405629d478d1272b653"
+  integrity sha512-m/YrAd+hhQCLuNyj5o/LM1jmPoGLYbc7hWzIM14YS35lPeoD8YAi+TEqmfrVfV4q3Npaxq7gtS6phyROA0ZGkA==
+  dependencies:
+    axios "1.7.9"
+    react "18.3.1"
+    react-dom "18.3.1"
+
 "@uniteam31/uni-shared-ui@^0.0.13":
   version "0.0.13"
   resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.13/97f882a8593f1ea45b080db85c455beaf99ce298#97f882a8593f1ea45b080db85c455beaf99ce298"
@@ -2879,7 +2888,7 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.7.9:
+axios@1.7.9:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.9.tgz#d7d071380c132a24accda1b2cfc1535b79ec650a"
   integrity sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==
@@ -6451,7 +6460,7 @@ react-docgen@^7.0.0:
     resolve "^1.22.1"
     strip-indent "^4.0.0"
 
-"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", react-dom@^18.2.0, react-dom@^18.3.1:
+react-dom@18.3.1, "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", react-dom@^18.3.1:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -6499,7 +6508,7 @@ react-router@^7.0.2:
     set-cookie-parser "^2.6.0"
     turbo-stream "2.4.0"
 
-"react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@^18.3.1:
+react@18.3.1, "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.3.1:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==

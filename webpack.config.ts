@@ -11,6 +11,7 @@ export default () => {
 		build: path.resolve(__dirname, 'build'),
 		html: path.resolve(__dirname, 'public', 'index.html'),
 		src: path.resolve(__dirname, 'src'),
+		nodeModules: path.resolve(__dirname, 'node_modules'),
 	};
 
 	// env

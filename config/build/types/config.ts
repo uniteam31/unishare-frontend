@@ -5,6 +5,7 @@ export interface BuildPaths {
 	build: string;
 	html: string;
 	src: string;
+	nodeModules: string;
 }
 
 export interface BuildEnv {
