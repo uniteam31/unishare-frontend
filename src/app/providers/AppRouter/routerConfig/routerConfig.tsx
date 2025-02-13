@@ -1,3 +1,5 @@
+// @ts-ignore
+import Notes from 'notes/App';
 import { RouteProps } from 'react-router-dom';
 import { FriendsPage } from 'pages/FriendsPage';
 import { HomePage } from 'pages/HomePage';
@@ -36,7 +38,7 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 	},
 	[Routes.NOTES]: {
 		path: RoutesPaths.notes,
-		element: <NotesPage />,
+		element: <Notes />,
 		authOnly: true,
 	},
 	[Routes.WELCOME]: {

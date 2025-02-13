@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
 import './styles/index.scss';
+import { BrowserRouter } from 'react-router-dom';
 import { Navbar } from 'widgets/Navbar';
 import { useUserStore } from 'entities/User';
 import { LoadScreen } from 'shared/ui';
@@ -21,11 +22,13 @@ const App = () => {
 	}
 
 	return (
-		<div className={classNames('App', authData && 'content-page')}>
-			{authData && <Navbar />}
+		<BrowserRouter>
+			<div className={classNames('App', authData && 'content-page')}>
+				{authData && <Navbar />}
 
-			<AppRouter />
-		</div>
+				<AppRouter />
+			</div>
+		</BrowserRouter>
 	);
 };
 
