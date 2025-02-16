@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
+import { FormWrapper } from 'shared/lib';
 import { ModalUI } from 'shared/ui';
-import { TLoginFormField } from '../../model/login';
+import type { TLoginFormField } from '../../model/login';
 import { Form } from '../Form/Form';
 
 interface IModalProps {

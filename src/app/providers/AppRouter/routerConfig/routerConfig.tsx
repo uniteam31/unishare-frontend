@@ -3,7 +3,6 @@ import Notes from 'notes/App';
 import { RouteProps } from 'react-router-dom';
 import { FriendsPage } from 'pages/FriendsPage';
 import { HomePage } from 'pages/HomePage';
-import { NotesPage } from 'pages/NotesPage';
 import { WelcomePage } from 'pages/WelcomePage';
 
 export type AppRoutesProps = RouteProps & {

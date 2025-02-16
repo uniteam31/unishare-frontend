@@ -1,1 +1,1 @@
-export const ACCESS_TOKEN_LOCALSTORAGE_KEY = 'accessToken';
+export { ACCESS_TOKEN_LOCALSTORAGE_KEY } from '@uniteam31/uni-shared-toolkit';

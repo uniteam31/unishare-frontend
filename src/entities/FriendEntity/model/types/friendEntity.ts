@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 import type { IUser } from 'entities/User';
-import type { TMeta } from 'shared/types/meta';
+import type { TMeta } from 'shared/types';
 
 export type TFriendStatus = 'friend' | 'pendingAcceptance' | 'sent' | null;
 export type TExtendedUserWithFriendStatus = IUser & {

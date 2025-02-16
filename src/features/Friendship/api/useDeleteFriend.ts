@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import type { IUser } from 'entities/User';
-import axiosInstance from 'shared/api/axiosInstance';
-import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
+import { axiosInstance } from 'shared/api';
+import { getApiResponseErrorMessage } from 'shared/lib';
 
 interface IDeleteFriendProps {
 	userID: IUser['_id'];

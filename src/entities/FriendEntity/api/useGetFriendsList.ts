@@ -1,9 +1,9 @@
 import useSWR from 'swr';
 import type { IUser } from 'entities/User';
-import axiosInstance from 'shared/api/axiosInstance';
-import type { ApiResponse } from 'shared/api/types';
-import { useDebounceValue } from 'shared/hooks/useDebounceValue/useDebounceValue';
-import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
+import { axiosInstance } from 'shared/api';
+import { useDebounceValue } from 'shared/hooks';
+import { getApiResponseErrorMessage } from 'shared/lib';
+import type { ApiResponse } from 'shared/types';
 import type { IFriendEntity } from '../model/types/friendEntity';
 
 interface IGetFriendsListProps {

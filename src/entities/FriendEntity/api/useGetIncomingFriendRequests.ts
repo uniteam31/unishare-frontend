@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import axiosInstance from 'shared/api/axiosInstance';
-import type { ApiResponse } from 'shared/api/types';
-import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
+import { axiosInstance } from 'shared/api';
+import { getApiResponseErrorMessage } from 'shared/lib';
+import type { ApiResponse } from 'shared/types';
 import type { IFriendEntity } from '../model/types/friendEntity';
 
 type TIncomingFriendRequestsResponse = ApiResponse<IFriendEntity['friends']>;

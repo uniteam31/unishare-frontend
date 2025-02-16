@@ -1,4 +1,4 @@
-import type { TMeta } from 'shared/types/meta';
+import type { TMeta } from 'shared/types';
 
 export interface IUser {
 	_id: TMeta['_id'];

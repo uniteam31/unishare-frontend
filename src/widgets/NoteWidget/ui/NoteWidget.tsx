@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
-import { INote, Note, useGetNotes, useNoteStore } from 'entities/Note';
+import { useGetNotes, useNoteStore, Note } from 'entities/Note';
+import type { INote } from 'entities/Note';
 import { Widget } from 'entities/Widget';
 import NoteIcon from 'shared/assets/icons/note.svg';
 import { Skeleton, Warning } from 'shared/ui';
