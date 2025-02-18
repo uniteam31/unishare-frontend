@@ -20,6 +20,7 @@ const App = () => {
 		return <LoadScreen label={'UniShare'} />;
 	}
 
+	// TEST
 	return (
 		<div className={classNames('App', authData && 'content-page')}>
 			{authData && <Navbar />}
