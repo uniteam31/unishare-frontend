@@ -1,8 +1,7 @@
-// @ts-ignore
-import Notes from 'notes/App';
 import { RouteProps } from 'react-router-dom';
 import { FriendsPage } from 'pages/FriendsPage';
 import { HomePage } from 'pages/HomePage';
+import { NotesPage } from 'pages/NotesPage';
 import { WelcomePage } from 'pages/WelcomePage';
 
 export type AppRoutesProps = RouteProps & {
@@ -29,7 +28,6 @@ export const RoutesPaths: Record<Routes, Path> = {
 };
 
 export const routerConfig: Record<Routes, AppRoutesProps> = {
-	// должна быть главная страница, но сейчас просто редирект на заметки
 	[Routes.MAIN]: {
 		path: RoutesPaths.main,
 		element: <HomePage />,
@@ -37,7 +35,7 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 	},
 	[Routes.NOTES]: {
 		path: RoutesPaths.notes,
-		element: <Notes />,
+		element: <NotesPage />,
 		authOnly: true,
 	},
 	[Routes.WELCOME]: {
