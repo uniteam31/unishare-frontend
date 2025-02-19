@@ -5,12 +5,10 @@ import { WebpackConfiguration } from 'webpack-cli';
 import { buildModuleFederation } from './plugins/buildModuleFederation';
 import { BuildOptions } from './types/config';
 
-export const BuildPlugins = ({
-	paths,
-	isDev,
-	apiUrl,
-}: BuildOptions): WebpackConfiguration['plugins'] => {
-	const moduleFederations = buildModuleFederation();
+export const BuildPlugins = (props: BuildOptions): WebpackConfiguration['plugins'] => {
+	const { paths, isDev, apiUrl } = props;
+
+	const moduleFederations = buildModuleFederation(props);
 
 	return [
 		new HtmlWebpackPlugin({
