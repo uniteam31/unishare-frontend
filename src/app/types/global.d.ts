@@ -12,3 +12,10 @@ declare module '*.svg' {
 	const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
 	export default content;
 }
+
+/** Декларация микрофронтов */
+declare module 'notes/App';
+declare module 'notes/Widget';
+
+declare module 'friends/App';
+declare module 'friends/Widget';

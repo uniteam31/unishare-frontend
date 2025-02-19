@@ -1,7 +1,7 @@
 import { lazy, useEffect } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
 
-// @ts-ignore
+// eslint-disable-next-line
 const NotesPageApp = lazy(() => import('friends/App'));
 
 export const FriendsPage = () => {

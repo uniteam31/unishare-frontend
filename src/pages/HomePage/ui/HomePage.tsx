@@ -1,4 +1,4 @@
-import React, { Suspense, memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { FriendsWidget } from 'widgets/FriendsWidget';
 import { NotesWidget } from 'widgets/NotesWidget';
 import { UserWidget } from 'widgets/UserWidget';
@@ -16,13 +16,9 @@ const HomePage = memo(() => {
 		<div className={s.HomePage}>
 			<UserWidget />
 
-			<Suspense fallback={<div>Loading Notes...</div>}>
-				<NotesWidget />
-			</Suspense>
+			<NotesWidget />
 
-			<Suspense fallback={<div>Loading Friends...</div>}>
-				<FriendsWidget />
-			</Suspense>
+			<FriendsWidget />
 		</div>
 	);
 });

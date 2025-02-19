@@ -1,8 +1,12 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
+import { LoadScreen } from 'shared/ui';
 
-// @ts-ignore
 const FriendsWidgetComponent = lazy(() => import('friends/Widget'));
 
 export const FriendsWidget = () => {
-	return <FriendsWidgetComponent />;
+	return (
+		<Suspense fallback={<LoadScreen />}>
+			<FriendsWidgetComponent />
+		</Suspense>
+	);
 };
