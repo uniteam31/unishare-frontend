@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy to Dev Server') {
             steps {
-                sshagent(['jenkins-test_ssh']) {
+                sshagent(['dev_ssh']) {
                      sh "ssh root@${DEV_SERVER_IP} \"${DEPLOY_SCRIPT_PATH}\""
                 }
             }
