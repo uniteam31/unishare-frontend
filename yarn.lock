@@ -2681,14 +2681,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.1.tgz#28fa185f67daaf7b7a1a8c1d445132c5d979f8bd"
   integrity sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==
 
-"@uniteam31/uni-shared-toolkit@0.0.1":
-  version "0.0.1"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.1/112cf8333731e9ad641e3405629d478d1272b653#112cf8333731e9ad641e3405629d478d1272b653"
-  integrity sha512-m/YrAd+hhQCLuNyj5o/LM1jmPoGLYbc7hWzIM14YS35lPeoD8YAi+TEqmfrVfV4q3Npaxq7gtS6phyROA0ZGkA==
-  dependencies:
-    axios "1.7.9"
-    react "18.3.1"
-    react-dom "18.3.1"
+"@uniteam31/uni-shared-toolkit@0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.2/8611de6455cdd59012d4a6686a123b7f12f15da4#8611de6455cdd59012d4a6686a123b7f12f15da4"
+  integrity sha512-0eZ29UBLf0fbDos3Oo9yclLjTcZJ7sKO12FR7cBQjAvkXGSwd82BwJkdc6H6N/MT1fQH7jUhwQAA7DZMf1aVnQ==
 
 "@uniteam31/uni-shared-types@0.0.3":
   version "0.0.3"
