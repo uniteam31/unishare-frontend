@@ -28,7 +28,6 @@ export const RoutesPaths: Record<Routes, Path> = {
 };
 
 export const routerConfig: Record<Routes, AppRoutesProps> = {
-	// должна быть главная страница, но сейчас просто редирект на заметки
 	[Routes.MAIN]: {
 		path: RoutesPaths.main,
 		element: <HomePage />,

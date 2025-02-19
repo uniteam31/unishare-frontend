@@ -21,4 +21,8 @@ export {
 	LoadScreen,
 	//
 	Warning,
+	//
+	Link,
+	//
+	Widget,
 } from '@uniteam31/uni-shared-ui';

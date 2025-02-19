@@ -1,7 +1,6 @@
-import { Avatar, Text } from '@uniteam31/uni-shared-ui';
 import React from 'react';
 import { useUserStore } from 'entities/User';
-import { Widget } from 'entities/Widget';
+import { Widget, Avatar, Text } from 'shared/ui';
 import s from './UserWidget.module.scss';
 
 export const UserWidget = () => {

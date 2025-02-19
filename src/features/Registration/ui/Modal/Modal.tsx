@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormWrapper } from 'shared/lib/FormWrapper/FormWrapper';
+import { FormWrapper } from 'shared/lib';
 import { ModalUI } from 'shared/ui';
 import { registrationSchema } from '../../model/registration';
 import type { TRegistrationFormField } from '../../model/registration';

@@ -19,6 +19,7 @@ export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration 
 			path: paths.build,
 			clean: true,
 			publicPath: '/',
+			uniqueName: 'unishare',
 		},
 		mode: mode,
 		plugins: BuildPlugins(options),

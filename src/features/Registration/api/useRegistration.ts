@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import axiosInstance from 'shared/api/axiosInstance';
-import { ApiResponse, TAccessToken } from 'shared/api/types';
+import { axiosInstance } from 'shared/api';
 import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
+import { getApiResponseErrorMessage } from 'shared/lib';
+import type { ApiResponse, TAccessToken } from 'shared/types';
 import { TRegistrationFormField } from '../model/registration';
 
 interface IRegistrationProps {

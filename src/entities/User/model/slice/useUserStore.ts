@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import axiosInstance from 'shared/api/axiosInstance';
-import { ApiResponse } from 'shared/api/types';
+import { axiosInstance } from 'shared/api';
 import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { IUser } from '../types/user';
+import type { ApiResponse } from 'shared/types';
+import type { IUser } from '../types/user';
 
 interface IUserStore {
 	/** Поля */

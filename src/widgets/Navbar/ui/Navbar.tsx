@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
 import { useUserStore } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/logout.svg';
-import { Link } from 'shared/ui/Link/Link';
+import { Link } from 'shared/ui';
 import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
 

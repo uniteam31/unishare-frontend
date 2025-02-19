@@ -11,6 +11,7 @@ export default () => {
 		build: path.resolve(__dirname, 'build'),
 		html: path.resolve(__dirname, 'public', 'index.html'),
 		src: path.resolve(__dirname, 'src'),
+		nodeModules: path.resolve(__dirname, 'node_modules'),
 	};
 
 	// env
@@ -18,6 +19,8 @@ export default () => {
 	const PORT = Number(process.env.PORT) || 3000;
 	const IS_DEV = MODE === 'development';
 	const API_URL = process.env.API_URL || 'http://localhost:8000/api';
+	const NOTES_URL = process.env.NOTES_URL || 'http://localhost:3001/remoteEntry.js';
+	const FRIENDS_URL = process.env.FRIENDS_URL || 'http://localhost:3002/remoteEntry.js';
 
 	const config: webpack.Configuration = BuildWebpackConfig({
 		mode: MODE,
@@ -25,6 +28,8 @@ export default () => {
 		port: PORT,
 		isDev: IS_DEV,
 		apiUrl: API_URL,
+		notesUrl: NOTES_URL,
+		friendsUrl: FRIENDS_URL,
 	});
 
 	return config;

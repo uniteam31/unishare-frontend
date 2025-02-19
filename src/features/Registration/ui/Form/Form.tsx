@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { useUserStore } from 'entities/User';
-import { formatApiErrorMessages } from 'shared/lib/formatApiErrorMessages/formatApiErrorMessages';
+import { formatApiErrorMessages } from 'shared/lib';
 import { Button, Input, Text, TextAlign, Warning } from 'shared/ui';
 import { useRegistration } from '../../api/useRegistration';
 import { TRegistrationFormField } from '../../model/registration';

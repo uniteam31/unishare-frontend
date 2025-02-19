@@ -6,13 +6,16 @@ pipeline {
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
 
         REPO_URL = "https://github.com/uniteam31/unishare-frontend.git"
+        API_URL = "http://176.114.90.241/api"
+        NOTES_URL = "http://176.114.90.241:3001/remoteEntry.js"
+        FRIENDS_URL = "http://176.114.90.241:3002/remoteEntry.js"
+        DEV_SERVER_IP = "176.114.90.241"
+
         BRANCH_NAME = "${env.BRANCH_NAME ?: 'dev'}"
         DOCKER_IMAGE_NAME = "def1s/unishare-frontend"
         DOCKER_REGISTRY = "https://registry.hub.docker.com"
         DOCKER_CREDENTIALS_ID = "docker-def1s"
-        DEV_SERVER_IP = "176.114.90.241"
         DEPLOY_SCRIPT_PATH = "/root/unishare-orchestration/deploy.sh"
-        API_URL = "http://176.114.90.241/api"
         NPMRC_CONFIG_FILE_ID = "uniteam-npmrc"
     }
 
@@ -43,7 +46,7 @@ pipeline {
                         sh "cp ${NPMRC_PATH} .npmrc"
                         app = docker.build(
                             DOCKER_IMAGE_NAME,
-                            "--no-cache --build-arg BRANCH=${branchName} --build-arg API_URL=${API_URL} ."
+                            "--no-cache --build-arg BRANCH=${branchName} --build-arg API_URL=${API_URL} --build-arg NOTES_URL=${NOTES_URL} --build-arg FRIENDS_URL=${FRIENDS_URL} ."
                         )
                         sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
                     }

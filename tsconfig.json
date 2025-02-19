@@ -3,7 +3,7 @@
 		"outDir": "./dist/",
 		"noImplicitAny": true,
 		"module": "ESNext",
-		"target": "es5",
+		"target": "es2017",
 		"jsx": "react-jsx",
 		"allowJs": true,
 		"moduleResolution": "node",
@@ -13,7 +13,8 @@
 		"strict": true,
 		"paths": {
 			"*": ["./src/*"]
-		}
+		},
+		"resolveJsonModule": true
 	},
 	"ts-node": {
 		"compilerOptions": {
