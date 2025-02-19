@@ -19,4 +19,6 @@ export interface BuildOptions {
 	port: number;
 	isDev: boolean;
 	apiUrl: string;
+	notesUrl: string;
+	friendsUrl: string;
 }
