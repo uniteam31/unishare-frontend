@@ -26,7 +26,6 @@ pipeline {
             }
         }
 
-
         stage('Run Tests and Linters') {
             steps {
                 echo "Current branch: ${BRANCH_NAME}"
