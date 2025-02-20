@@ -6,9 +6,9 @@ pipeline {
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
 
         REPO_URL = "https://github.com/uniteam31/unishare-frontend.git"
-        API_URL = "http://176.114.90.241/api"
-        NOTES_URL = "http://176.114.90.241:3001/remoteEntry.js"
-        FRIENDS_URL = "http://176.114.90.241:3002/remoteEntry.js"
+        API_URL = "https://dev.unishare.space/api"
+        NOTES_URL = "https://dev.unishare.space/services/notes/remoteEntry.js"
+        FRIENDS_URL = "https://dev.unishare.space/services/friends/remoteEntry.js"
         DEV_SERVER_IP = "176.114.90.241"
 
         BRANCH_NAME = "${env.BRANCH_NAME ?: 'dev'}"
