@@ -19,8 +19,11 @@ export default () => {
 	const PORT = Number(process.env.PORT) || 3000;
 	const IS_DEV = MODE === 'development';
 	const API_URL = process.env.API_URL || 'http://localhost:8000/api';
+
 	const NOTES_URL = process.env.NOTES_URL || 'http://localhost:3001/remoteEntry.js';
 	const FRIENDS_URL = process.env.FRIENDS_URL || 'http://localhost:3002/remoteEntry.js';
+	// TODO calendar here
+	const ACCOUNT_SETTINGS = process.env.ACCOUNT_SETTINGS || 'http://localhost:3004/remoteEntry.js';
 
 	const config: webpack.Configuration = BuildWebpackConfig({
 		mode: MODE,
@@ -28,8 +31,10 @@ export default () => {
 		port: PORT,
 		isDev: IS_DEV,
 		apiUrl: API_URL,
+		//
 		notesUrl: NOTES_URL,
 		friendsUrl: FRIENDS_URL,
+		accountSettings: ACCOUNT_SETTINGS,
 	});
 
 	return config;

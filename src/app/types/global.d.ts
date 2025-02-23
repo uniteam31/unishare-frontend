@@ -19,3 +19,6 @@ declare module 'notes/Widget';
 
 declare module 'friends/App';
 declare module 'friends/Widget';
+
+declare module 'accountSettings/App';
+declare module 'accountSettings/Widget';

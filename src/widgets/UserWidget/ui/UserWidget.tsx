@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUserStore } from 'entities/User';
-import { Widget, Avatar, Text } from 'shared/ui';
+import { Widget, Avatar, Text, Link } from 'shared/ui';
 import s from './UserWidget.module.scss';
 
 export const UserWidget = () => {
@@ -10,16 +10,19 @@ export const UserWidget = () => {
 		authData?.avatar ||
 		'https://avatars.mds.yandex.net/i?id=29f7366ac823f46165612d9480e60f0e_l-13215132-images-thumbs&n=13';
 
+	// TODO импортнуть из микросервиса?
 	return (
-		<div className={s.UserWidget}>
-			<Widget className={s.innerWidget}>
-				<Avatar className={s.avatar} src={userAvatar} />
+		<Link to={'/account/settings'}>
+			<div className={s.UserWidget}>
+				<Widget className={s.innerWidget}>
+					<Avatar className={s.avatar} src={userAvatar} />
 
-				<div>
-					<Text title={authData?.firstName} />
-					<Text text={authData?.username} />
-				</div>
-			</Widget>
-		</div>
+					<div>
+						<Text title={authData?.firstName} />
+						<Text text={authData?.username} />
+					</div>
+				</Widget>
+			</div>
+		</Link>
 	);
 };

@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import packageJson from '../../../package.json';
 import { BuildOptions } from '../types/config';
 
-export const buildModuleFederation = ({ notesUrl, friendsUrl }: BuildOptions) => {
+export const buildModuleFederation = ({ notesUrl, friendsUrl, accountSettings }: BuildOptions) => {
 	return new webpack.container.ModuleFederationPlugin({
 		name: 'host',
 		filename: 'remoteEntry.js',
@@ -10,6 +10,7 @@ export const buildModuleFederation = ({ notesUrl, friendsUrl }: BuildOptions) =>
 		remotes: {
 			notes: `notes@${notesUrl}`,
 			friends: `friends@${friendsUrl}`,
+			accountSettings: `accountSettings@${accountSettings}`,
 		},
 		shared: {
 			...packageJson.dependencies,
