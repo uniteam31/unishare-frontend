@@ -28,4 +28,8 @@ export const MODULES: Record<Path, TModuleItem> = {
 		name: 'Друзья',
 		Icon: <FriendsIcon style={baseIconStyles} />,
 	},
+	// TODO добавить иконку
+	['/account/settings']: {
+		name: 'Аккаунт',
+	},
 };

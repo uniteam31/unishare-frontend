@@ -2,14 +2,14 @@ import { lazy, useEffect } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
 
 // eslint-disable-next-line
-const FriendsPageApp = lazy(() => import('friends/App'));
+const AccountSettingsPageApp = lazy(() => import('accountSettings/App'));
 
-export const FriendsPage = () => {
+export const AccountSettingsPage = () => {
 	const { setCurrentService } = useNavigationStore();
 
 	useEffect(() => {
-		setCurrentService('/friends');
+		setCurrentService('/account/settings');
 	}, [setCurrentService]);
 
-	return <FriendsPageApp />;
+	return <AccountSettingsPageApp />;
 };

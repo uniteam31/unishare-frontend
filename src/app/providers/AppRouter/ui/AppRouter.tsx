@@ -1,9 +1,12 @@
 import { Suspense } from 'react';
 import { useCallback } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Routes } from 'react-router-dom';
-import { MODULES, TModuleItem } from 'widgets/Navbar';
-import { LoadScreen } from 'shared/ui';
-import { AppRoutesProps, Path, routerConfig } from '../routerConfig/routerConfig';
+import { MODULES } from 'widgets/Navbar';
+import type { TModuleItem } from 'widgets/Navbar';
+import { LoadScreen, Warning } from 'shared/ui';
+import { Path, routerConfig } from '../routerConfig/routerConfig';
+import type { AppRoutesProps } from '../routerConfig/routerConfig';
 import { RequireAuth } from './RequireAuth';
 
 /** Рендерит все маршруты и проставляет разрешения на просмотр. Также показывает LoadScreen при загрузке
