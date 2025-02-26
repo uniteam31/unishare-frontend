@@ -28,13 +28,9 @@ export const AppRouter = () => {
 		});
 
 		const element = (
-			<ErrorBoundary
-				fallback={<Warning theme={'red'} title={'Сервис в данный момент недоступен'} />}
-			>
-				<Suspense fallback={<LoadScreen label={module.name} Icon={module?.Icon} />}>
-					{route.element}
-				</Suspense>
-			</ErrorBoundary>
+			<Suspense fallback={<LoadScreen label={module.name} Icon={module?.Icon} />}>
+				{route.element}
+			</Suspense>
 		);
 
 		return (
