@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
+import { AccountSettingsWidget } from 'widgets/AccountSettingsWidget';
 import { FriendsWidget } from 'widgets/FriendsWidget';
 import { NotesWidget } from 'widgets/NotesWidget';
-import { UserWidget } from 'widgets/UserWidget';
 import { useNavigationStore } from 'entities/Navigation';
 import s from './HomePage.module.scss';
 
@@ -14,7 +14,7 @@ const HomePage = memo(() => {
 
 	return (
 		<div className={s.HomePage}>
-			<UserWidget />
+			<AccountSettingsWidget />
 
 			<NotesWidget />
 
