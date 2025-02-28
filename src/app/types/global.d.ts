@@ -20,5 +20,8 @@ declare module 'notes/Widget';
 declare module 'friends/App';
 declare module 'friends/Widget';
 
+declare module 'calendar/App';
+declare module 'calendar/Widget';
+
 declare module 'accountSettings/App';
 declare module 'accountSettings/Widget';

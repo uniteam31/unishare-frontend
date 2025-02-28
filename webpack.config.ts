@@ -22,7 +22,7 @@ export default () => {
 
 	const NOTES_URL = process.env.NOTES_URL || 'http://localhost:3001/remoteEntry.js';
 	const FRIENDS_URL = process.env.FRIENDS_URL || 'http://localhost:3002/remoteEntry.js';
-	// TODO calendar here
+	const CALENDAR_URL = process.env.CALENDAR_URL || 'http://localhost:3003/remoteEntry.js';
 	const ACCOUNT_SETTINGS_URL =
 		process.env.ACCOUNT_SETTINGS_URL || 'http://localhost:3004/remoteEntry.js';
 
@@ -35,6 +35,7 @@ export default () => {
 		//
 		notesUrl: NOTES_URL,
 		friendsUrl: FRIENDS_URL,
+		calendarUrl: CALENDAR_URL,
 		accountSettings: ACCOUNT_SETTINGS_URL,
 	});
 
