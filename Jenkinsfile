@@ -9,6 +9,7 @@ pipeline {
         API_URL = "https://dev.unishare.space/api"
         NOTES_URL = "https://dev.unishare.space/services/notes/remoteEntry.js"
         FRIENDS_URL = "https://dev.unishare.space/services/friends/remoteEntry.js"
+        CALENDAR_URL = "https://dev.unishare.space/services/calendar/remoteEntry.js"
         ACCOUNT_SETTINGS_URL = "https://dev.unishare.space/services/accountSettings/remoteEntry.js"
         DEV_SERVER_IP = "176.114.90.241"
 

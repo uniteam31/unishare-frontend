@@ -22,5 +22,6 @@ export interface BuildOptions {
 	//
 	notesUrl: string;
 	friendsUrl: string;
+	calendarUrl: string;
 	accountSettings: string;
 }
