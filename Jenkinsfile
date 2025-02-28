@@ -7,6 +7,8 @@ pipeline {
 
         REPO_URL = "https://github.com/uniteam31/unishare-frontend.git"
         API_URL = "https://dev.unishare.space/api"
+
+        // MICROSERVICES
         NOTES_URL = "https://dev.unishare.space/services/notes/remoteEntry.js"
         FRIENDS_URL = "https://dev.unishare.space/services/friends/remoteEntry.js"
         CALENDAR_URL = "https://dev.unishare.space/services/calendar/remoteEntry.js"
@@ -48,7 +50,14 @@ pipeline {
                         sh "cp ${NPMRC_PATH} .npmrc"
                         app = docker.build(
                             DOCKER_IMAGE_NAME,
-                            "--no-cache --build-arg BRANCH=${branchName} --build-arg API_URL=${API_URL} --build-arg NOTES_URL=${NOTES_URL} --build-arg FRIENDS_URL=${FRIENDS_URL} --build-arg CALENDAR_URL=${CALENDAR_URL} --build-arg ACCOUNT_SETTINGS_URL=${ACCOUNT_SETTINGS_URL} ."
+                           "--no-cache " +
+                           "--build-arg BRANCH=${branchName} " +
+                           "--build-arg API_URL=${API_URL} " +
+                           "--build-arg NOTES_URL=${NOTES_URL} " +
+                           "--build-arg FRIENDS_URL=${FRIENDS_URL} " +
+                           "--build-arg CALENDAR_URL=${CALENDAR_URL} " +
+                           "--build-arg ACCOUNT_SETTINGS_URL=${ACCOUNT_SETTINGS_URL} " +
+                           "."
                         )
                         sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки
                     }
