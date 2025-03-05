@@ -1,12 +1,38 @@
-# unishare
+# UniShare
 
-### ССЫЛКИ
+UniShare — это информационная система для поддержки обучения студентов.  
+Проект представляет собой платформу, где пользователи могут управлять своими учебными материалами, объединять их в персонализированные пространства (Spaces) и взаимодействовать с другими студентами.  
 
-[DEV стенд](http://176.114.90.241/) (работает в режиме воруй-убивай)  
-[JENKINS CI/CD](https://176.114.90.241:8080/) (private)  
-[UNITEAM NOTION](https://www.notion.so/UNITEAM-1049780386b880adbbe1e3480e5159ce?pvs=4) (private)  
-[UNISHARE NOTION](https://www.notion.so/UNISHARE-1709780386b880388d2dfbbc751678c3?pvs=4) (private)  
-[YOUGILE](https://ru.yougile.com/board/kyihl3hhjnbh)  
+## Основные возможности
+- Управление учебными материалами (заметки, файлы и т. д.)
+- Создание персонализированных пространств (Spaces) для организации учебного процесса
+- Взаимодействие с другими студентами в рамках общих пространств
+- Подключаемые виджеты для различных сервисов
+
+## Используемые технологии
+- **Frontend**: React, TypeScript, Zustand, React Hook Form, Storybook, Webpack Module Federation
+- **Backend**: NestJS, MongoDB, JWT для аутентификации
+- **CI/CD**: Jenkins
+- **Архитектура**: Feature-sliced design
+- **Контейнеризация**: Docker, Docker Compose
+
+## Микросервисы
+- **Frontend**: Вы находитесь здесь  
+- **Backend (основной сервис)**: [Ссылка](https://github.com/uniteam31/unishare-backend/tree/dev)
+- **Сервис заметок**: [Ссылка](https://github.com/uniteam31/unishare-notes/tree/dev)
+- **Сервис друзей**: [Ссылка](https://github.com/uniteam31/unishare-friends/tree/dev)
+- **Сервис настроек аккаунта**: [Ссылка](https://github.com/uniteam31/unishare-account-settings/tree/dev)
+- **Сервис календаря**: [Ссылка](https://github.com/uniteam31/unishare-calendar/tree/dev)
+
+## Дополнительные репозитории
+- **Types**: [Ссылка](https://github.com/uniteam31/uni-shared-types/tree/dev)
+- **UI**: [Ссылка](https://github.com/uniteam31/uni-shared-ui/tree/dev)
+- **Toolkit**: [Ссылка](https://github.com/uniteam31/uni-shared-toolkit/tree/dev)
+
+## Полезные ссылки
+- [DEV стенд](https://dev.unishare.space) (самый новый функционал здесь)
+- [JENKINS CI/CD](https://176.114.90.241:8080/)
+- [JIRA + CONFLUENCE](https://uniteam31.atlassian.net/jira/software/projects/UNISHARE/boards/1/backlog)
 
 ## DEVELOPER GUIDE
 ### Сборка Dockerfile (для локального теста docker-compose)
@@ -24,14 +50,19 @@
 
 #### ПРОЦЕСС РАЗРАБОТКИ
 
-1. Создается таска на [YOUGILE](https://ru.yougile.com/board/kyihl3hhjnbh)
-   1. Если задача содержит часть подзадач, то создаются подтаски.
-2. Создается ветка с номером текущей таски. Каждый коммит комментируется с указанием таски: 'UNI-XX: some changes'
-   1. Ветка ВСЕГДА имеет номер таски, даже если выполняется подтаска этой задачи. В коммите можно
-указать 'UNI-[главный номер]-[подзадача]', но не принципиально.
-3. Задача всегда вливается через ПР в dev ветку. Если упал пайплайн, то [смотрим](https://176.114.90.241:8080/)   что не так -> фиксим -> повторяем пока не соберется
-4. После вливания в dev при условии успешной сборки изменения автоматически накатываются на [DEV стенд](http://176.114.90.241/)  
-5. Кайфуем
+1. Создается таска в Jira.
+2. Создается ветка по Git Flow:
+   - `feature/UNITEAM-XX` для новых фич
+   - `bugfix/UNITEAM-XX` для исправлений
+   - `hotfix/UNITEAM-XX` для критических исправлений
+   - `release/UNITEAM-XX` для подготовки релизов
+3. Каждый коммит комментируется с указанием таски: `'*/UNITEAM-XX: some changes'`.
+4. Ветка ВСЕГДА имеет номер таски, даже если выполняется подтаска этой задачи. В коммите можно
+   указать `'*/UNITEAM-[главный номер]-[подзадача]'`, но не принципиально.
+5. Задача всегда вливается через Pull Request в `develop`.
+6. Если упал пайплайн, то [смотрим](https://176.114.90.241:8080/) что не так -> фиксим -> повторяем пока не соберется.
+7. После вливания в `develop` при условии успешной сборки изменения автоматически накатываются на [DEV стенд](https://dev.unishare.space/).
+8. Кайфуем.
 
 #### РЕКОМЕНДАЦИИ
 1. Комментарии это **ОЧЕНЬ** хорошо, но еще лучше дробить функции на маленькие части и писать самодокументирующийся код
