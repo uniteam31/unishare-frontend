@@ -6,7 +6,8 @@ import { useGetUserSpaces } from 'entities/Space';
 import { useUserStore } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/logout.svg';
 import { CURRENT_SPACE_ID_COOKIE_KEY } from 'shared/const';
-import { Dropdown, TDropdownItem, Link } from 'shared/ui';
+import { Dropdown, Link } from 'shared/ui';
+import type { TDropdownItem } from 'shared/ui';
 import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
 
