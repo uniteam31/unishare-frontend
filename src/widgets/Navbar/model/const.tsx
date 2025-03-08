@@ -37,4 +37,8 @@ export const MODULES: Record<Path, TModuleItem> = {
 	['/account/settings']: {
 		name: 'Аккаунт',
 	},
+	// TODO добавить иконку
+	['/spaces']: {
+		name: 'Пространства',
+	},
 };

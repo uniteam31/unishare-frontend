@@ -10,21 +10,25 @@
 
     .breadcrumbs {
         align-items: center;
-        justify-content: space-between;
         display: flex;
         height: 100%;
+        justify-content: space-between;
         width: 100%;
 
         .navigation {
             align-items: center;
             display: flex;
             height: 100%;
+
+            .dropdown {
+                min-width: 200px;
+            }
         }
 
         .logoutIcon {
-            width: 30px;
-            height: 30px;
             cursor: pointer;
+            height: 30px;
+            width: 30px;
         }
     }
 

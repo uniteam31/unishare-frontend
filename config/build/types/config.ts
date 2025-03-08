@@ -24,4 +24,5 @@ export interface BuildOptions {
 	friendsUrl: string;
 	calendarUrl: string;
 	accountSettings: string;
+	spaces: string;
 }

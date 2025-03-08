@@ -25,6 +25,7 @@ export default () => {
 	const CALENDAR_URL = process.env.CALENDAR_URL || 'http://localhost:3003/remoteEntry.js';
 	const ACCOUNT_SETTINGS_URL =
 		process.env.ACCOUNT_SETTINGS_URL || 'http://localhost:3004/remoteEntry.js';
+	const SPACES_URL = process.env.SPACES_URL || 'http://localhost:3005/remoteEntry.js';
 
 	const config: webpack.Configuration = BuildWebpackConfig({
 		mode: MODE,
@@ -37,6 +38,7 @@ export default () => {
 		friendsUrl: FRIENDS_URL,
 		calendarUrl: CALENDAR_URL,
 		accountSettings: ACCOUNT_SETTINGS_URL,
+		spaces: SPACES_URL,
 	});
 
 	return config;

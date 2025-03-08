@@ -3,6 +3,7 @@ import { AccountSettingsWidget } from 'widgets/AccountSettingsWidget';
 import { CalendarWidget } from 'widgets/CalendarWidget';
 import { FriendsWidget } from 'widgets/FriendsWidget';
 import { NotesWidget } from 'widgets/NotesWidget';
+import { SpacesWidget } from 'widgets/SpacesWidget';
 import { useNavigationStore } from 'entities/Navigation';
 import s from './HomePage.module.scss';
 
@@ -22,6 +23,8 @@ const HomePage = memo(() => {
 			<CalendarWidget />
 
 			<FriendsWidget />
+
+			<SpacesWidget />
 		</div>
 	);
 });

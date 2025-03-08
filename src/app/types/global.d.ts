@@ -25,3 +25,6 @@ declare module 'calendar/Widget';
 
 declare module 'accountSettings/App';
 declare module 'accountSettings/Widget';
+
+declare module 'spaces/App';
+declare module 'spaces/Widget';

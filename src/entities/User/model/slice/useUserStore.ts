@@ -1,6 +1,7 @@
+import Cookie from 'js-cookie';
 import { create } from 'zustand';
 import { axiosInstance } from 'shared/api';
-import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
+import { ACCESS_TOKEN_LOCALSTORAGE_KEY, CURRENT_SPACE_ID_COOKIE_KEY } from 'shared/const';
 import type { ApiResponse } from 'shared/types';
 import type { IUser } from '../types/user';
 
@@ -8,6 +9,7 @@ interface IUserStore {
 	/** Поля */
 	authData?: IUser;
 	_init?: boolean;
+
 	/** Методы */
 	setAuthData: (authData: IUser) => void;
 	initAuthData: () => void;
@@ -30,6 +32,8 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 				throw new Error('Что-то пошло не так...');
 			}
 
+			// TODO хранить последний выбранный спейс в localstorage
+			Cookie.set(CURRENT_SPACE_ID_COOKIE_KEY, authData.personalSpaceID);
 			set({ authData });
 		} catch (e) {
 			// TODO добавить уведомление

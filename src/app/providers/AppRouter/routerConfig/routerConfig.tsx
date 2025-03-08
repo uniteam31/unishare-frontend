@@ -4,6 +4,7 @@ import { CalendarPage } from 'pages/CalendarPage';
 import { FriendsPage } from 'pages/FriendsPage';
 import { HomePage } from 'pages/HomePage';
 import { NotesPage } from 'pages/NotesPage';
+import { SpacesPage } from 'pages/SpacesPage';
 import { WelcomePage } from 'pages/WelcomePage';
 
 export type AppRoutesProps = RouteProps & {
@@ -18,9 +19,17 @@ export enum Routes {
 	FRIENDS = 'friends',
 	CALENDAR = 'calendar',
 	ACCOUNT_SETTINGS = 'accountSettings',
+	SPACES = 'spaces',
 }
 
-export type Path = '/' | '/notes' | '/welcome' | '/friends' | '/calendar' | '/account/settings';
+export type Path =
+	| '/'
+	| '/notes'
+	| '/welcome'
+	| '/friends'
+	| '/calendar'
+	| '/account/settings'
+	| '/spaces';
 
 export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.MAIN]: '/',
@@ -29,6 +38,7 @@ export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.FRIENDS]: '/friends',
 	[Routes.CALENDAR]: '/calendar',
 	[Routes.ACCOUNT_SETTINGS]: '/account/settings',
+	[Routes.SPACES]: '/spaces',
 	// // 404
 	// [Routes.NOT_FOUND]: '*',
 };
@@ -61,6 +71,11 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 	[Routes.ACCOUNT_SETTINGS]: {
 		path: RoutesPaths.accountSettings,
 		element: <AccountSettingsPage />,
+		authOnly: true,
+	},
+	[Routes.SPACES]: {
+		path: RoutesPaths.spaces,
+		element: <SpacesPage />,
 		authOnly: true,
 	},
 	// [Routes.NOT_FOUND]: {
