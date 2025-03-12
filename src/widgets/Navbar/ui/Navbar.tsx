@@ -5,7 +5,6 @@ import { useNavigationStore } from 'entities/Navigation';
 import { useGetUserSpaces } from 'entities/Space';
 import type { ISpace } from 'entities/Space';
 import { useUserStore } from 'entities/User';
-import type { IUser } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/logout.svg';
 import { CURRENT_SPACE_ID_COOKIE_KEY, CURRENT_SPACE_ID_LOCALSTORAGE_KEY } from 'shared/const';
 import { Dropdown, Link } from 'shared/ui';
@@ -13,12 +12,7 @@ import type { TDropdownItem } from 'shared/ui';
 import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
 
-const getSpaceDropdownItem = (spaces: ISpace[], authData?: IUser): TDropdownItem => {
-	const personalSpace = {
-		name: authData!.username,
-		value: authData!.personalSpaceID,
-	};
-
+const getSavedSpaceDropdownItem = (spaces: ISpace[]): TDropdownItem | null => {
 	const savedSpaceID = localStorage.getItem(CURRENT_SPACE_ID_LOCALSTORAGE_KEY);
 
 	if (savedSpaceID) {
@@ -32,7 +26,7 @@ const getSpaceDropdownItem = (spaces: ISpace[], authData?: IUser): TDropdownItem
 		}
 	}
 
-	return personalSpace;
+	return null;
 };
 
 export const Navbar = () => {
@@ -41,12 +35,21 @@ export const Navbar = () => {
 	const { currentServiceEndPath } = useNavigationStore();
 	const { authData, logout } = useUserStore();
 
-	const [selectedSpace, setSelectedSpace] = useState<TDropdownItem | null>(null);
+	const initialPersonalSpace = {
+		name: authData!.username,
+		value: authData!.personalSpaceID,
+	};
+
+	const [selectedSpace, setSelectedSpace] = useState<TDropdownItem>(initialPersonalSpace);
 
 	useEffect(() => {
-		const initialSelectedSpace = getSpaceDropdownItem(spaces, authData);
+		const initialSavedSpace = getSavedSpaceDropdownItem(spaces);
 
-		setSelectedSpace(initialSelectedSpace);
+		if (!initialSavedSpace) {
+			return;
+		}
+
+		setSelectedSpace(initialSavedSpace);
 	}, [authData, spaces]);
 
 	const dropdownItems = useMemo(() => {
