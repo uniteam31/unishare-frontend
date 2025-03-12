@@ -8,11 +8,11 @@ type Response = ApiResponse<ISpace[]>;
 
 export const useGetUserSpaces = () => {
 	const fetcher = () =>
-		axiosInstance<Response>({ method: 'GET', url: '/spaces/user' }).then(
+		axiosInstance<Response>({ method: 'GET', url: '/users/spaces' }).then(
 			(res) => res.data.data,
 		);
 
-	const { data, error, isValidating, mutate } = useSWR('api/spaces/user', fetcher);
+	const { data, error, isValidating, mutate } = useSWR('api/users/spaces', fetcher);
 
 	const spaces = data || [];
 
