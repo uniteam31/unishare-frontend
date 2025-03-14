@@ -4,6 +4,7 @@ import { Path } from 'app/providers/AppRouter';
 import CalendarIcon from 'shared/assets/icons/calendar.svg';
 import FriendsIcon from 'shared/assets/icons/friends.svg';
 import NoteIcon from 'shared/assets/icons/note.svg';
+import SpacesIcon from 'shared/assets/icons/space.svg';
 
 export type TModuleItem = {
 	name: string;
@@ -37,8 +38,8 @@ export const MODULES: Record<Path, TModuleItem> = {
 	['/account/settings']: {
 		name: 'Аккаунт',
 	},
-	// TODO добавить иконку
 	['/spaces']: {
 		name: 'Пространства',
+		Icon: <SpacesIcon style={baseIconStyles} />,
 	},
 };

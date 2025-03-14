@@ -1,5 +1,10 @@
 import Cookies from 'js-cookie';
-import { CURRENT_SPACE_ID_COOKIE_KEY, CURRENT_SPACE_ID_LOCALSTORAGE_KEY } from 'shared/const';
+import Cookie from 'js-cookie';
+import {
+	ACCESS_TOKEN_LOCALSTORAGE_KEY,
+	CURRENT_SPACE_ID_COOKIE_KEY,
+	CURRENT_SPACE_ID_LOCALSTORAGE_KEY,
+} from 'shared/const';
 import type { ISpace } from '../model/space';
 
 // TODO: вынести в toolkit
@@ -20,6 +25,12 @@ class CurrentSpaceIDController {
 
 	getSavedSpaceID() {
 		return localStorage.getItem(CURRENT_SPACE_ID_LOCALSTORAGE_KEY);
+	}
+
+	clearCurrentSpaceID() {
+		localStorage.removeItem(ACCESS_TOKEN_LOCALSTORAGE_KEY);
+		localStorage.removeItem(CURRENT_SPACE_ID_LOCALSTORAGE_KEY);
+		Cookie.remove(CURRENT_SPACE_ID_COOKIE_KEY);
 	}
 }
 

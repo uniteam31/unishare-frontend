@@ -84,7 +84,6 @@ export const Navbar = () => {
 
 						<Dropdown
 							view={'clear'}
-							className={s.dropdown}
 							selectedItem={selectedSpace}
 							items={dropdownItems}
 							onSelect={handleSelectSpace}
