@@ -1,6 +1,7 @@
 import { create } from 'zustand';
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
+import { SpaceIDController } from 'entities/Space';
 import { axiosInstance } from 'shared/api';
-import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 import type { ApiResponse } from 'shared/types';
 import type { IUser } from '../types/user';
 
@@ -8,6 +9,7 @@ interface IUserStore {
 	/** Поля */
 	authData?: IUser;
 	_init?: boolean;
+
 	/** Методы */
 	setAuthData: (authData: IUser) => void;
 	initAuthData: () => void;
@@ -30,6 +32,14 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 				throw new Error('Что-то пошло не так...');
 			}
 
+			const savedSpaceID = SpaceIDController.getSavedSpaceID();
+
+			if (savedSpaceID) {
+				SpaceIDController.setCurrentSpaceIDAndSendEvent(savedSpaceID);
+			} else {
+				SpaceIDController.setCurrentSpaceIDAndSendEvent(authData.personalSpaceID);
+			}
+
 			set({ authData });
 		} catch (e) {
 			// TODO добавить уведомление
@@ -40,7 +50,8 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 	},
 
 	logout: () => {
-		localStorage.removeItem(ACCESS_TOKEN_LOCALSTORAGE_KEY);
+		SpaceIDController.clearCurrentSpaceID();
+
 		set({ authData: undefined });
 	},
 }));

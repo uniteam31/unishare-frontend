@@ -25,4 +25,8 @@ export {
 	Link,
 	//
 	Widget,
+	//
+	Dropdown,
+	//
+	TDropdownItem,
 } from '@uniteam31/uni-shared-ui';
