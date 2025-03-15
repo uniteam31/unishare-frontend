@@ -1,0 +1,17 @@
+.ErrorPage {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--medium-indent);
+	height: 100%;
+	justify-content: center;
+	width: 100%;
+
+	.buttons {
+		background-color: rgb(255 255 255 / 50%);
+		border-radius: var(--medium-round);
+		display: flex;
+		gap: var(--medium-indent);
+		padding: var(--medium-indent);
+	}
+}

@@ -1,12 +1,31 @@
 import { lazy, Suspense } from 'react';
-import { LoadScreen } from 'shared/ui';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorWidget, LoadScreen, Warning } from 'shared/ui';
 
-const SpacesWidgetComponent = lazy(() => import('spaces/Widget'));
+const SpacesWidgetComponent = lazy(() =>
+	import('spaces/Widget').catch(() => {
+		return {
+			default: () => (
+				<ErrorWidget
+					title={'Пространства'}
+					text={'Сервис пространств недоступен'}
+					size={'large'}
+				/>
+			),
+		};
+	}),
+);
 
 export const SpacesWidget = () => {
 	return (
-		<Suspense fallback={<LoadScreen />}>
-			<SpacesWidgetComponent />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<Warning theme={'red'} title={'Ошибка'} text={'Произошла непредвиденная ошибка'} />
+			}
+		>
+			<Suspense fallback={<LoadScreen />}>
+				<SpacesWidgetComponent />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
