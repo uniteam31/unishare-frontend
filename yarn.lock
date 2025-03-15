@@ -2564,10 +2564,10 @@
   resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.5/f7ad7748d1f81892e32d6ab92facb59315769c25#f7ad7748d1f81892e32d6ab92facb59315769c25"
   integrity sha512-GrQpmbf+0/6iSK0rryQrIdYNdT8ljneqDg8CC0tdnGmX3EhogcUd/wXS75NSiv9+fy6SV2/lz2IRKQgm5oZI/w==
 
-"@uniteam31/uni-shared-ui@0.0.17":
-  version "0.0.17"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.17/e2e02297f61be5fd9a40afd8ef4e6e94b0716f2e#e2e02297f61be5fd9a40afd8ef4e6e94b0716f2e"
-  integrity sha512-z7YDyCZ4rs43GK6L+WpDnnuzhgRTZBzpusgh4x9roJS9rzPOM/k2MiVwFAXM13hjYkb9BCUWnY6TcD/TqfglRw==
+"@uniteam31/uni-shared-ui@0.0.18":
+  version "0.0.18"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.18/1257fa21baaaf85153d30cf49f4cc5d87f8a1fb7#1257fa21baaaf85153d30cf49f4cc5d87f8a1fb7"
+  integrity sha512-U55zQtyJr6WscHHWwgSDFGNG68U7f3xO4bU0GEETdTEXbPWB8SzdlCQ0OGziGbx79qoltyAauftFtVhejj+r0w==
   dependencies:
     classnames "2.5.1"
     react "18.3.1"

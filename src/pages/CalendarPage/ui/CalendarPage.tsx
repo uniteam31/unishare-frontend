@@ -1,8 +1,15 @@
 import { lazy, useEffect } from 'react';
 import { useNavigationStore } from 'entities/Navigation';
+import { ErrorPage } from 'shared/ui';
 
-// eslint-disable-next-line
-const CalendarPageApp = lazy(() => import('calendar/App'));
+const CalendarPageApp = lazy(() =>
+	// eslint-disable-next-line
+	import('calendar/App').catch(() => {
+		return {
+			default: () => <ErrorPage title={'Календарь'} text={'Сервис календаря недоступен'} />,
+		};
+	}),
+);
 
 export const CalendarPage = () => {
 	const { setCurrentService } = useNavigationStore();

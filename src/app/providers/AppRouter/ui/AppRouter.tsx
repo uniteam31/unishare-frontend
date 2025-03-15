@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Routes } from 'react-router-dom';
 import { MODULES } from 'widgets/Navbar';
 import type { TModuleItem } from 'widgets/Navbar';
-import { LoadScreen, Warning } from 'shared/ui';
+import { ErrorPage, LoadScreen } from 'shared/ui';
 import { Path, routerConfig } from '../routerConfig/routerConfig';
 import type { AppRoutesProps } from '../routerConfig/routerConfig';
 import { RequireAuth } from './RequireAuth';
@@ -28,9 +28,15 @@ export const AppRouter = () => {
 		});
 
 		const element = (
-			<Suspense fallback={<LoadScreen label={module.name} Icon={module?.Icon} />}>
-				{route.element}
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<ErrorPage title={'Ошибка'} text={'Произошло что-то очень непонятное...'} />
+				}
+			>
+				<Suspense fallback={<LoadScreen label={module.name} Icon={module?.Icon} />}>
+					{route.element}
+				</Suspense>
+			</ErrorBoundary>
 		);
 
 		return (

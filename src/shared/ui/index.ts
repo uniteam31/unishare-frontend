@@ -30,3 +30,7 @@ export {
 	//
 	TDropdownItem,
 } from '@uniteam31/uni-shared-ui';
+
+export { ErrorWidget } from './ErrorWidget';
+
+export { ErrorPage } from './ErrorPage';
