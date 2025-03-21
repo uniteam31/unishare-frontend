@@ -12,7 +12,7 @@ import type { ISpace } from '../model/space';
  * @description представляет класс для управления текущим состоянием space в localstorage и cookies
  * */
 class CurrentSpaceIDController {
-	setCurrentSpaceIDAndSendEvent(spaceID: ISpace['_id']) {
+	setCurrentSpaceIDAndSendEvent(spaceID: ISpace['id']) {
 		Cookies.set(CURRENT_SPACE_ID_COOKIE_KEY, spaceID);
 		localStorage.setItem(CURRENT_SPACE_ID_LOCALSTORAGE_KEY, spaceID);
 

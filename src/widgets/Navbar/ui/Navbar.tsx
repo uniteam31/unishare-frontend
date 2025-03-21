@@ -14,12 +14,12 @@ const getSavedSpaceDropdownItem = (spaces: ISpace[]): TDropdownItem | null => {
 	const savedSpaceID = SpaceIDController.getSavedSpaceID();
 
 	if (savedSpaceID) {
-		const savedSpace = spaces.find((space) => space._id === savedSpaceID);
+		const savedSpace = spaces.find((space) => space.id === savedSpaceID);
 
 		if (savedSpace) {
 			return {
 				name: savedSpace.name,
-				value: savedSpace._id,
+				value: savedSpace.id,
 			};
 		}
 	}
@@ -52,7 +52,7 @@ export const Navbar = () => {
 
 	const dropdownItems = useMemo(() => {
 		const items: TDropdownItem[] = spaces.map((space) => ({
-			value: space._id,
+			value: space.id,
 			name: space.name,
 		}));
 

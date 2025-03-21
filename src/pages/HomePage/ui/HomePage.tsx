@@ -14,7 +14,7 @@ const HomePage = memo(() => {
 	const { setCurrentService } = useNavigationStore();
 	const { authData } = useUserStore();
 
-	const [currentSpaceID, setCurrentSpaceID] = useState<ISpace['_id']>();
+	const [currentSpaceID, setCurrentSpaceID] = useState<ISpace['id']>();
 
 	const watchLocalstorageCurrentSpaceID = useCallback(() => {
 		const currentSpaceID = SpaceIDController.getCurrentSpaceID();
