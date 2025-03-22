@@ -36,8 +36,6 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 
 			if (savedSpaceID) {
 				SpaceIDController.setCurrentSpaceIDAndSendEvent(savedSpaceID);
-			} else {
-				SpaceIDController.setCurrentSpaceIDAndSendEvent(authData.personalSpaceID);
 			}
 
 			set({ authData });

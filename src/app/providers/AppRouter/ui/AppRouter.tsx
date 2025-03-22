@@ -7,7 +7,7 @@ import type { TModuleItem } from 'widgets/Navbar';
 import { ErrorPage, LoadScreen } from 'shared/ui';
 import { Path, routerConfig } from '../routerConfig/routerConfig';
 import type { AppRoutesProps } from '../routerConfig/routerConfig';
-import { RequireAuth } from './RequireAuth';
+import { CheckRequirements } from '../ui/CheckRequirements';
 
 /** Рендерит все маршруты и проставляет разрешения на просмотр. Также показывает LoadScreen при загрузке
  * новой страницы с сервисом */
@@ -43,7 +43,14 @@ export const AppRouter = () => {
 			<Route
 				key={route.path}
 				path={route.path}
-				element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+				element={
+					<CheckRequirements
+						isInitRequired={route.initedOnly}
+						isAuthRequired={route.authOnly}
+					>
+						{element}
+					</CheckRequirements>
+				}
 			/>
 		);
 	}, []);

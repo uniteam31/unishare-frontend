@@ -33,17 +33,18 @@ export const Navbar = () => {
 	const { currentServiceEndPath } = useNavigationStore();
 	const { authData, logout } = useUserStore();
 
-	const initialPersonalSpace = {
-		name: authData!.username,
-		value: authData!.personalSpaceID,
-	};
-
-	const [selectedSpace, setSelectedSpace] = useState<TDropdownItem>(initialPersonalSpace);
+	const [selectedSpace, setSelectedSpace] = useState<TDropdownItem | null>(null);
 
 	useEffect(() => {
 		const initialSavedSpace = getSavedSpaceDropdownItem(spaces);
 
 		if (!initialSavedSpace) {
+			if (spaces.length) {
+				const initialSpace = spaces[0];
+
+				setSelectedSpace({ name: initialSpace.name, value: initialSpace.id });
+			}
+
 			return;
 		}
 
@@ -80,15 +81,19 @@ export const Navbar = () => {
 							<span className={s.mainName}>UNISHARE</span>
 						</Link>
 
-						<span className={s.serviceName}>/</span>
+						{!!spaces.length && (
+							<>
+								<span className={s.serviceName}>/</span>
 
-						<Dropdown
-							view={'clear'}
-							selectedItem={selectedSpace}
-							items={dropdownItems}
-							onSelect={handleSelectSpace}
-							closeOnClickOutside
-						/>
+								<Dropdown
+									view={'clear'}
+									selectedItem={selectedSpace}
+									items={dropdownItems}
+									onSelect={handleSelectSpace}
+									closeOnClickOutside
+								/>
+							</>
+						)}
 
 						{MODULES[currentServiceEndPath].name && (
 							<span className={s.serviceName}>
