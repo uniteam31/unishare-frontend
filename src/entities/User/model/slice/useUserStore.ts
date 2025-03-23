@@ -1,7 +1,6 @@
 import { create } from 'zustand';
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { SpaceIDController } from 'entities/Space';
 import { axiosInstance } from 'shared/api';
+import { SpaceIDController } from 'shared/lib';
 import type { ApiResponse } from 'shared/types';
 import type { IUser } from '../types/user';
 

@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { mutate } from 'swr';
 import { useNavigationStore } from 'entities/Navigation';
-import { SpaceIDController, useGetUserSpaces } from 'entities/Space';
+import { useGetUserSpaces } from 'entities/Space';
 import type { ISpace } from 'entities/Space';
 import { useUserStore } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/logout.svg';
+import { SpaceIDController } from 'shared/lib';
 import { Dropdown, Link } from 'shared/ui';
 import type { TDropdownItem } from 'shared/ui';
 import { MODULES } from '../model/const';
@@ -71,6 +72,37 @@ export const Navbar = () => {
 
 		setSelectedSpace(space);
 	}, []);
+
+	/**
+	 * Реагирует на изменение выбранного спейса и меняет его в селекторе
+	 * Изменения приходят из других микрофронтов
+	 */
+	const watchLocalstorageCurrentSpaceID = useCallback(() => {
+		const currentSpaceID = SpaceIDController.getCurrentSpaceID();
+
+		const space = spaces.find((space) => space.id === currentSpaceID);
+
+		if (space) {
+			const newSelectedSpace: TDropdownItem = {
+				name: space!.name,
+				value: space!.id,
+			};
+
+			setSelectedSpace(newSelectedSpace);
+		}
+
+		mutate(() => true);
+	}, [spaces]);
+
+	useEffect(() => {
+		watchLocalstorageCurrentSpaceID();
+
+		window.addEventListener('storage', watchLocalstorageCurrentSpaceID);
+
+		return () => {
+			window.removeEventListener('storage', watchLocalstorageCurrentSpaceID);
+		};
+	}, [watchLocalstorageCurrentSpaceID]);
 
 	return (
 		<div>
