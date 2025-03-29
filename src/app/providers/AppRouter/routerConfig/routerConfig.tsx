@@ -9,6 +9,7 @@ import { WelcomePage } from 'pages/WelcomePage';
 
 export type AppRoutesProps = RouteProps & {
 	authOnly?: boolean;
+	initedOnly?: boolean;
 };
 
 /** Конфигурация путей всего приложения */
@@ -48,11 +49,13 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 		path: RoutesPaths.main,
 		element: <HomePage />,
 		authOnly: true,
+		initedOnly: false,
 	},
 	[Routes.NOTES]: {
 		path: RoutesPaths.notes,
 		element: <NotesPage />,
 		authOnly: true,
+		initedOnly: true,
 	},
 	[Routes.WELCOME]: {
 		path: RoutesPaths.welcome,
@@ -62,21 +65,25 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 		path: RoutesPaths.friends,
 		element: <FriendsPage />,
 		authOnly: true,
+		initedOnly: true,
 	},
 	[Routes.CALENDAR]: {
 		path: RoutesPaths.calendar,
 		element: <CalendarPage />,
 		authOnly: true,
+		initedOnly: true,
 	},
 	[Routes.ACCOUNT_SETTINGS]: {
 		path: RoutesPaths.accountSettings,
 		element: <AccountSettingsPage />,
 		authOnly: true,
+		initedOnly: true,
 	},
 	[Routes.SPACES]: {
 		path: RoutesPaths.spaces,
 		element: <SpacesPage />,
 		authOnly: true,
+		initedOnly: true,
 	},
 	// [Routes.NOT_FOUND]: {
 	// 	path: RoutesPaths.notFound,

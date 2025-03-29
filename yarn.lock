@@ -2552,17 +2552,17 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
   integrity sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==
 
-"@uniteam31/uni-shared-toolkit@0.0.3":
-  version "0.0.3"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.3/7aa2a5ca2f01ebf649076b459455ddc4667cf6ed#7aa2a5ca2f01ebf649076b459455ddc4667cf6ed"
-  integrity sha512-aFcewG7d0DW2yznKb06XQfkQjlFBsB1ewbLtuf988L5X3/n1z2ea8rbTnH+Vrp1OkCC1gGM+L5T3VxtDHM33aA==
+"@uniteam31/uni-shared-toolkit@0.0.4":
+  version "0.0.4"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.4/51c6b9d36356f7819551d227949d9e85479569fa#51c6b9d36356f7819551d227949d9e85479569fa"
+  integrity sha512-IRBgzz9MAB09mI0h66Pk58NUZ4M//LOe6UyOR1xyswylCmmaaXoqdkuyZxnYdPFO0sG6U8BiBx9BzfSWSlBZeg==
   dependencies:
     js-cookie "3.0.5"
 
-"@uniteam31/uni-shared-types@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.6/fa6fb6fd958d8833b1e7152e5fe7fdbd69afe2b4#fa6fb6fd958d8833b1e7152e5fe7fdbd69afe2b4"
-  integrity sha512-1u9l870ZxRyCQB0nSEliSRVT4o0HDzqCeQk3nUqXrLAzZwaieDbpeAhYkyVOFuZl3QCNr4Mwh9MXh4E6PFjw/Q==
+"@uniteam31/uni-shared-types@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.7/f9f9d74bb6edf2c4990be48c2f1d3a872f465f7c#f9f9d74bb6edf2c4990be48c2f1d3a872f465f7c"
+  integrity sha512-YtqXApyOcmYcK1njVMREy+CtUpStnZ2Ui4rP8OQ7/VFQRRXzgg61Ac567aKSsMbBONlCgRAu6o6ginHIacggMQ==
 
 "@uniteam31/uni-shared-ui@0.0.18":
   version "0.0.18"

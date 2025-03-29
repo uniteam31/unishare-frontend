@@ -1,53 +1,59 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { AccountSettingsWidget } from 'widgets/AccountSettingsWidget';
 import { CalendarWidget } from 'widgets/CalendarWidget';
 import { FriendsWidget } from 'widgets/FriendsWidget';
 import { NotesWidget } from 'widgets/NotesWidget';
 import { SpacesWidget } from 'widgets/SpacesWidget';
 import { useNavigationStore } from 'entities/Navigation';
-import { SpaceIDController } from 'entities/Space';
-import type { ISpace } from 'entities/Space';
+import { useGetUserSpaces } from 'entities/Space';
 import { useUserStore } from 'entities/User';
 import s from './HomePage.module.scss';
 
 const HomePage = memo(() => {
 	const { setCurrentService } = useNavigationStore();
-	const { authData } = useUserStore();
+	const { spaces } = useGetUserSpaces();
 
-	const [currentSpaceID, setCurrentSpaceID] = useState<ISpace['id']>();
+	// TODO: remove useless code
+	const { authData, initAuthData } = useUserStore();
 
-	const watchLocalstorageCurrentSpaceID = useCallback(() => {
-		const currentSpaceID = SpaceIDController.getCurrentSpaceID();
-		setCurrentSpaceID(currentSpaceID);
-	}, []);
+	/** Для связи между микрофронтами используются customEvents */
+	const listenRequestInitAuthData = useCallback(() => {
+		initAuthData();
+	}, [initAuthData]);
 
 	useEffect(() => {
 		setCurrentService('/');
 	}, [setCurrentService]);
 
 	useEffect(() => {
-		watchLocalstorageCurrentSpaceID();
-
-		window.addEventListener('storage', watchLocalstorageCurrentSpaceID);
+		window.addEventListener('updateAuth', listenRequestInitAuthData);
 
 		return () => {
-			window.removeEventListener('storage', watchLocalstorageCurrentSpaceID);
+			window.removeEventListener('updateAuth', listenRequestInitAuthData);
 		};
-	}, [watchLocalstorageCurrentSpaceID]);
+	}, [listenRequestInitAuthData]);
 
-	const isCurrentSpacePersonal = authData?.personalSpaceID === currentSpaceID;
+	// TODO: в будущем разделять сценарии отсутствия пространств и инициализации
+	const isSpacesAvailable = Boolean(spaces.length);
 
 	return (
 		<div className={s.HomePage}>
-			{isCurrentSpacePersonal && <AccountSettingsWidget />}
+			{(!authData?.isInited || !isSpacesAvailable) && <SpacesWidget />}
 
-			<NotesWidget />
+			{authData?.isInited && isSpacesAvailable && (
+				<>
+					{/* TODO: выпилить отсюда и из микрофронта, перенести в навбар */}
+					<AccountSettingsWidget />
 
-			<CalendarWidget />
+					<NotesWidget />
 
-			{isCurrentSpacePersonal && <FriendsWidget />}
+					<CalendarWidget />
 
-			<SpacesWidget />
+					<FriendsWidget />
+
+					<SpacesWidget />
+				</>
+			)}
 		</div>
 	);
 });
