@@ -14,6 +14,7 @@ pipeline {
         CALENDAR_URL = "https://dev.unishare.space/services/calendar/remoteEntry.js"
         ACCOUNT_SETTINGS_URL = "https://dev.unishare.space/services/accountSettings/remoteEntry.js"
         SPACES_URL = "https://dev.unishare.space/services/spaces/remoteEntry.js"
+        DISK_URL = "https://dev.unishare.space/services/disk/remoteEntry.js"
         DEV_SERVER_IP = "176.114.90.241"
 
         BRANCH_NAME = "${env.BRANCH_NAME ?: 'dev'}"
@@ -59,6 +60,7 @@ pipeline {
                            "--build-arg CALENDAR_URL=${CALENDAR_URL} " +
                            "--build-arg ACCOUNT_SETTINGS_URL=${ACCOUNT_SETTINGS_URL} " +
                            "--build-arg SPACES_URL=${SPACES_URL} " +
+                           "--build-arg DISK_URL=${DISK_URL} " +
                            "."
                         )
                         sh "rm -f .npmrc" // Удаляем временный .npmrc после сборки

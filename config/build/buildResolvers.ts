@@ -1,18 +1,20 @@
 import path from 'path';
-import { WebpackConfiguration } from 'webpack-cli';
-import { BuildOptions } from './types/config';
+import type { WebpackConfiguration } from 'webpack-cli';
+import type { BuildPaths } from './types/config';
 
-export const BuildResolvers = (options: BuildOptions): WebpackConfiguration['resolve'] => {
+export const BuildResolvers = (paths: BuildPaths): WebpackConfiguration['resolve'] => {
+	const { src, nodeModules } = paths;
+
 	return {
 		extensions: ['.tsx', '.ts', '.js'],
 		// настройки для работы абсолютных путей
 		preferAbsolute: true,
-		modules: [options.paths.src, 'node_modules'],
+		modules: [src, 'node_modules'],
 		mainFiles: ['index'],
 		alias: {
 			/** Эти алиасы нужны для корректной работы yarn link при локальной разработке пакетов */
-			react: path.join(options.paths.nodeModules, 'react'),
-			'react-dom': path.join(options.paths.nodeModules, 'react-dom'),
+			react: path.join(nodeModules, 'react'),
+			'react-dom': path.join(nodeModules, 'react-dom'),
 		},
 	};
 };

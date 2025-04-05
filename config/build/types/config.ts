@@ -9,20 +9,23 @@ export interface BuildPaths {
 }
 
 export interface BuildEnv {
-	port: number;
-	mode: BuildMode;
+	PORT: number;
+	MODE: BuildMode;
+}
+
+export interface BuildMicroservices {
+	NOTES_URL: string;
+	FRIENDS_URL: string;
+	CALENDAR_URL: string;
+	ACCOUNT_SETTINGS_URL: string;
+	SPACES_URL: string;
+	DISK_URL: string;
 }
 
 export interface BuildOptions {
-	mode: BuildMode;
 	paths: BuildPaths;
-	port: number;
+	env: BuildEnv;
+	microservices: BuildMicroservices;
 	isDev: boolean;
-	apiUrl: string;
-	//
-	notesUrl: string;
-	friendsUrl: string;
-	calendarUrl: string;
-	accountSettings: string;
-	spaces: string;
+	API_URL: string;
 }

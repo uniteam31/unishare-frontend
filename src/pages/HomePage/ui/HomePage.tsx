@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect } from 'react';
 import { AccountSettingsWidget } from 'widgets/AccountSettingsWidget';
 import { CalendarWidget } from 'widgets/CalendarWidget';
+import { DiskWidget } from 'widgets/DiskWidget';
 import { FriendsWidget } from 'widgets/FriendsWidget';
 import { NotesWidget } from 'widgets/NotesWidget';
 import { SpacesWidget } from 'widgets/SpacesWidget';
@@ -52,6 +53,8 @@ const HomePage = memo(() => {
 					<FriendsWidget />
 
 					<SpacesWidget />
+
+					<DiskWidget />
 				</>
 			)}
 		</div>

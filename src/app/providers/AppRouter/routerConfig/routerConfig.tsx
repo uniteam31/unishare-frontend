@@ -1,6 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import { AccountSettingsPage } from 'pages/AccountSettingsPage';
 import { CalendarPage } from 'pages/CalendarPage';
+import { DiskPage } from 'pages/DiskPage';
 import { FriendsPage } from 'pages/FriendsPage';
 import { HomePage } from 'pages/HomePage';
 import { NotesPage } from 'pages/NotesPage';
@@ -21,6 +22,7 @@ export enum Routes {
 	CALENDAR = 'calendar',
 	ACCOUNT_SETTINGS = 'accountSettings',
 	SPACES = 'spaces',
+	DISK = 'disk',
 }
 
 export type Path =
@@ -30,7 +32,8 @@ export type Path =
 	| '/friends'
 	| '/calendar'
 	| '/account/settings'
-	| '/spaces';
+	| '/spaces'
+	| '/disk';
 
 export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.MAIN]: '/',
@@ -40,6 +43,7 @@ export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.CALENDAR]: '/calendar',
 	[Routes.ACCOUNT_SETTINGS]: '/account/settings',
 	[Routes.SPACES]: '/spaces',
+	[Routes.DISK]: '/disk',
 	// // 404
 	// [Routes.NOT_FOUND]: '*',
 };
@@ -82,6 +86,12 @@ export const routerConfig: Record<Routes, AppRoutesProps> = {
 	[Routes.SPACES]: {
 		path: RoutesPaths.spaces,
 		element: <SpacesPage />,
+		authOnly: true,
+		initedOnly: true,
+	},
+	[Routes.DISK]: {
+		path: RoutesPaths.disk,
+		element: <DiskPage />,
 		authOnly: true,
 		initedOnly: true,
 	},
