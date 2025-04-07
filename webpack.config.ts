@@ -2,7 +2,7 @@ import * as process from 'node:process';
 import path from 'path';
 import webpack from 'webpack';
 import { BuildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildMode, BuildPaths } from './config/build/types/config';
+import type { BuildMicroservices, BuildMode, BuildPaths } from './config/build/types/config';
 import 'dotenv-defaults/config';
 
 export default () => {
@@ -26,19 +26,28 @@ export default () => {
 	const ACCOUNT_SETTINGS_URL =
 		process.env.ACCOUNT_SETTINGS_URL || 'http://localhost:3004/remoteEntry.js';
 	const SPACES_URL = process.env.SPACES_URL || 'http://localhost:3005/remoteEntry.js';
+	const DISK_URL = process.env.DISK_URL || 'http://localhost:3006/remoteEntry.js';
+
+	const microservices: BuildMicroservices = {
+		NOTES_URL,
+		FRIENDS_URL,
+		CALENDAR_URL,
+		ACCOUNT_SETTINGS_URL,
+		SPACES_URL,
+		DISK_URL,
+	};
+
+	const env = {
+		MODE,
+		PORT,
+	};
 
 	const config: webpack.Configuration = BuildWebpackConfig({
-		mode: MODE,
+		env,
 		paths,
-		port: PORT,
+		API_URL,
+		microservices,
 		isDev: IS_DEV,
-		apiUrl: API_URL,
-		//
-		notesUrl: NOTES_URL,
-		friendsUrl: FRIENDS_URL,
-		calendarUrl: CALENDAR_URL,
-		accountSettings: ACCOUNT_SETTINGS_URL,
-		spaces: SPACES_URL,
 	});
 
 	return config;

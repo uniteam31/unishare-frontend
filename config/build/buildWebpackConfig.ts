@@ -1,18 +1,18 @@
-import { WebpackConfiguration } from 'webpack-cli';
+import type { WebpackConfiguration } from 'webpack-cli';
 import { BuildDevServer } from './buildDevServer';
 import { BuildLoaders } from './buildLoaders';
 import { BuildPlugins } from './buildPlugins';
 import { BuildResolvers } from './buildResolvers';
-import { BuildOptions } from './types/config';
+import type { BuildOptions } from './types/config';
 
 export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration => {
-	const { mode, paths } = options;
+	const { env, paths } = options;
 
 	return {
 		module: {
 			rules: BuildLoaders(options),
 		},
-		resolve: BuildResolvers(options),
+		resolve: BuildResolvers(paths),
 		entry: paths.entry,
 		output: {
 			filename: '[name][contenthash].js',
@@ -21,9 +21,9 @@ export const BuildWebpackConfig = (options: BuildOptions): WebpackConfiguration 
 			publicPath: '/',
 			uniqueName: 'unishare',
 		},
-		mode: mode,
+		mode: env.MODE,
 		plugins: BuildPlugins(options),
-		devServer: BuildDevServer(options),
+		devServer: BuildDevServer(env),
 		ignoreWarnings: [
 			{
 				message: /Deprecation/,

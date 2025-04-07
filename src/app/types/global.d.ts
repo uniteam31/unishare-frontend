@@ -28,3 +28,6 @@ declare module 'accountSettings/Widget';
 
 declare module 'spaces/App';
 declare module 'spaces/Widget';
+
+declare module 'disk/App';
+declare module 'disk/Widget';
