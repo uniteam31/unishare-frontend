@@ -43,7 +43,7 @@ export const MODULES: Record<Path, TModuleItem> = {
 		Icon: <SpacesIcon style={baseIconStyles} />,
 	},
 	// TODO добавить иконку
-	['/disk']: {
+	['/disk/*']: {
 		name: 'Диск',
 	},
 };

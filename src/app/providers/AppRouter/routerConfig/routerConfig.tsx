@@ -33,7 +33,7 @@ export type Path =
 	| '/calendar'
 	| '/account/settings'
 	| '/spaces'
-	| '/disk';
+	| '/disk/*';
 
 export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.MAIN]: '/',
@@ -43,7 +43,7 @@ export const RoutesPaths: Record<Routes, Path> = {
 	[Routes.CALENDAR]: '/calendar',
 	[Routes.ACCOUNT_SETTINGS]: '/account/settings',
 	[Routes.SPACES]: '/spaces',
-	[Routes.DISK]: '/disk',
+	[Routes.DISK]: '/disk/*',
 	// // 404
 	// [Routes.NOT_FOUND]: '*',
 };

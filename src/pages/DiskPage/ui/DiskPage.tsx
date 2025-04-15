@@ -15,7 +15,7 @@ export const DiskPage = () => {
 	const { setCurrentService } = useNavigationStore();
 
 	useEffect(() => {
-		setCurrentService('/disk');
+		setCurrentService('/disk/*');
 	}, [setCurrentService]);
 
 	return <DiskPageApp />;
