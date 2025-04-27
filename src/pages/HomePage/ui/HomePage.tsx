@@ -8,6 +8,7 @@ import { SpacesWidget } from 'widgets/SpacesWidget';
 import { useNavigationStore } from 'entities/Navigation';
 import { useGetUserSpaces } from 'entities/Space';
 import { useUserStore } from 'entities/User';
+import { Warning } from 'shared/ui';
 import s from './HomePage.module.scss';
 
 const HomePage = memo(() => {
@@ -39,7 +40,16 @@ const HomePage = memo(() => {
 
 	return (
 		<div className={s.HomePage}>
-			{(!authData?.isInited || !isSpacesAvailable) && <SpacesWidget />}
+			{(!authData?.isInited || !isSpacesAvailable) && (
+				<>
+					<Warning
+						className={s.welcomeMessage}
+						title={'Создайте свое первое пространство, чтобы начать!'}
+						theme={'blue'}
+					/>
+					<SpacesWidget />
+				</>
+			)}
 
 			{authData?.isInited && isSpacesAvailable && (
 				<>
