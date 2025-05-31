@@ -1,9 +1,17 @@
-FROM node
+FROM node:22
 
 # При деплое ОБЯЗАТЕЛЬНО указывать все ENV через Jenkins
 # Ставится в pipeline на Jenkins
 ARG BRANCH=dev
+
+# MICROSERVICES
 ARG API_URL
+ARG NOTES_URL
+ARG FRIENDS_URL
+ARG CALENDAR_URL
+ARG ACCOUNT_SETTINGS_URL
+ARG SPACES_URL
+ARG DISK_URL
 
 # INSTALL PACKAGES
 RUN apt -yqq update \
@@ -30,7 +38,14 @@ RUN git checkout ${BRANCH}
 
 # INSTALL DEPS
 RUN yarn install
-RUN API_URL=${API_URL} yarn build
+RUN API_URL=${API_URL}  \
+    NOTES_URL=${NOTES_URL}  \
+    FRIENDS_URL=${FRIENDS_URL}  \
+    CALENDAR_URL=${CALENDAR_URL}  \
+    ACCOUNT_SETTINGS_URL=${ACCOUNT_SETTINGS_URL}  \
+    SPACES_URL=${SPACES_URL}  \
+    DISK_URL=${DISK_URL}  \
+    yarn build
 
 RUN rm -rf /var/www/html
 RUN mv build /var/www/

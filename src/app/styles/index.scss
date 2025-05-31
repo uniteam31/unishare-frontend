@@ -6,6 +6,7 @@ body {
 
 .App {
 	height: 100vh; // растягивание контента в App на всю высоту
+	overflow-y: scroll;
 }
 
 .content-page {

@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import axiosInstance from 'shared/api/axiosInstance';
-import { ApiResponse, TAccessToken } from 'shared/api/types';
+import { axiosInstance } from 'shared/api';
 import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { getApiResponseErrorMessage } from 'shared/lib/getApiResponseErrorMessage/getApiResponseErrorMessage';
-import { TLoginFormField } from '../model/login';
+import { getApiResponseErrorMessage } from 'shared/lib';
+import type { ApiResponse, TAccessToken } from 'shared/types';
+import type { TLoginFormField } from '../model/login';
 
 interface ILoginProps {
 	formValues: TLoginFormField;
@@ -29,7 +29,8 @@ export const useLogin = () => {
 			localStorage.setItem(ACCESS_TOKEN_LOCALSTORAGE_KEY, accessToken);
 		} catch (error) {
 			const errorMessage =
-				getApiResponseErrorMessage(error) || 'Произошла неизвестная ошибка';
+				getApiResponseErrorMessage(error) ||
+				'Произошла неизвестная ошибка при входе в аккаунт';
 			setError(errorMessage);
 		} finally {
 			setIsLoading(false);

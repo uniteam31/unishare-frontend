@@ -13,7 +13,7 @@
 
 **ENV**: API_URL, BRANCH  
 **COMMANDS**:
-1. Сборка образа -> `docker build --no-cache -t def1s/unishare-frontend --build-arg API_URL=... --build-arg BRANCH=... .` (точку не забывать)
+1. Сборка образа -> `docker build --no-cache -t def1s/unishare-frontend --build-arg API_URL=... --build-arg BRANCH=... --build-arg NOTES_URL=... --build-arg FRIENDS_URL=... --build-arg ACCOUNT_SETTINGS_URL=... .` (точку не забывать)
 2. Push -> `docker push def1s/unishare-frontend` (но смысла особо нет, в пайплайне все равно перепушит)
 3. Run -> `docker run def1s/unishare-frontend`
 4. Можно взять образ из DockerHub -> `docker pull def1s/unishare-frontend`

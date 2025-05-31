@@ -10,6 +10,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 		html: '',
 		build: '',
 		entry: '',
+		nodeModules: '',
 	};
 
 	config?.resolve?.modules?.push(paths.src);

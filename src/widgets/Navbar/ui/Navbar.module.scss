@@ -7,12 +7,13 @@
     right: 0;
     top: 0;
     width: 100%;
+    z-index: 1000;
 
     .breadcrumbs {
         align-items: center;
-        justify-content: space-between;
         display: flex;
         height: 100%;
+        justify-content: space-between;
         width: 100%;
 
         .navigation {
@@ -22,9 +23,9 @@
         }
 
         .logoutIcon {
-            width: 30px;
-            height: 30px;
             cursor: pointer;
+            height: 30px;
+            width: 30px;
         }
     }
 

@@ -1,17 +1,21 @@
 import { create } from 'zustand';
-import axiosInstance from 'shared/api/axiosInstance';
-import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { IUser } from '../types/user';
+import { axiosInstance } from 'shared/api';
+import { SpaceIDController } from 'shared/lib';
+import type { ApiResponse } from 'shared/types';
+import type { IUser } from '../types/user';
 
 interface IUserStore {
 	/** Поля */
 	authData?: IUser;
 	_init?: boolean;
+
 	/** Методы */
 	setAuthData: (authData: IUser) => void;
 	initAuthData: () => void;
 	logout: () => void;
 }
+
+type TUserInitialData = ApiResponse<IUser>;
 
 export const useUserStore = create<IUserStore>((set, get) => ({
 	setAuthData: (authData) => {
@@ -20,13 +24,20 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 
 	initAuthData: async () => {
 		try {
-			const response = await axiosInstance.get<IUser>('/auth');
+			const response = await axiosInstance.get<TUserInitialData>('/auth');
+			const authData = response.data.data;
 
-			if (!response.data) {
+			if (!authData) {
 				throw new Error('Что-то пошло не так...');
 			}
 
-			set({ authData: response.data });
+			const savedSpaceID = SpaceIDController.getSavedSpaceID();
+
+			if (savedSpaceID) {
+				SpaceIDController.setCurrentSpaceIDAndSendEvent(savedSpaceID);
+			}
+
+			set({ authData });
 		} catch (e) {
 			// TODO добавить уведомление
 			console.error('Произошла ошибка: ' + e);
@@ -36,7 +47,8 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 	},
 
 	logout: () => {
-		localStorage.removeItem(ACCESS_TOKEN_LOCALSTORAGE_KEY);
+		SpaceIDController.clearCurrentSpaceID();
+
 		set({ authData: undefined });
 	},
 }));

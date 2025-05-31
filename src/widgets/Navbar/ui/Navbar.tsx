@@ -1,18 +1,108 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { mutate } from 'swr';
 import { useNavigationStore } from 'entities/Navigation';
+import { useGetUserSpaces } from 'entities/Space';
+import type { ISpace } from 'entities/Space';
 import { useUserStore } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/logout.svg';
-import { Link } from 'shared/ui/Link/Link';
+import { SpaceIDController } from 'shared/lib';
+import { Dropdown, Link } from 'shared/ui';
+import type { TDropdownItem } from 'shared/ui';
 import { MODULES } from '../model/const';
 import s from './Navbar.module.scss';
 
+const getSavedSpaceDropdownItem = (spaces: ISpace[]): TDropdownItem | null => {
+	const savedSpaceID = SpaceIDController.getSavedSpaceID();
+
+	if (savedSpaceID) {
+		const savedSpace = spaces.find((space) => space.id === savedSpaceID);
+
+		if (savedSpace) {
+			return {
+				name: savedSpace.name,
+				value: savedSpace.id,
+			};
+		}
+	}
+
+	return null;
+};
+
 export const Navbar = () => {
+	// TODO добавить обработчики
+	const { spaces } = useGetUserSpaces();
 	const { currentServiceEndPath } = useNavigationStore();
-	const { logout } = useUserStore();
+	const { authData, logout } = useUserStore();
+
+	const [selectedSpace, setSelectedSpace] = useState<TDropdownItem | null>(null);
+
+	useEffect(() => {
+		const initialSavedSpace = getSavedSpaceDropdownItem(spaces);
+
+		if (!initialSavedSpace) {
+			if (spaces.length) {
+				const initialSpace = spaces[0];
+
+				setSelectedSpace({ name: initialSpace.name, value: initialSpace.id });
+			}
+
+			return;
+		}
+
+		setSelectedSpace(initialSavedSpace);
+	}, [authData, spaces]);
+
+	const dropdownItems = useMemo(() => {
+		const items: TDropdownItem[] = spaces.map((space) => ({
+			value: space.id,
+			name: space.name,
+		}));
+
+		return items;
+	}, [spaces]);
 
 	const handleLogout = useCallback(() => {
 		logout();
 	}, [logout]);
+
+	const handleSelectSpace = useCallback((space: TDropdownItem) => {
+		SpaceIDController.setCurrentSpaceIDAndSendEvent(String(space.value));
+
+		mutate(() => true);
+
+		setSelectedSpace(space);
+	}, []);
+
+	/**
+	 * Реагирует на изменение выбранного спейса и меняет его в селекторе
+	 * Изменения приходят из других микрофронтов
+	 */
+	const watchLocalstorageCurrentSpaceID = useCallback(() => {
+		const currentSpaceID = SpaceIDController.getCurrentSpaceID();
+
+		const space = spaces.find((space) => space.id === currentSpaceID);
+
+		if (space) {
+			const newSelectedSpace: TDropdownItem = {
+				name: space!.name,
+				value: space!.id,
+			};
+
+			setSelectedSpace(newSelectedSpace);
+		}
+
+		mutate(() => true);
+	}, [spaces]);
+
+	useEffect(() => {
+		watchLocalstorageCurrentSpaceID();
+
+		window.addEventListener('storage', watchLocalstorageCurrentSpaceID);
+
+		return () => {
+			window.removeEventListener('storage', watchLocalstorageCurrentSpaceID);
+		};
+	}, [watchLocalstorageCurrentSpaceID]);
 
 	return (
 		<div>
@@ -22,6 +112,20 @@ export const Navbar = () => {
 						<Link to={'/'}>
 							<span className={s.mainName}>UNISHARE</span>
 						</Link>
+
+						{!!spaces.length && (
+							<>
+								<span className={s.serviceName}>/</span>
+
+								<Dropdown
+									view={'clear'}
+									selectedItem={selectedSpace}
+									items={dropdownItems}
+									onSelect={handleSelectSpace}
+									closeOnClickOutside
+								/>
+							</>
+						)}
 
 						{MODULES[currentServiceEndPath].name && (
 							<span className={s.serviceName}>

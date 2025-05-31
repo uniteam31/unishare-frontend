@@ -1,5 +1,1 @@
-export interface IUser {
-	firstName: string;
-	username: string;
-	// avatar?: string;
-}
+export type { IUser } from '@uniteam31/uni-shared-types';
